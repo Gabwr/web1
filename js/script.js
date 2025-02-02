@@ -1,4 +1,6 @@
-// JavaScript Document
+function ingreso(){
+	
+}
 
 function envio()
 {
@@ -39,3 +41,5 @@ function validarClave(){
 		alerta.innerHTML="Formato de clave invalida. Ingrese de nuevo";
 	}
 }
+
+
