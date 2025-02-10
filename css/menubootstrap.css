@@ -1,0 +1,7 @@
+
+.nav-item:hover {
+	background-color: rgb(149, 188, 242); /* Celeste */
+	color: white; /* Cambia el color del texto para que contraste */
+	cursor: pointer; /* Cambia el cursor a mano */
+	transition: all 0.3s ease; /* Transición suave */
+}
