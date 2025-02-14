@@ -5,3 +5,15 @@
 	cursor: pointer; 
 	transition: all 0.3s ease; 
 }
+
+.table-responsive {
+	max-height: 300px;
+	overflow-y: auto; 
+  }
+
+  .table thead th {
+	position: sticky; 
+	top: 0; 
+	background-color: #f8f9fa; 
+	z-index: 1; 
+  }
