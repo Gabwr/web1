@@ -4,6 +4,7 @@
 	font-family: "Astonpoliz";
 	src: url("../fuentes/Astonpoliz.otf");
 }
+
 body{
 	background-image: url("../img/schoolkids.jpeg");
 	background-size: cover;
@@ -13,7 +14,7 @@ body{
 	margin: 0;
 	position: absolute;
 	width: 35%;
-	height: 30%;
+	border: 2px solid red;
 	top: 50%;
 	left: 10%;
 	transform: translate(-10%, -50%);
@@ -28,11 +29,17 @@ body{
 	position: absolute;
 	top: 50%;
 	transform: translate(0, -50%);
-}
+}	
 .invalid{
 	border: solid medium red;
 	border-radius: 3px;
 }
+
+.login_input{
+	display: flex;
+	
+}
+
 .msjvalido{
 	font-size: 0.75rem;
 }
