@@ -80,7 +80,7 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
 </head>
 
 <body>
-  <header>
+  <header class="fixed-top"> 
     <div class="row py-4 w-full" style="background-color: rgb(182, 215, 168);">
       <div class="col-md-10 d-flex justify-content-center align-items-center">
         <h1>ICONO</h1>
@@ -96,7 +96,7 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
     </div>
   </header>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border border-dark py-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border border-dark py-0 fixed-top" style="top:7rem">
     <div class="container-fluid py-0">
       <button class="navbar-toggler py-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
         <span class="navbar-toggler-icon"></span>
@@ -113,47 +113,50 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
     </div>
   </nav>
 
-  <section class="container py-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="p-4 text-white rounded" style="background-color: #69a84f;">
-                    <h4>Ingresos del Mes</h4>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="fs-4 mb-0">$<?= $ingresos ? $ingresos : '0.00'; ?></p>
-                        <i class="fa-solid fa-money-bill-trend-up fa-2x"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-4 text-white rounded" style="background-color: #e69137;">
-                    <h4>Egresos del Mes</h4>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="fs-4 mb-0">$<?= $egresos ? $egresos : '0.00'; ?></p>
-                        <i class="fa-solid fa-money-bill-transfer fa-2x"></i>
-                    </div>
+  <section class="d-flex justify-content-center py-5 px-5 overflow-auto w-100vw gap-5 border" style="margin-top: 9.5rem; height: calc(100vh - 12rem);"> 
+    <div class="flex-column align-items-center gap-5 w-100 d-flex">
+        <div class="col-md-6">
+            <div class="p-4 text-white rounded d-flex flex-column justify-content-center align-items-center" style="background-color: #69a84f; min-height: 150px;">
+                <h4 class="text-center">Ingresos del Mes</h4>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <p class="fs-4 mb-0">$<?= $ingresos ? $ingresos : '0.00'; ?></p>
+                    <i class="fa-solid fa-money-bill-trend-up fa-2x"></i>
                 </div>
             </div>
         </div>
-
-        <div class="mt-4">
-            <div class="p-4 bg-light rounded">
-                <h4>Actividad Reciente</h4>
-                <ul class="list-group list-group-flush">
-                    <?php
-                    $personasActividad = array_merge($personasIngresos, $personasEgresos);
-                    $personasActividad = array_unique($personasActividad);
-                    foreach ($personasActividad as $persona) {
-                        echo "<li class='list-group-item'>" . htmlspecialchars($persona) . "</li>";
-                    }
-                    ?>
-                </ul>
+        <div class="col-md-6">
+            <div class="p-4 text-white rounded d-flex flex-column justify-content-center align-items-center" style="background-color: #e69137; min-height: 150px;">
+                <h4 class="text-center">Gastos del Mes</h4>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <p class="fs-4 mb-0">$<?= $egresos ? $egresos : '0.00'; ?></p>
+                    <i class="fa-solid fa-money-bill-transfer fa-2x"></i>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-  <footer>
-    <p>&copy; <?= date('Y'); ?> Todos los derechos reservados.</p>
-  </footer>
+    <div class="mt-4 w-100 overflow-auto">
+        <div class="p-4 bg-light rounded overflow-auto" style="min-height: 200px;">
+            <h4 class="text-center">Actividad Reciente</h4>
+            <ul class="list-group list-group-flush">
+                <?php
+                $personasActividad = array_merge($personasIngresos, $personasEgresos);
+                $personasActividad = array_unique($personasActividad);
+                foreach ($personasActividad as $persona) {
+                    echo "<li class='list-group-item d-flex align-items-center'><i class='fa-solid fa-user me-2'></i> " . htmlspecialchars($persona) . "</li>";
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+</section>
+
+<footer class="fixed-bottom bg-light py-2 text-center">
+    <p class="mb-0">&copy; <?= date('Y'); ?> Todos los derechos reservados.</p>
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/usuario.js"></script>
