@@ -5,7 +5,7 @@ require '../server/conexion.php';
 $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Invitado';
 
 
-$sql = "SELECT idUsuario FROM USUARIO WHERE usuario = ?";
+$sql = "SELECT idUsuario FROM usuario WHERE usuario = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $usuario);
 $stmt->execute();
@@ -80,40 +80,8 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
 </head>
 
 <body>
-  <header class="fixed-top"> 
-    <div class="row py-4 w-full" style="background-color: rgb(182, 215, 168);">
-      <div class="col-md-10 d-flex justify-content-center align-items-center">
-        <h1>ICONO</h1>
-      </div>
-      <div class="col-md-1 d-flex justify-content-center align-items-center">
-        <p id="usuario_nombre"><?= $usuario; ?></p>
-      </div>
-      <div class="col-md-1 d-flex justify-content-center align-items-center">
-        <button class="btn btn-sm btn-light ms-0 border border-dark" style="background-color: rgb(151, 214, 157);">
-          <i class="bi bi-person fs-1"></i>
-        </button>
-      </div>
-    </div>
-  </header>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border border-dark py-0 fixed-top" style="top:7rem">
-    <div class="container-fluid py-0">
-      <button class="navbar-toggler py-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse py-0" id="menuNav">
-        <ul class="navbar-nav d-flex justify-content-center align-items-center py-0">
-          <li class="nav-item  px-5"><a class="nav-link text-dark" href="inicio.php">Inicio</a></li>
-          <li class="nav-item  px-5"><a class="nav-link text-dark" href="#">Reportes</a></li>
-          <li class="nav-item  px-5"><a class="nav-link text-dark" href="#">Usuarios</a></li>
-          <li class="nav-item  px-5"><a class="nav-link text-dark" href="#">Perfiles</a></li>
-          <li class="nav-item  px-5"><a class="nav-link text-dark" href="#">Codigo QR</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <section class="d-flex justify-content-center py-5 px-5 overflow-auto w-100vw gap-5 border" style="margin-top: 9.5rem; height: calc(100vh - 12rem);"> 
+  <section class="d-flex justify-content-center py-5 px-5 overflow-auto w-100vw gap-5 border" style=" height: calc(100vh - 12rem);"> 
     <div class="flex-column align-items-center gap-5 w-100 d-flex">
         <div class="col-md-6">
             <div class="p-4 text-white rounded d-flex flex-column justify-content-center align-items-center" style="background-color: #69a84f; min-height: 150px;">
