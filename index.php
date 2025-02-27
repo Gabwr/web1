@@ -1,7 +1,6 @@
 <?php
 session_start();
 require 'server/conexion.php';
-
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $usuario = $conn->real_escape_string($usuario);
   $clave = $conn->real_escape_string($clave);
 
-  $sql = "SELECT * FROM USUARIO WHERE usuario = ? AND contrasenia = ?";
+  $sql = "SELECT * FROM usuario WHERE usuario = ? AND contrasenia = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ss", $usuario, $clave);
   $stmt->execute();
