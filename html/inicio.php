@@ -4,7 +4,6 @@ require '../server/conexion.php';
 
 $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Invitado';
 
-
 $sql = "SELECT idUsuario FROM usuario WHERE usuario = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $usuario);
@@ -12,7 +11,6 @@ $stmt->execute();
 $result = $stmt->get_result();  
 $userData = $result->fetch_assoc();
 $idUsuario = $userData['idUsuario'];
-
 
 $sqlIngresos = "SELECT SUM(valor) AS totalIngresos 
                 FROM INGRESO 
@@ -23,7 +21,6 @@ $stmtIngresos->execute();
 $resultIngresos = $stmtIngresos->get_result();
 $ingresos = $resultIngresos->fetch_assoc()['totalIngresos'];
 
-
 $sqlEgresos = "SELECT SUM(valor) AS totalEgresos 
                FROM GASTO 
                WHERE MONTH(fecha) = MONTH(CURRENT_DATE) 
@@ -32,7 +29,6 @@ $stmtEgresos = $conn->prepare($sqlEgresos);
 $stmtEgresos->execute();
 $resultEgresos = $stmtEgresos->get_result();
 $egresos = $resultEgresos->fetch_assoc()['totalEgresos'];
-
 
 $sqlPersonasIngresos = "SELECT DISTINCT u.nombre 
                         FROM INGRESO i
@@ -46,8 +42,6 @@ while ($row = $personasIngresosResult->fetch_assoc()) {
   $personasIngresos[] = $row['nombre']; 
 }
 
-
-
 $sqlPersonasEgresos = "SELECT DISTINCT u.nombre 
                        FROM GASTO g
                        JOIN USUARIO u ON g.idUsuario = u.idUsuario
@@ -60,7 +54,6 @@ $personasEgresos = [];
 while ($row = $personasEgresosResult->fetch_assoc()) {
   $personasEgresos[] = $row['nombre']; 
 }
-
 ?>
 <!doctype html>
 <html>

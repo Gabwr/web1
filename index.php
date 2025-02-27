@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($result->num_rows > 0) {
     $_SESSION['usuario'] = $usuario;
-    header("Location: ./html/inicio.php");
+    header("Location: ./html/MenuInicio.php");
     exit();
   } else {
     $error = "⚠ Usuario o contraseña incorrectos";
@@ -38,13 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div id="login">
     <div class="contenedor">
-      <form method="post" action="index.php" onsubmit="return validarFormulario()"> 
+      <form method="post" action="index.php" onsubmit=""> 
         <p><strong>Ingreso Usuario</strong></p>
         
         <p class="login_input">
           <div>
             <label for="usuario">Usuario:</label>
-            <input type="text" name="usuario" id="usuario" required onchange="validarUser()">
+            <input type="text" name="usuario" id="usuario" required onchange="">
           </div>
           <span id="alertUser" class="msjvalido"></span>
         </p>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class="login_input">
           <div>
             <label for="clave">Contraseña:</label>
-            <input type="password" name="clave" id="clave" required onchange="validarClave()">
+            <input type="password" name="clave" id="clave" required onchange="">
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         
         <p>
-          <button type="submit" id="btnSubmit" disabled>Ingresar</button>
+          <button type="submit" id="btnSubmit">Ingresar</button>
           <input type="reset" value="Restablecer" onclick="reestablecer()">
         </p>
       </form>

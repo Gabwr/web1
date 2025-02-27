@@ -35,7 +35,7 @@
 								<a class="nav-link text-dark" href="#">Reportes</a>
 							</li>
 							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="#">Usuarios</a>
+								<a class="nav-link text-dark" href="Usuarios.php">Usuarios</a>
 							</li>
 							<li class="nav-item  px-5" >
 								<a class="nav-link text-dark" href="#">Perfiles</a>

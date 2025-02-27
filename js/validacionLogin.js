@@ -1,4 +1,4 @@
-/*function validarUser() {
+function validarUser() {
 	const user = document.getElementById("usuario");
 	let username = user.value;
 	const alerta = document.getElementById("alertUser");
@@ -72,4 +72,3 @@ function reestablecer() {
 	alertaClave.innerHTML = "";
   
   }
-  */
