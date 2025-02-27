@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2025 at 03:24 PM
+-- Generation Time: Feb 27, 2025 at 10:53 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,57 @@ SET time_zone = "+00:00";
 --
 -- Database: `mydb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gasto`
+--
+
+CREATE TABLE `gasto` (
+  `idGasto` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `valor` decimal(4,2) NOT NULL,
+  `medio_de_pago` varchar(45) NOT NULL,
+  `acreedor_cobrador` varchar(45) NOT NULL,
+  `descripcion` varchar(128) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ingreso`
+--
+
+CREATE TABLE `ingreso` (
+  `idIngreso` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `valor` decimal(4,2) NOT NULL,
+  `medio_de_pago` varchar(45) NOT NULL,
+  `fuente_beneficiario` varchar(45) NOT NULL,
+  `descripcion` varchar(128) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `perfil`
+--
+
+CREATE TABLE `perfil` (
+  `idPerfil` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `descripcion` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `perfil`
+--
+
+INSERT INTO `perfil` (`idPerfil`, `nombre`, `descripcion`) VALUES
+(1, 'Administrador', 'Padre de Familia encargado del sistema y las ');
 
 -- --------------------------------------------------------
 
@@ -49,6 +100,26 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `usuario`, `contraseni
 --
 
 --
+-- Indexes for table `gasto`
+--
+ALTER TABLE `gasto`
+  ADD PRIMARY KEY (`idGasto`),
+  ADD KEY `fk_GASTO_USUARIO_idx` (`idUsuario`);
+
+--
+-- Indexes for table `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD PRIMARY KEY (`idIngreso`),
+  ADD KEY `fk_INGRESO_USUARIO1_idx` (`idUsuario`);
+
+--
+-- Indexes for table `perfil`
+--
+ALTER TABLE `perfil`
+  ADD PRIMARY KEY (`idPerfil`);
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -58,6 +129,18 @@ ALTER TABLE `usuario`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `gasto`
+--
+ALTER TABLE `gasto`
+  ADD CONSTRAINT `fk_GASTO_USUARIO` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
+
+--
+-- Constraints for table `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD CONSTRAINT `fk_INGRESO_USUARIO1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
 -- Constraints for table `usuario`
