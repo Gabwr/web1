@@ -30,29 +30,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <script src="js/validacionLogin.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="login">
-    <div class="contenedor">
-      <form method="post" action="index.php" onsubmit=""> 
-        <p><strong>Ingreso Usuario</strong></p>
-        
-        <p class="login_input">
-          <div>
-            <label for="usuario">Usuario:</label>
-            <input type="text" name="usuario" id="usuario" required onchange="">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container-fluid">
+	<div class="login-form">
+    <div class="formulario espaciado">
+	<img src="img/contab-logo.png">
+      <form method="post" action="index.php" onsubmit="return validarFormulario()"> 
+        <h3><strong>Iniciar sesión</strong></h3>
+        <p>
+          <div class="form-group campo">
+            <label for="usuario">Usuario:</label><br>
+            <input type="text" name="usuario" id="usuario" class="form-control" required onchange="validarUser()">
           </div>
-          <span id="alertUser" class="msjvalido"></span>
-        </p>
-        
-        <p class="login_input">
-          <div>
-            <label for="clave">Contraseña:</label>
-            <input type="password" name="clave" id="clave" required onchange="">
+          <div class="form-group campo">
+            <label for="clave">Contraseña:</label><br>
+            <input type="password" name="clave" id="clave" class="form-control" required onchange="validarClave()">
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
@@ -62,13 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         
         <p>
-          <button type="submit" id="btnSubmit">Ingresar</button>
-          <input type="reset" value="Restablecer" onclick="reestablecer()">
+          <button type="submit" id="btnSubmit" class="btn botonLogin" disabled>Ingresar</button>
         </p>
+		<p>¿No tienes cuenta?<a href="">Regístrate</a></p>
       </form>
     </div>  
-    <div class="logo"><img src="img/logo.png"></div>
   </div>
+	<div class="fondo">
+		<img src="img/background-img.jpg">
+	</div>
+	</div>
 </body>
 
 </html>
