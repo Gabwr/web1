@@ -40,19 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <div class="container-fluid">
-	<div class="login-form">
+<div class="login-form">
     <div class="formulario espaciado">
 	<img src="img/contab-logo.png">
-      <form method="post" action="index.php" onsubmit="return validarFormulario()"> 
+      <form method="post" action="index.php" > 
         <h3><strong>Iniciar sesión</strong></h3>
         <p>
           <div class="form-group campo">
             <label for="usuario">Usuario:</label><br>
-            <input type="text" name="usuario" id="usuario" class="form-control" required onchange="validarUser()">
+            <input type="text" name="usuario" id="usuario" class="form-control" required >
           </div>
           <div class="form-group campo">
             <label for="clave">Contraseña:</label><br>
-            <input type="password" name="clave" id="clave" class="form-control" required onchange="validarClave()">
+            <input type="password" name="clave" id="clave" class="form-control" required >
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         
         <p>
-          <button type="submit" id="btnSubmit" class="btn botonLogin" disabled>Ingresar</button>
+          <button type="submit" id="btnSubmit" class="btn botonLogin" >Ingresar</button>
         </p>
 		<p>¿No tienes cuenta?<a href="">Regístrate</a></p>
       </form>

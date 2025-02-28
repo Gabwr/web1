@@ -14,7 +14,7 @@
 
 <div id="menu">
 		<div class="row py-4" style="background-color: rgb(182, 215, 168);">
-		<div class="col-md-10 d-flex justify-content-center align-items-center"><h1>ICONO </h1></div>
+		<div class="col-md-10 d-flex justify-content-center align-items-center"><h1><img src="../img/contab-logo.png" style="height:90px"></h1></div>
 		<div class="col-md-1 d-flex justify-content-center align-items-center"><p id="usuario_nombre">username</p></div>
 		<div class="col-md-1 d-flex justify-content-center align-items-center">
 			<button class="btn btn-sm btn-light ms-0 border border-dark" style="background-color: rgb(151, 214, 157);"><i class="bi bi-person fs-1"></i></button></div>	

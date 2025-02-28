@@ -114,21 +114,79 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 </div>
 
 	<div class="modal fade" id="miDialogo" tabindex="-1" aria-labelledby="miDialogoLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="miDialogoLabel">Este es un Diálogo</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-				<p>Contenido del diálogo...</p>
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-center">Registrar Usuario</h1>
+                </div>
+                <div class="row border border-dark p-3 my-4 mx-4 position-relative">
+						<h3 class="position-absolute top-0 start-0 ms-3 px-2" 
+						style="margin-top: -12px; background-color: white; display: inline;">
+						Datos del Usuario
+						</h3>
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre:
+                            <input type="text" id="nombre" name="nombre" class="form-control border-dark" required>
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellido" class="form-label">Apellido:
+                            <input type="text" id="apellido" name="apellido" class="form-control border-dark" required>
+                        </label>
+                    </div>
+                </div>
+				<div class="row border border-dark p-3 my-4 mx-4 position-relative">
+					<h3 class="position-absolute top-0 start-0 ms-3 px-2" 
+					style="margin-top: -12px; background-color: white; display: inline;">
+					Datos de la cuenta
+					</h3>
+				<div class="col-md-6">
+					<label for="usuario" class="form-label">Usuario:
+						<input type="text" id="usuario" name="usuario" class="form-control border-dark" required>
+					</label>
+					<label for="contrasenia" class="form-label">Contraseña:
+						<input type="text" id="contrasenia" name="contrasenia" class="form-control border-dark" required>
+					</label>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 				<button type="button" class="btn btn-primary">Aceptar</button>
+				<div class="col-md-6">
+					<label for="Perfil" class="form-label">Perfil:
+						<div class="form-check mx-2 my-2">
+							<input class="form-check-input" type="checkbox" id="ingreso">
+							<label class="form-check-label" for="ingreso">
+								Generador de Ingreso
+							</label>
+						</div>
+						
+						<div class="form-check mx-2 my-2">
+							<input class="form-check-input" type="checkbox" id="egreso">
+							<label class="form-check-label" for="egreso">
+								Generador de Egresos
+							</label>
+						</div>
+						
+						<div class="form-check mx-2 my-2">
+							<input class="form-check-input" type="checkbox" id="documentos">
+							<label class="form-check-label" for="documentos">
+								Visualizador de Documentos
+							</label>
+						</div>
+					</label>
 				</div>
+
+			</div>	
+            </div>
+            <div class="modal-footer d-flex justify-content-center align-items-center">
+				<button type="button" class="btn btn-white border border-dark" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-white border border-dark">Ingresar</button>
 			</div>
 		</div>
+	</div>
+        </div>
+    </div>
 	</div>
 
 
