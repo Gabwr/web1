@@ -1,5 +1,6 @@
-function mostrarDialogo() {
-  var myModal = new bootstrap.Modal(document.getElementById('miDialogo'));
-  myModal.show();
-}
-  
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector("button[onclick='mostrarDialogo()']").addEventListener("click", function() {
+      var modal = new bootstrap.Modal(document.getElementById('miDialogo'));
+      modal.show();
+  });
+});

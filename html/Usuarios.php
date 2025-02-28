@@ -1,3 +1,29 @@
+<?php
+session_start();
+require '../server/conexion.php';
+
+$consulta = 'SELECT * FROM usuario';
+$resultado = mysqli_query($conn, $consulta);
+$tabla = '';
+
+while ($registro = mysqli_fetch_assoc($resultado)) {
+    $tabla .= '<tr>';
+    $tabla .= '<td>' . htmlspecialchars($registro['idUsuario']) . '</td>';
+    $tabla .= '<td>' . htmlspecialchars($registro['nombre'] . ' ' . $registro['apellido']) . '</td>';
+    $tabla .= '<td>' . htmlspecialchars($registro['perfil']) . '</td>';
+    $tabla .= '<td>' . htmlspecialchars($registro['estado']) . '</td>';
+    $tabla .= '<td>
+                <button class="btn btn-sm btn-primary me-1">
+                    <i class="bi bi-pencil"></i> Editar
+                </button>
+                <button class="btn btn-sm btn-danger">
+                    <i class="bi bi-x-circle"></i> Desactivar
+                </button>
+              </td>';
+    $tabla .= '</tr>';
+}
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -8,6 +34,8 @@
 	<link href="../css/menubootstrap.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/dialogo.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="../js/usuario.js"></script>
 </head>
 
 <body>
@@ -17,7 +45,7 @@
 			<h1>Usuarios</h1>
 		</div> 
 		
-		<button	class="btn shadow-sm border-light ms-0 my-4" onclick="mostrarDialogo()">AgregarUsuario</button>
+		<button	class="btn shadow-sm border-light ms-0 my-4" onclick="mostrarDialogo()">Agregar Usuario</button>
 
 		<div class="row">
 			
@@ -74,21 +102,7 @@
 			</tr>
 			</thead>
 			<tbody id="tabla-body">
-			<tr>
-				<td>1</td>
-				<td>Juan Perez</td>
-				<td>Hijo Mayor</td>
-				<td>3 minutos</td>
-				<td>Activo</td>
-				<td>
-				<button class="btn btn-sm btn-primary me-1">
-					<i class="bi bi-pencil"></i> Editar
-				</button>
-				<button class="btn btn-sm btn-danger">
-					<i class="bi bi-x-circle"></i> Desactivar
-				</button>
-				</td>
-			</tr>
+			<?php echo $tabla; ?>
 			</tbody>
 		</table>
 		</div>
@@ -117,8 +131,7 @@
 		</div>
 	</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../js/usuario.js"></script>
+
 
 
 </body>
