@@ -64,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>
           <button type="submit" id="btnSubmit" class="btn botonLogin" disabled>Ingresar</button>
         </p>
-		<p>¿No tienes cuenta?<a href="">Regístrate</a></p>
       </form>
     </div>  
   </div>

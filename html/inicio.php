@@ -74,7 +74,7 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
 
 <body>
 
-  <section class="d-flex justify-content-center py-5 px-5 overflow-auto w-100vw gap-5 border" style=" height: calc(100vh - 12rem);"> 
+  <section class="d-flex justify-content-center py-5 px-5 overflow-auto gap-5 border" style=" height: calc(100vh - 12rem);"> 
     <div class="flex-column align-items-center gap-5 w-100 d-flex">
         <div class="col-md-6">
             <div class="p-4 text-white rounded d-flex flex-column justify-content-center align-items-center" style="background-color: #69a84f; min-height: 150px;">
@@ -110,14 +110,6 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
             </ul>
         </div>
     </div>
-</section>
-
-
-</section>
-
-<footer class="fixed-bottom bg-light py-2 text-center">
-    <p class="mb-0">&copy; <?= date('Y'); ?> Todos los derechos reservados.</p>
-</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/usuario.js"></script>

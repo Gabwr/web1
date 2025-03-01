@@ -1,62 +1,67 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Documento sin título</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/menubootstrap.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../css/dialogo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+	<link rel="stylesheet" href="../css/estilomenu.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/menubootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/dialogo.css">
 </head>
 
 <body>
-  <script src="../js/cambio_pagina.js"></script>
 
-<div id="menu">
-		<div class="row py-4" style="background-color: rgb(182, 215, 168);">
-		<div class="col-md-10 d-flex justify-content-center align-items-center"><h1>ICONO </h1></div>
-		<div class="col-md-1 d-flex justify-content-center align-items-center"><p id="usuario_nombre">username</p></div>
-		<div class="col-md-1 d-flex justify-content-center align-items-center">
-			<button class="btn btn-sm btn-light ms-0 border border-dark" style="background-color: rgb(151, 214, 157);"><i class="bi bi-person fs-1"></i></button></div>	
-		</div>
+<script src="../js/cambio_pagina.js"></script>
 
-		<div class="row py-0">
-			<nav class="navbar navbar-expand-lg navbar-light bg-white border border-dark py-0">
-				<div class="container-fluid py-0">	
-					<button class="navbar-toggler py-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse py-0" id="menuNav">
-						<ul class="navbar-nav d-flex justify-content-center align-items-center py-0">
-							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="inicio.php">Inicio</a>
-							</li>
-							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="#">Reportes</a>
-							</li>
-							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="Usuarios.php">Usuarios</a>
-							</li>
-							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="#">Perfiles</a>
-							</li>
-							<li class="nav-item  px-5" >
-								<a class="nav-link text-dark" href="#">Codigo QR</a>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-			</nav>
-		</div>
-
-<div id="contenido">
-
+<div id="menu" class="container-fluid " style="height: 4rem">
+    <div class="row align-items-center ">
+        <div class="col-md-10 px-5">
+            <h1><i class="bi bi-boxes"></i> LaConti</h1>
+        </div>
+        <div class="col-md-1">
+            <p id="usuario_nombre">username</p>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-profile">
+                <i class="bi bi-person-circle"></i>
+            </button>
+        </div>
+    </div>
 </div>
 
-    <footer class="fixed-bottom bg-light py-2 text-center">
-    <p class="mb-0">&copy; <?= date('Y'); ?> Todos los derechos reservados.</p>
-</footer>
+<nav class="navbar navbar-expand-lg" style="height: 3rem">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="menuNav">
+            <ul class="navbar-nav">
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="inicio.php"><i class="bi bi-house-door"></i> Inicio</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#"><i class="bi bi-graph-up"></i> Reportes</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="Usuarios.php"><i class="bi bi-people"></i> Usuarios</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#"><i class="bi bi-person-badge"></i> Perfiles</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#"><i class="bi bi-upc-scan"></i> Código QR</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="contenido" class="W-100">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
