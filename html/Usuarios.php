@@ -28,14 +28,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Documento sin título</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/menubootstrap.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../css/dialogo.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../js/usuario.js"></script>
 </head>
 
@@ -46,7 +39,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<h1>Usuarios</h1>
 		</div> 
 		
-		<button	class="btn shadow-sm border-light ms-0 my-4" onclick="mostrarDialogo()">Agregar Usuario</button>
+		<button	class="btn shadow-sm border-light ms-0 my-4" id="Agregar">Agregar Usuario</button>
 
 		<div class="row">
 			

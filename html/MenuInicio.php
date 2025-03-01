@@ -7,6 +7,7 @@
 	<link href="../css/menubootstrap.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/dialogo.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -28,19 +29,25 @@
 					</button>
 					<div class="collapse navbar-collapse py-0" id="menuNav">
 						<ul class="navbar-nav d-flex justify-content-center align-items-center py-0">
-							<li class="nav-item  px-5" >
+							<li class="nav-item  px-4" >
 								<a class="nav-link text-dark" href="inicio.php">Inicio</a>
 							</li>
-							<li class="nav-item  px-5" >
+							<li class="nav-item  px-4" >
 								<a class="nav-link text-dark" href="#">Reportes</a>
 							</li>
-							<li class="nav-item  px-5" >
+							<li class="nav-item  px-4" >
+								<a class="nav-link text-dark" href="#">Ingresos</a>
+							</li>
+							<li class="nav-item  px-4" >
+								<a class="nav-link text-dark" href="#">Egresos</a>
+							</li>
+							<li class="nav-item  px-4" >
 								<a class="nav-link text-dark" href="Usuarios.php">Usuarios</a>
 							</li>
-							<li class="nav-item  px-5" >
+							<li class="nav-item  px-4" >
 								<a class="nav-link text-dark" href="#">Perfiles</a>
 							</li>
-							<li class="nav-item  px-5" >
+							<li class="nav-item  px-4" >
 								<a class="nav-link text-dark" href="#">Codigo QR</a>
 							</li>
 						</ul>

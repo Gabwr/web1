@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href]').forEach((link) => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
+      document.getElementById("contenido").innerHTML = "";
       cargarPagina(this.getAttribute("href"));
     });
   });
@@ -17,7 +18,18 @@ function cargarPagina(url) {
       return response.text();
     })
     .then((php) => {
-      document.getElementById("contenido").innerHTML = php;
+      const contenido = document.getElementById("contenido");
+      contenido.innerHTML = php;
+      contenido.querySelectorAll("script").forEach((script) => {
+        const nuevoScript = document.createElement("script");
+        if (script.src) {
+          nuevoScript.src = script.src;
+          nuevoScript.async = true;
+        } else {
+          nuevoScript.textContent = script.textContent;
+        }
+        document.body.appendChild(nuevoScript);
+      });
     })
     .catch((error) => {
       console.error("Error al cargar el contenido:", error);
