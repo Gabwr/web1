@@ -3,6 +3,7 @@ session_start();
 require '../server/conexion.php';
 
 $consulta = 'SELECT * FROM usuario';
+$perfiles = 'SELECT * FROM perfil';
 $resultado = mysqli_query($conn, $consulta);
 $tabla = '';
 
@@ -29,7 +30,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <html>
 <head>
 <title>Documento sin título</title>
-	<script src="../js/usuario.js"></script>
+
 </head>
 
 <body>
@@ -144,38 +145,22 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 					</label>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Aceptar</button>
 				<div class="col-md-6">
-					<label for="Perfil" class="form-label">Perfil:
-						<div class="form-check mx-2 my-2">
-							<input class="form-check-input" type="checkbox" id="ingreso">
-							<label class="form-check-label" for="ingreso">
-								Generador de Ingreso
-							</label>
-						</div>
-						
-						<div class="form-check mx-2 my-2">
-							<input class="form-check-input" type="checkbox" id="egreso">
-							<label class="form-check-label" for="egreso">
-								Generador de Egresos
-							</label>
-						</div>
-						
-						<div class="form-check mx-2 my-2">
-							<input class="form-check-input" type="checkbox" id="documentos">
-							<label class="form-check-label" for="documentos">
-								Visualizador de Documentos
-							</label>
-						</div>
-					</label>
+				<label for="perfil" class="form-label">Perfil:</label>
+				<select class="form-control border-dark" id="perfil" name="perfil" required>
+					<?php
+					while ($registro = mysqli_fetch_assoc($resultado)) {
+						echo '<option value="' . $registro['idPerfil'] . '">' . htmlspecialchars($registro['nombre']) . '</option>';
+					}
+					?>
+				</select>
 				</div>
 
 			</div>	
             </div>
             <div class="modal-footer d-flex justify-content-center align-items-center">
 				<button type="button" class="btn btn-white border border-dark" data-bs-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-white border border-dark">Ingresar</button>
+				<button type="button" class="btn btn-white border border-dark" id="ingreso" onClick="">Ingresar</button>
 			</div>
 		</div>
 	</div>
