@@ -1,38 +1,68 @@
 document.addEventListener("DOMContentLoaded", function () {
-    cargarPagina("inicio.php");
+  cargarPagina("inicio.php");
 
-    document.querySelectorAll('a[href]').forEach((link) => {
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
-        cargarPagina(this.getAttribute("href"));
-      });
-    });
+  document.body.addEventListener("click", function (event) {
+      const link = event.target.closest("a");
+      if (link && link.getAttribute("href") && !link.getAttribute("target")) {
+          event.preventDefault();
+          cargarPagina(link.getAttribute("href"));
+      }
   });
+});
 
-  function cargarPagina(url) {
-    fetch(url)
+function cargarPagina(url) {
+  fetch(url)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error en la respuesta del servidor");
-        }
-        return response.text();
+          if (!response.ok) {
+              throw new Error("Error en la respuesta del servidor");
+          }
+          return response.text();
       })
       .then((php) => {
+          const contenidoDiv = document.getElementById("contenido");
+          contenidoDiv.innerHTML = php;
 
-        document.getElementById("contenido").innerHTML = php;
-      if (url == "Usuarios.php") {
-        let botonAgregar = document.getElementById("Agregar");
-        if (botonAgregar) {
-          botonAgregar.addEventListener("click", function () {
-            var modal = new bootstrap.Modal(document.getElementById("miDialogo"));
-            modal.show();
-          });
-        }
-      }
+          eliminarScriptsPrevios(); 
+          ejecutarScripts(contenidoDiv);
       })
       .catch((error) => {
-        console.error("Error al cargar el contenido:", error);
-        document.getElementById("contenido").innerHTML =
-          "<p>Error al cargar el contenido.</p>";
+          console.error("Error al cargar el contenido:", error);
+          document.getElementById("contenido").innerHTML =
+              "<p>Error al cargar el contenido.</p>";
       });
-  }
+}
+
+function eliminarScriptsPrevios() {
+  document.querySelectorAll("script[data-dynamic]").forEach(script => script.remove());
+}
+
+function ejecutarScripts(elemento) {
+  const scripts = elemento.querySelectorAll("script");
+
+  scripts.forEach((oldScript) => {
+    const newScript = document.createElement("script");
+    newScript.setAttribute("data-dynamic", "true");
+    
+
+      if (oldScript.src) {
+          const relativeSrc = obtenerRutaRelativa(oldScript.src);
+          newScript.src = relativeSrc;
+          newScript.onload = () => console.log("Script cargado correctamente:", newScript.src);
+          if (!document.querySelector(`script[src="${relativeSrc}"]`)) {
+              document.body.appendChild(newScript);
+          }
+      } else {
+        newScript.onload = () => console.log("Script cargado correctamente:", newScript.src);
+          newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+      }
+
+      oldScript.remove();
+  });
+}
+
+
+function obtenerRutaRelativa(url) {
+  const urlObj = new URL(url, window.location.origin);
+  return urlObj.pathname;
+}

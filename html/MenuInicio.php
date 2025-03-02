@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="../css/estilomenu.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../js/cambio_pagina.js"></script>
-	<script src="../js/Usuario.js"></script>
 </head>
 
 <body>

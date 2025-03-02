@@ -30,41 +30,40 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <html>
 <head>
 <title>Documento sin título</title>
-
+<script src="../js/Usuario.js"></script>
 </head>
 
 <body>
+<div id="contenido">
 
 		<div class="container">
-		<div class="row text-center">
-			<h1>Usuarios</h1>
-		</div> 
-		
-		<button	class="btn shadow-sm border-light ms-0 my-4" id="Agregar">Agregar Usuario</button>
+		<div class="d-flex justify-content-between">
+        <h4>Usuarios</h4>
+		<button class="btn shadow-sm border-light" id="usuariodialog">Agregar Usuario</button>
+    </div> 
 
-		<div class="row">
-			
-			<div class="col-md-2">
-				<p>Buscar por: </p>
-			</div>
-			
-			<div class="col-md-2">
-			<select class="form-select-sm shadow-sm border-light mx-2 my-2">
-			<option value="perfil">Perfil</option>
-			<option value="nombre">Nombre</option>
-			<option value="tiempo">Tiempo de Conexion</option>
-			</select>
-			</div>
-			
-			<div class="col-md-2">
-				<div class="input-group input-group-sm mx-5 my-2">
-				<span class="input-group-text bg-white border-light">
-					<i class="bi bi-search"></i> 
-				</span>
-				<input type="text" class="form-control border-light rounded-end" placeholder="Buscar...">
-				</div>
-			</div>
-		</div>
+    <div class="row py-2">
+        <div class="col-md-2">
+            <p>Buscar por: </p>
+        </div>
+
+        <div class="col-md-2">
+            <select class="form-select-sm shadow-sm border-light mx-2 my-2">
+                <option value="perfil">Perfil</option>
+                <option value="nombre">Nombre</option>
+                <option value="tiempo">Tiempo de Conexión</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <div class="input-group input-group-sm mx-5 my-2">
+                <span class="input-group-text bg-white border-light">
+                    <i class="bi bi-search"></i> 
+                </span>
+                <input type="text" class="form-control border-light rounded-end" placeholder="Buscar...">
+            </div>
+        </div>
+    </div>
 		<div class="container">
 		<div class="table-responsive">
 		<table class="table table-striped">
@@ -160,7 +159,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
             </div>
             <div class="modal-footer d-flex justify-content-center align-items-center">
 				<button type="button" class="btn btn-white border border-dark" data-bs-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-white border border-dark" id="ingreso" onClick="">Ingresar</button>
+				<button type="button" class="btn btn-white border border-dark" id="ingreso" >Ingresar</button>
 			</div>
 		</div>
 	</div>
@@ -168,6 +167,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     </div>
 	</div>
 
+				</div>
 
 
 
