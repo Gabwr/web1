@@ -69,7 +69,6 @@ while ($row = $personasEgresosResult->fetch_assoc()) {
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../css/dialogo.css">
-  <link rel="stylesheet" href="../css/inicio.css">
 </head>
 
 <body>

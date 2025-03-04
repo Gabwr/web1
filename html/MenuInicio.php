@@ -1,3 +1,11 @@
+<?php
+session_start();
+$usuario=$_POST["usuario"];
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -10,24 +18,25 @@
 	<link rel="stylesheet" href="../css/estilomenu.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../js/cambio_pagina.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-<div id="menu" class="container-fluid " style="height: 4rem">
-    <div class="row align-items-center ">
-        <div class="col-md-10 px-5">
+<div id="menu" class="container-fluid py-2">
+    <div class="row d-flex justify-content-between align-items-center">
+        <div class="col-auto">
             <h1><i class="bi bi-boxes"></i> LaConti</h1>
         </div>
-        <div class="col-md-1">
-            <p id="usuario_nombre">username</p>
-        </div>
-        <div class="col-md-1">
+        
+        <div class="col-auto d-flex align-items-center">
+            <p id="usuario_nombre" class="me-3"><?php echo $_SESSION['usuario']; ?></p>
             <button class="btn btn-profile">
                 <i class="bi bi-person-circle"></i>
             </button>
         </div>
     </div>
 </div>
+
 
 <nav class="navbar navbar-expand-lg" style="height: 3rem">
     <div class="container">
@@ -49,13 +58,13 @@
                     <a class="nav-link" href="Usuarios.php"><i class="bi bi-people"></i> Usuarios</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="#"><i class="bi bi-person-badge"></i> Perfiles</a>
+                    <a class="nav-link" href="perfiles.php"><i class="bi bi-person-badge"></i> Perfiles</a>
                 </li>
 				<li class="nav-item px-3">
-                    <a class="nav-link" href="#"><i class="bi bi-bank"></i> Concepto Financiero</a>
+                    <a class="nav-link" href="Usuarios.php"><i class="bi bi-bank"></i> Concepto Financiero</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="#"><i class="bi bi-upc-scan"></i> Código QR</a>
+                    <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR</a>
                 </li>
 
             </ul>
