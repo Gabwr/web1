@@ -170,14 +170,14 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
 //ativa y desactiva usuario
 $(document).ready(function() {
   $(document).on("click", ".toggle-estado", function() {
-      let idUsuario = $(this).data("id");
+      let perfil = $(this).data("perfil");
       let estadoActual = $(this).data("estado");
       let nuevoEstado = estadoActual === "Activo" ? "Inactivo" : "Activo";
       $.ajax({
-          url: '../server/cambiarestadousuario.php',
+          url: '../server/cambiarestadoperfil.php',
           method: 'POST',
           data: {
-              id: idUsuario,
+              perfil: perfil,
               estado: nuevoEstado
           },
           success: function(response) {
