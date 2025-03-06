@@ -8,23 +8,20 @@ $(document).ready(function() {
       let usuario = $(this).data("usuario");
       let perfil = $(this).data("perfil");
 
-      // Guardamos los valores originales para compararlos luego
       originalValues = {
-          id: id,
-          nombre: nombre,
-          apellido: apellido,
-          usuario: usuario,
-          perfil: perfil
+        id: id,
+        nombre: nombre,
+        apellido: apellido,
+        usuario: usuario,
+        perfil: perfil
       };
 
-      // Asignamos los valores a los campos del formulario
       $("#edit-idUsuario").val(id);
       $("#edit-nombre").val(nombre);
       $("#edit-apellido").val(apellido);
       $("#edit-usuario").val(usuario);
       $("#edit-perfil").val(perfil);
 
-      // Mostramos el modal de edición
       $("#editarmodal").modal("show");
   });
 
@@ -37,26 +34,38 @@ $(document).ready(function() {
 
     if (user === originalValues.usuario && nomb === originalValues.nombre && apll === 
       originalValues.apellido && perfil === originalValues.perfil) {
-        alert("No se han realizado cambios.");
+        mensaje("No ha realizado cambios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;  
     }
-
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
     if (user === "" || nomb === "" || apll === "" || perfil === "seleccione") {
-        alert("Todos los campos son obligatorios");
+        mensaje("Todos los campos son obligatorios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
-
     if (!soloLetras.test(nomb)) {
-        alert("El Nombre solo debe contener letras y espacios");
+        mensaje("El Nombre solo debe contener letras y espacios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
-
     if (!soloLetras.test(apll)) {
-        alert("El Apellido solo debe contener letras y espacios");
+        mensaje("El Apellido solo debe contener letras y espacios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
-
     $.ajax({
         url: '../server/editarUsuario.php',
         method: 'POST',
@@ -68,11 +77,18 @@ $(document).ready(function() {
             perfil: perfil
         },
         success: function(response) {
-            alert("Usuario Actualizado Correctamente!!!");
-            location.reload();
+            mensaje("Usuario Actualizado Correctamente!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
+            
         },
         error: function() {
-            alert("Error al actualizar el usuario.");
+            mensaje("Error en el envio de datos!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
   });
@@ -106,15 +122,27 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
 
     if (user === "" || pass === "" || nomb === "" || apll === "" || perfil === "seleccione") {
-        alert("Todos los campos son obligatorios");
+        mensaje("Todos los campos son obligatorios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
     if (!soloLetras.test(nomb)) {
-        alert("El Nombre solo debe contener letras y espacios");
+        mensaje("El Nombre solo debe contener letras y espacios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
     if (!soloLetras.test(apll)) {
-        alert("El Apellido solo debe contener letras y espacios");
+        mensaje("El Apellido solo debe contener letras y espacios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
         return;
     }
 
@@ -129,12 +157,17 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
             perfil: perfil
         },
         success: function(response) {
-            alert("Usuario Ingresado Correctamente!!"); 
-            location.reload();
+            mensaje("Usuario ingresado correctamente!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
         },
         error: function() {
-
-            alert("Error al ingresar el usuario.");
+            mensaje("Error en el envio de datos!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
 });
@@ -156,16 +189,18 @@ $(document).ready(function() {
               estado: nuevoEstado
           },
           success: function(response) {
-              if (response === "success") {
-                  alert("Estado cambiado correctamente.");
-                  location.reload();
-              } else {
-                  alert("Error al cambiar el estado.");
-              }
-          },
-          error: function() {
-              alert("Error en la solicitud AJAX.");
-          }
+            mensaje("El cambio de estado ha sido realizado!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
+        },
+        error: function() {
+            mensaje("Error en el envio de datos!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
+        }
       });
   });
 });
@@ -251,3 +286,10 @@ $(document).ready(function () {
         });
     });
 });
+
+
+function mensaje(msg) {
+    document.getElementById("mensaje").innerHTML = msg;
+    var modal = new bootstrap.Modal(document.getElementById("infomodal"));
+    modal.show();
+}

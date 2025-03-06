@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(document).on("click", ".editar-perfil", function() {
         let perfil = $(this).data("perfil");
-        originalValues = { perfil: perfil };
+        
 
         $("#nombrepfedit").val(perfil);
         $.ajax({
@@ -31,25 +31,52 @@ $(document).ready(function() {
             }
         });
 
+        originalValues = { perfil: perfil ,permisos: [] };
+    document.querySelectorAll("input[name='permisos[]']").forEach((checkbox) => {
+            originalValues.permisos[checkbox.value] = checkbox.checked; 
+        });
+        
         $("#editarmodal").modal("show");
     });
 
     $("#guardarCambios").click(function() {
         let nuevoNombre = $("#nombrepfedit").val().trim();
-        if (nuevoNombre === "") {
-            alert("El nombre del perfil no puede estar vacío.");
-            return;
-        }
-    
         let permisosSeleccionados = [];
+        
         document.querySelectorAll("input[name='permisos[]']:checked").forEach((checkbox) => {
             permisosSeleccionados.push(checkbox.value);
         });
-    
+        
         if (permisosSeleccionados.length === 0) {
-            alert("Debe seleccionar al menos un permiso para el perfil");
+            mensaje("Debe seleccionar al menos un permiso para el perfil");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                }, 1000);
             return;
         }
+        permisosSeleccionados = [];
+        document.querySelectorAll("input[name='permisos[]']").forEach((checkbox) => {
+            originalValues.permisos[checkbox.value] = checkbox.checked; // Guardamos el estado de cada checkbox
+        });
+        if(nuevoNombre === originalValues.perfil &&  arraysIguales(originalValues.permisos,permisosSeleccionados,0)){
+        mensaje("No ha realizado cambios");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
+        }
+
+        if (nuevoNombre === "") {
+            mensaje("El nombre del perfil no puede estar vacío.");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                }, 1000);
+            return;
+        }
+    
+        
     
         $.ajax({
             url: '../server/actualizarperfil.php',
@@ -60,23 +87,34 @@ $(document).ready(function() {
                 permisos: permisosSeleccionados
             },
             success: function(response) {
-                console.log("Respuesta del servidor:", response);
-                if (response === "success") {
-                    alert("Perfil actualizado correctamente.");
-                    location.reload();
-                } else {
-                    alert("Error al actualizar el perfil.");
-                }
+                mensaje("Perfil Actualizado Correctamente!!!");
+                setTimeout(function() {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                    modal.hide();
+                    location.reload();}, 1000);
+                
             },
-            error: function(xhr, status, error) {
-                console.error("AJAX request failed: " + error);
-                alert("Error al actualizar el perfil.");
+            error: function() {
+                mensaje("Error en el envio de datos!!!");
+                setTimeout(function() {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                    modal.hide();}, 1000);
             }
         });
     });
         
 });
 
+function arraysIguales(arr1, arr2, i=0) {
+    if (arr1.length === arr2.length){
+         return false;
+    }else if(arr1.length===i){
+        return true;
+    }if (arr1[i] !== arr2[i]){
+        return false;
+    }
+    return arraysIguales(arr1, arr2, i++);
+}
 
 
 //ingreso de perfil
@@ -154,11 +192,17 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
                 permisos: permisosSeleccionados, 
             },
             success: function(response) {
-                alert("Perfil ingresado correctamente!!"); 
-                location.reload(); 
+                mensaje("Perfil generado correctamente!!!");
+                setTimeout(function() {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                    modal.hide();
+                    location.reload();}, 1000);
             },
             error: function() {
-                alert("Error al ingresar el perfil.");
+                mensaje("Error en el envio de datos!!!");
+                setTimeout(function() {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                    modal.hide();}, 1000);
             }
         });
     });
@@ -167,7 +211,7 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
 }
 
 
-//ativa y desactiva usuario
+//ativa y desactiva perfil
 $(document).ready(function() {
   $(document).on("click", ".toggle-estado", function() {
       let perfil = $(this).data("perfil");
@@ -181,16 +225,18 @@ $(document).ready(function() {
               estado: nuevoEstado
           },
           success: function(response) {
-              if (response === "success") {
-                  alert("Estado cambiado correctamente.");
-                  location.reload();
-              } else {
-                  alert("Error al cambiar el estado.");
-              }
-          },
-          error: function() {
-              alert("Error en la solicitud AJAX.");
-          }
+            mensaje("El cambio de estado ha sido realizado!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
+        },
+        error: function() {
+            mensaje("Error en el envio de datos!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
+        }
       });
   });
 });
@@ -247,3 +293,9 @@ $(document).ready(function () {
     });
     
 });
+
+function mensaje(msg) {
+    document.getElementById("mensaje").innerHTML = msg;
+    var modal = new bootstrap.Modal(document.getElementById("infomodal"));
+    modal.show();
+}

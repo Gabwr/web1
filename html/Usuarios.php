@@ -235,11 +235,11 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 </div>
 
 <div class="modal fade" id="infomodal" tabindex="-1" aria-labelledby="infomodal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-			<div class="container">
+    <div class="modal-dialog modal-dialog-centered modal-lg my-5">
+        <div class="modal-content my-5">
+			<div class="container my-5">
 				<div class="row">
-					<h1 class="text-center" id=""></h1>
+					<h1 class="text-center" id="mensaje"></h1>
 				</div>
 			</div>
         </div>

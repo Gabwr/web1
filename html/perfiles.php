@@ -182,6 +182,18 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
     </div>
 </div>
 
+<div class="modal fade" id="infomodal" tabindex="-1" aria-labelledby="infomodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg my-5">
+        <div class="modal-content my-5">
+			<div class="container my-5">
+				<div class="row">
+					<h1 class="text-center" id="mensaje"></h1>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 
