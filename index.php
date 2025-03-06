@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <script src="js/validacionLogin.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -47,12 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h3><strong>Iniciar sesión</strong></h3>
         <p>
           <div class="form-group campo">
+			 <i class="bi bi-person-fill"></i>
             <label for="usuario">Usuario:</label><br>
             <input type="text" name="usuario" id="usuario" class="form-control" required >
           </div>
           <div class="form-group campo">
+			  <i class="bi bi-lock-fill"></i>
             <label for="clave">Contraseña:</label><br>
-            <input type="password" name="clave" id="clave" class="form-control" required >
+			  <div><input type="password" name="clave" id="clave" class="form-control" required><span></span><i class="bi bi-eye"></i></div>
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
@@ -62,9 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         
         <p>
-          <button type="submit" id="btnSubmit" class="btn botonLogin" >Ingresar</button>
+          <button type="submit" id="btnSubmit" class="btn btn-success botonLogin">Ingresar</button>
         </p>
-		<p>¿No tienes cuenta?<a href="">Regístrate</a></p>
+		<p><a href="">Recuperar contraseña</a></p>
       </form>
     </div>  
   </div>

@@ -79,7 +79,9 @@
 }
 .botonLogin{
 	background-color: limegreen;
-	border-radius: 3px;
-	color: white;
 	width: 50%;
+}
+.partialInput
+{
+	width: 80%;
 }
