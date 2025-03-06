@@ -147,10 +147,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 						</h3>
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuario:
-							<input type="text" id="usuario" name="usuario" class="form-control border-dark" required>
-						</label>
-						<label for="contrasenia" class="form-label">Contraseña:
-							<input type="password" id="contrasenia" name="contrasenia" class="form-control border-dark" required>
+							<input type="text" id="usuario" name="usuario" class="form-control border-dark" readonly>
 						</label>
 					</div>
 					<div class="modal-footer">

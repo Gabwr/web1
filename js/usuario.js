@@ -85,7 +85,6 @@ if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
         var modal = new bootstrap.Modal(document.getElementById("miDialogo"));
         modal.show();
          document.getElementById("usuario").value = "";
-       document.getElementById("contrasenia").value = "";
         document.getElementById("nombre").value = "";
         document.getElementById("apellido").value = "";
         document.getElementById("perfil").selectedIndex = 0;
@@ -99,9 +98,9 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
     event.preventDefault(); 
 
     let user = document.getElementById("usuario").value.trim();
-    let pass = document.getElementById("contrasenia").value.trim();
     let nomb = document.getElementById("nombre").value.trim();
     let apll = document.getElementById("apellido").value.trim();
+    let pass = user+nomb+apll;
     let perfil = document.getElementById("perfil").value;
 
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
@@ -134,6 +133,7 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
             location.reload();
         },
         error: function() {
+
             alert("Error al ingresar el usuario.");
         }
     });
@@ -169,3 +169,15 @@ $(document).ready(function() {
       });
   });
 });
+
+
+//creador de usuario
+$(document).ready(function() {
+    $(document).on("keyup", "#apellido", function() {
+        let userio = "";
+        let nombro = document.getElementById("nombre").value.trim();
+        let apllio = document.getElementById("apellido").value.trim();
+        userio = nombro[0] + apllio;
+        document.getElementById("usuario").value = userio;
+    });
+  });

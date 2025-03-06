@@ -7,25 +7,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = trim($_POST['usuario']);
     $pass = trim($_POST['contrasenia']);
     $perf = trim($_POST['perfil']);
-    if (empty($nom) || empty($ape) || empty($user) || empty($pass) || empty($perf)) {
-        echo "Todos los campos son obligatorios";
-        exit;
-    }
     
-    $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+    $hashpass = password_hash($pass, PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO usuario (nombre, apellido, usuario, contrasenia, perfil,estado) VALUES (?, ?, ?, ?, ?,)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $nom, $ape, $user, $hashed_password, $perf, 'Activo');
+    $sql = "INSERT INTO usuario (nombre, apellido, usuario, contrasenia, perfil, estado) 
+    VALUES ('$nom', '$ape', '$user', '$hashpass', '$perf', 'Activo')";
 
-    if ($stmt->execute()) {
-        echo "Usuario ingresado exitosamente";
+    if (mysqli_query($conn, $sql)) {
+        echo "Usuario ingresado exitosamente";  
+        echo "success";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error";
     }
-
-    $stmt->close();
-    $conn->close();
 } else {
     echo "Acceso no permitido";
 }
