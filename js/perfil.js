@@ -215,6 +215,7 @@ $(document).ready(function () {
             $("#tabla-body").append(row);
         });
     }
+    
     let estadosOrden = {
         perfil: true,
         estado: true

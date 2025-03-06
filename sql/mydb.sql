@@ -1,184 +1,274 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     1/3/2025 20:13:14                            */
-/*==============================================================*/
+-- phpMyAdmin SQL Dump
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Mar 06, 2025 at 10:03 PM
+-- Server version: 8.0.17
+-- PHP Version: 7.3.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-/*==============================================================*/
-/* Table: qr                                                    */
-/*==============================================================*/
-create table qr
-(
-   qr_id                int auto_increment,
-   qr_url               varchar(250) not null,
-   primary key (qr_id)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `mydb`
+--
 
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: Perfiles                                              */
-/*==============================================================*/
-create table perfiles
-(
-   idPermiso            int auto_increment,
-   idUsuario            int not null,
-   nombreperfil         varchar(64) not null,
-   estado               varchar(64) not null,
-   primary key (idPermiso, idUsuario)
-);
+--
+-- Table structure for table `concepto`
+--
 
-/*==============================================================*/
-/* Table: gasto                                                 */
-/*==============================================================*/
-create table gasto
-(
-   idGasto              int auto_increment,
-   idUsuario            int not null,
-   idconcepto           int not null,
-   fecha                date not null,
-   valor                decimal(4,2) not null,
-   medio_de_pago        national varchar(45) not null,
-   acreedor_cobrador    national varchar(45) not null,
-   descripcion          national varchar(128) not null,
-   primary key (idGasto)
-);
+CREATE TABLE `concepto` (
+  `idconcepto` int(11) NOT NULL,
+  `qr_id` int(11) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `tipo` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*==============================================================*/
-/* Table: ingreso                                               */
-/*==============================================================*/
-create table ingreso
-(
-   idIngreso            int auto_increment,
-   idconcepto           int not null,
-   idUsuario            int not null,
-   fecha                date not null,
-   valor                decimal(4,2) not null,
-   medio_de_pago        national varchar(45) not null,
-   fuente_beneficiario  national varchar(45) not null,
-   descripcion          national varchar(128) not null,
-   primary key (idIngreso)
-);
+--
+-- Dumping data for table `concepto`
+--
 
-/*==============================================================*/
-/* Table: permisos                                              */
-/*==============================================================*/
-create table permisos
-(
-   idPermiso            int auto_increment,
-   nombre               national varchar(45) not null,
-   descripcion          national varchar(45) not null,
-   primary key (idPermiso)
-);
+INSERT INTO `concepto` (`idconcepto`, `qr_id`, `nombre`, `tipo`) VALUES
+(1, 1, 'Salario', 'Ingreso'),
+(2, 2, 'Compra de materiales', 'Gasto');
 
-/*==============================================================*/
-/* Table: usuario                                               */
-/*==============================================================*/
-create table usuario
-(
-   idUsuario            int auto_increment,
-   nombre               national varchar(45) not null,
-   apellido             national varchar(45) not null,
-   usuario              national varchar(45) not null,
-   contrasenia          national varchar(60) not null,
-   estado               national varchar(32) not null,
-   Conexion             date not null,
-   primary key (idUsuario)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: Concepto                                              */
-/*==============================================================*/
-create table concepto
-(
-   idconcepto           int auto_increment,
-   qr_id                int not null,
-   nombre               varchar(128) not null,
-   tipo                 varchar(128) not null,
-   primary key (idconcepto)
-);
+--
+-- Table structure for table `gasto`
+--
 
-alter table Concepto add constraint FK_se_representa foreign key (qr_id)
-      references qr (qr_id) on delete restrict on update restrict;
+CREATE TABLE `gasto` (
+  `idGasto` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idconcepto` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `valor` decimal(4,2) NOT NULL,
+  `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `acreedor_cobrador` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `estado` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-alter table Perfiles add constraint FK_Permisos foreign key (idPermiso)
-      references permisos (idPermiso) on delete restrict on update restrict;
+--
+-- Dumping data for table `gasto`
+--
 
-alter table Perfiles add constraint FK_Perfiles foreign key (idUsuario)
-      references usuario (idUsuario) on delete restrict on update restrict;
+INSERT INTO `gasto` (`idGasto`, `idUsuario`, `idconcepto`, `fecha`, `valor`, `medio_de_pago`, `acreedor_cobrador`, `descripcion`, `estado`) VALUES
+(1, 1, 2, '2025-03-01', '99.99', 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina', '');
 
-alter table gasto add constraint FK_fk_GASTO_USUARIO foreign key (idUsuario)
-      references usuario (idUsuario) on delete restrict on update restrict;
+-- --------------------------------------------------------
 
-alter table gasto add constraint FK_tiene_un2 foreign key (idconcepto)
-      references Concepto (idconcepto) on delete restrict on update restrict;
+--
+-- Table structure for table `ingreso`
+--
 
-alter table ingreso add constraint FK_fk_INGRESO_USUARIO1 foreign key (idUsuario)
-      references usuario (idUsuario) on delete restrict on update restrict;
+CREATE TABLE `ingreso` (
+  `idIngreso` int(11) NOT NULL,
+  `idconcepto` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `valor` decimal(4,2) NOT NULL,
+  `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fuente_beneficiario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `estado` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-alter table ingreso add constraint FK_tiene_un foreign key (idconcepto)
-      references Concepto (idconcepto) on delete restrict on update restrict;
+--
+-- Dumping data for table `ingreso`
+--
 
-INSERT INTO permisos (idPermiso, nombre, descripcion) VALUES 
-(1, 'lectura ingresos', 'Permiso de solo lectura'),
-(2, 'insercion ingresos', 'Permiso de inserción'),
-(3, 'edicion ingresos', 'Permiso de edición'),
-(4, 'lectura gastos', 'Permiso de solo lectura'),
-(5, 'insercion gastos', 'Permiso de inserción'),
-(6, 'edicion gastos', 'Permiso de edición'),
-(7, 'lectura usuarios', 'Permiso de solo lectura'),
-(8, 'insercion usuarios', 'Permiso de inserción'),
-(9, 'edicion usuarios', 'Permiso de edición'),
-(10, 'lectura perfiles', 'Permiso de solo lectura'),
-(11, 'insercion perfiles', 'Permiso de inserción'),
-(12, 'edicion perfiles', 'Permiso de edición'),
-(13, 'lectura conceptos', 'Permiso de solo lectura'),
-(14, 'insercion conceptos', 'Permiso de inserción'),
-(15, 'edicion conceptos', 'Permiso de edición'),
-(16, 'lectura qr', 'Permiso de solo lectura');
+INSERT INTO `ingreso` (`idIngreso`, `idconcepto`, `idUsuario`, `fecha`, `valor`, `medio_de_pago`, `fuente_beneficiario`, `descripcion`, `estado`) VALUES
+(1, 1, 1, '2025-03-01', '99.99', 'Transferencia', 'Empresa ABC', 'Pago mensual de salario', '');
 
--- Insertar usuarios con perfiles
-INSERT INTO usuario (idUsuario, nombre, apellido, usuario, contrasenia, estado, Conexion) VALUES 
-(1, 'Admin', 'Admin', 'admin', 'admin123', 'Activo', '2025-03-01'),
-(2, 'Carlos', 'Perez', 'cperez', 'clave123', 'Activo', '2025-03-01'),
-(3, 'Ana', 'Lopez', 'alopez', 'pass456', 'Activo', '2025-03-01');
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `perfiles`
+--
 
-INSERT INTO Perfiles (idPermiso, idUsuario, nombreperfil, estado) VALUES 
-(1, 1, 'Administrador', 'activo'),
-(2, 1, 'Administrador', 'activo'),
-(3, 1, 'Administrador', 'activo'),
-(4, 1, 'Administrador', 'activo'),
-(5, 1, 'Administrador', 'activo'),
-(6, 1, 'Administrador', 'activo'),
-(7, 1, 'Administrador', 'activo'),
-(8, 1, 'Administrador', 'activo'),
-(9, 1, 'Administrador', 'activo'),
-(10, 1, 'Administrador', 'activo'),
-(11, 1, 'Administrador', 'activo'),
-(12, 1, 'Administrador', 'activo'),
-(13, 1, 'Administrador', 'activo'),
-(14, 1, 'Administrador', 'activo'),
-(15, 1, 'Administrador', 'activo'),
-(16, 1, 'Administrador', 'activo'),
-(1, 2, 'Generador de Ingresos', 'activo'),
-(2, 2, 'Generador de Ingresos', 'activo'),
-(4, 3, 'Generador de Egresos', 'activo'),
-(5, 3, 'Generador de Egresos', 'activo');
--- Insertar qr prueba
-INSERT INTO qr (qr_url) VALUES 
-('https://example.com/qr1'),
-('https://example.com/qr2');
+CREATE TABLE `perfiles` (
+  `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `lectura_ingresos` tinyint(1) DEFAULT '0',
+  `Insercion_ingresos` tinyint(1) DEFAULT '0',
+  `edicion_ingresos` tinyint(1) DEFAULT '0',
+  `lectura_gastos` tinyint(1) DEFAULT '0',
+  `insercion_gastos` tinyint(1) DEFAULT '0',
+  `edicion_gastos` tinyint(1) DEFAULT '0',
+  `lectura_usuarios` tinyint(1) DEFAULT '0',
+  `insercion_usuarios` tinyint(1) DEFAULT '0',
+  `edicion_usuarios` tinyint(1) DEFAULT '0',
+  `lectura_perfiles` tinyint(1) DEFAULT '0',
+  `insercion_perfiles` tinyint(1) DEFAULT '0',
+  `edicion_perfiles` tinyint(1) DEFAULT '0',
+  `lectura_conceptos` tinyint(1) DEFAULT '0',
+  `insercion_conceptos` tinyint(1) DEFAULT '0',
+  `edicion_conceptos` tinyint(1) DEFAULT '0',
+  `permiso_qr` tinyint(1) DEFAULT '0',
+  `estado` varchar(32) DEFAULT 'Activo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Insertar conceptos
-INSERT INTO Concepto (idconcepto, qr_id, nombre, tipo) VALUES 
-('1', 1, 'Salario', 'Ingreso'),
-('2', 2, 'Compra de materiales', 'Gasto');
+--
+-- Dumping data for table `perfiles`
+--
 
--- Insertar ingresos del usuario con perfil de ingresos
-INSERT INTO ingreso (idIngreso, idconcepto, idUsuario, fecha, valor, medio_de_pago, fuente_beneficiario, descripcion) VALUES 
-(1, '1', 2, '2025-03-01', 5000.00, 'Transferencia', 'Empresa ABC', 'Pago mensual de salario');
+INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edicion_ingresos`, `lectura_gastos`, `insercion_gastos`, `edicion_gastos`, `lectura_usuarios`, `insercion_usuarios`, `edicion_usuarios`, `lectura_perfiles`, `insercion_perfiles`, `edicion_perfiles`, `lectura_conceptos`, `insercion_conceptos`, `edicion_conceptos`, `permiso_qr`, `estado`) VALUES
+('Administrador', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'Activo'),
+('Perfil pruebaDOS', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 'Activo'),
+('Pruebas', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Activo');
 
--- Insertar gastos del usuario con perfil de egresos
-INSERT INTO gasto (idGasto, idUsuario, idconcepto, fecha, valor, medio_de_pago, acreedor_cobrador, descripcion) VALUES 
-(1, 3, '2', '2025-03-01', 300.00, 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qr`
+--
+
+CREATE TABLE `qr` (
+  `qr_id` int(11) NOT NULL,
+  `qr_url` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idUsuario` int(11) NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `usuario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `contrasenia` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `estado` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `conexion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `usuario`, `contrasenia`, `estado`, `conexion`, `perfil`) VALUES
+(1, 'Admines', 'Admin', 'admin', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-04 13:59:16', 'Administrador'),
+(2, 'Gabriel Matias', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `concepto`
+--
+ALTER TABLE `concepto`
+  ADD PRIMARY KEY (`idconcepto`);
+
+--
+-- Indexes for table `gasto`
+--
+ALTER TABLE `gasto`
+  ADD PRIMARY KEY (`idGasto`),
+  ADD KEY `FK_gasto_usuario` (`idUsuario`),
+  ADD KEY `FK_gasto_concepto` (`idconcepto`);
+
+--
+-- Indexes for table `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD PRIMARY KEY (`idIngreso`),
+  ADD KEY `FK_ingreso_usuario` (`idUsuario`),
+  ADD KEY `FK_ingreso_concepto` (`idconcepto`);
+
+--
+-- Indexes for table `perfiles`
+--
+ALTER TABLE `perfiles`
+  ADD PRIMARY KEY (`perfil`);
+
+--
+-- Indexes for table `qr`
+--
+ALTER TABLE `qr`
+  ADD PRIMARY KEY (`qr_id`);
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD KEY `fk_usuario_perfil` (`perfil`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `concepto`
+--
+ALTER TABLE `concepto`
+  MODIFY `idconcepto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `gasto`
+--
+ALTER TABLE `gasto`
+  MODIFY `idGasto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `ingreso`
+--
+ALTER TABLE `ingreso`
+  MODIFY `idIngreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `qr`
+--
+ALTER TABLE `qr`
+  MODIFY `qr_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `gasto`
+--
+ALTER TABLE `gasto`
+  ADD CONSTRAINT `FK_gasto_concepto` FOREIGN KEY (`idconcepto`) REFERENCES `concepto` (`idconcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `FK_gasto_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD CONSTRAINT `FK_ingreso_concepto` FOREIGN KEY (`idconcepto`) REFERENCES `concepto` (`idconcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `FK_ingreso_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_usuario_perfil` FOREIGN KEY (`perfil`) REFERENCES `perfiles` (`perfil`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

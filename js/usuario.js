@@ -173,13 +173,15 @@ $(document).ready(function() {
 
 //creador de usuario
 
-    $(document).on("keyup", "#apellido", function() {
+    $(document).on("keyup", "#apellido #nombre", function() {
         let userio = "";
         let nombro = document.getElementById("nombre").value.trim();
         let apllio = document.getElementById("apellido").value.trim();
         if(nombro !== "") {
         userio = nombro[0] + apllio;
         document.getElementById("usuario").value = userio;
+        }else{
+            document.getElementById("usuario").value = "";
         }
     });
 

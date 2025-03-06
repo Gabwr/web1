@@ -234,6 +234,18 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     </div>
 </div>
 
+<div class="modal fade" id="infomodal" tabindex="-1" aria-labelledby="infomodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<h1 class="text-center" id=""></h1>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
 				</div>
 
 
