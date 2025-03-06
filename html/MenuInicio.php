@@ -29,7 +29,7 @@ if (!isset($_SESSION['usuario'])) {
         </div>
         
         <div class="col-auto d-flex align-items-center">
-            <p id="usuario_nombre" class="me-3"><?php echo $_SESSION['usuario']; ?></p>
+            <p id="usuario_nombre" class="me-3"><?php echo $_SESSION['usuario']['nombre']." ".$_SESSION['usuario']['apellido']; ?></p>
             <button class="btn btn-profile">
                 <i class="bi bi-person-circle"></i>
             </button>

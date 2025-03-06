@@ -8,16 +8,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $clave = $_POST['clave'];
 
   $usuario = $conn->real_escape_string($usuario);
-  $clave = $conn->real_escape_string($clave);
 
-  $sql = "SELECT * FROM usuario WHERE usuario = ? AND contrasenia = ?";
+  $sql = "SELECT * FROM usuario WHERE usuario = ? AND estado='Activo'";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("ss", $usuario, $clave);
+  $stmt->bind_param("s", $usuario);
   $stmt->execute();
   $result = $stmt->get_result();
+	$consult=mysqli_fetch_assoc($result);
+ $clave_encriptada="";
+  if ($result->num_rows > 0){
+	  $clave_encriptada=$consult['contrasenia'];
+  }
 
-  if ($result->num_rows > 0) {
-    $_SESSION['usuario'] = $usuario;
+  if (password_verify($clave,$clave_encriptada)) {
+    $_SESSION['usuario'] = $consult;
     header("Location: ./html/MenuInicio.php");
     exit();
   } else {
@@ -55,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group campo">
 			  <i class="bi bi-lock-fill"></i>
             <label for="clave">Contraseña:</label><br>
-			  <div><input type="password" name="clave" id="clave" class="form-control" required><span></span><i class="bi bi-eye"></i></div>
+			  <div><input type="password" name="clave" id="clave" class="form-control" required><i class="bi bi-eye"></i></div>
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
