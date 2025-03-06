@@ -58,7 +58,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
         </div>
 
         <div class="col-md-2">
-            <select class="form-select-sm shadow-sm border-light mx-2 my-2">
+            <select id="filtrosel" class="form-select-sm shadow-sm border-light mx-2 my-2">
                 <option value="perfil">Perfil</option>
                 <option value="nombre">Nombre</option>
                 <option value="tiempo">Tiempo de Conexión</option>
@@ -70,7 +70,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
                 </span>
-                <input type="text" class="form-control border-light rounded-end" placeholder="Buscar...">
+                <input type="text" id="filtroin" class="form-control border-light rounded-end" placeholder="Buscar...">
             </div>
         </div>
     </div>
@@ -82,23 +82,23 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				<th>Id</th>
 				<th>
 				Nombre y Apellido
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorNombre()">
+				<button class="btn btn-sm btn-light ms-2"  id="filtronom">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>
 				<th>
 				Perfil 
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorEdad()">
+				<button class="btn btn-sm btn-light ms-2" id="filtroperf">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>
 				<th>Última Conexión
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorPais()">
+				<button class="btn btn-sm btn-light ms-2" id="filtrocon">
 					<i class="bi bi-arrow-down-circle"></i>  
 				</button>
 				</th>
 				<th>Estado
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorPais()">
+				<button class="btn btn-sm btn-light ms-2" id="filtroest">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>

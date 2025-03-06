@@ -54,8 +54,9 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
         </div>
 
         <div class="col-md-2">
-            <select class="form-select-sm shadow-sm border-light mx-2 my-2">
+            <select class="form-select-sm shadow-sm border-light mx-2 my-2" id="filtrosel">
                 <option value="perfil">Perfil</option>
+                <option value="estado">Estado</option>
             </select>
         </div>
 
@@ -64,7 +65,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
                 </span>
-                <input type="text" class="form-control border-light rounded-end" placeholder="Buscar...">
+                <input type="text" id="filtroin" class="form-control border-light rounded-end" placeholder="Buscar...">
             </div>
         </div>
     </div>
@@ -75,13 +76,13 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
 			<tr>
 				<th>
 				Perfil
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorNombre()">
+				<button class="btn btn-sm btn-light ms-2" id="filtroperf">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>
 				<th>
 				Estado
-				<button class="btn btn-sm btn-light ms-2" onclick="filtrarPorEdad()">
+				<button class="btn btn-sm btn-light ms-2" id="filtroest">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>

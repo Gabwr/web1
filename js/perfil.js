@@ -194,3 +194,55 @@ $(document).ready(function() {
       });
   });
 });
+
+//ordenamiento
+$(document).ready(function () {
+    function ordenarTabla(indice, ascendente) {
+        let filas = $("#tabla-body tr").get();
+        filas.sort(function (a, b) {
+            let valorA = $(a).children("td").eq(indice).text().trim().toLowerCase();
+            let valorB = $(b).children("td").eq(indice).text().trim().toLowerCase();
+            
+            if ($.isNumeric(valorA) && $.isNumeric(valorB)) {
+                valorA = parseFloat(valorA);
+                valorB = parseFloat(valorB);
+            }
+
+            return ascendente ? (valorA > valorB ? 1 : -1) : (valorA < valorB ? 1 : -1);
+        });
+
+        $.each(filas, function (index, row) {
+            $("#tabla-body").append(row);
+        });
+    }
+    let estadosOrden = {
+        perfil: true,
+        estado: true
+    };
+
+    $("#filtroperf").click(function () {
+        ordenarTabla(0, estadosOrden.perfil);
+        estadosOrden.perfil = !estadosOrden.perfil;
+    });
+
+
+    $("#filtroest").click(function () {
+        ordenarTabla(1, estadosOrden.estado);
+        estadosOrden.estado = !estadosOrden.estado;
+    });
+
+    $("#filtroin").on("keyup", function () {
+        let criterio = $("#filtrosel").val();
+        let filtro = $(this).val().toLowerCase();
+        $("#tabla-body tr").filter(function () {
+            let textoFila = "";
+            if (criterio === "perfil") {
+                textoFila = $(this).children("td").eq(0).text().trim().toLowerCase();
+            } else if (criterio === "estado") {
+                textoFila = $(this).children("td").eq(1).text().trim().toLowerCase();
+            }
+            $(this).toggle(textoFila.includes(filtro));
+        });
+    });
+    
+});

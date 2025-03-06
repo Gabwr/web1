@@ -172,12 +172,80 @@ $(document).ready(function() {
 
 
 //creador de usuario
-$(document).ready(function() {
+
     $(document).on("keyup", "#apellido", function() {
         let userio = "";
         let nombro = document.getElementById("nombre").value.trim();
         let apllio = document.getElementById("apellido").value.trim();
+        if(nombro !== "") {
         userio = nombro[0] + apllio;
         document.getElementById("usuario").value = userio;
+        }
     });
-  });
+
+    
+//ordenamiento
+$(document).ready(function () {
+    function ordenarTabla(indice, ascendente) {
+        let filas = $("#tabla-body tr").get();
+        filas.sort(function (a, b) {
+            let valorA = $(a).children("td").eq(indice).text().trim().toLowerCase();
+            let valorB = $(b).children("td").eq(indice).text().trim().toLowerCase();
+            
+            if ($.isNumeric(valorA) && $.isNumeric(valorB)) {
+                valorA = parseFloat(valorA);
+                valorB = parseFloat(valorB);
+            }
+
+            return ascendente ? (valorA > valorB ? 1 : -1) : (valorA < valorB ? 1 : -1);
+        });
+
+        $.each(filas, function (index, row) {
+            $("#tabla-body").append(row);
+        });
+    }
+    let estadosOrden = {
+        nombre: true,
+        perfil: true,
+        conexion: true,
+        estado: true
+    };
+
+    $("#filtronom").click(function () {
+        ordenarTabla(1, estadosOrden.nombre);
+        estadosOrden.nombre = !estadosOrden.nombre;
+    });
+
+    $("#filtroperf").click(function () {
+        ordenarTabla(2, estadosOrden.perfil);
+        estadosOrden.perfil = !estadosOrden.perfil;
+    });
+
+    $("#filtrocon").click(function () {
+        ordenarTabla(3, estadosOrden.conexion);
+        estadosOrden.conexion = !estadosOrden.conexion;
+    });
+
+    $("#filtroest").click(function () {
+        ordenarTabla(4, estadosOrden.estado);
+        estadosOrden.estado = !estadosOrden.estado;
+    });
+
+    $("#filtroin").on("keyup", function () {
+        let criterio = $("#filtrosel").val();
+        let filtro = $(this).val().toLowerCase();
+
+        $("#tabla-body tr").filter(function () {
+            let textoFila = "";
+            if (criterio === "perfil") {
+                textoFila = $(this).children("td").eq(2).text().toLowerCase();
+            } else if (criterio === "nombre") {
+                textoFila = $(this).children("td").eq(1).text().toLowerCase();
+            } else if (criterio === "tiempo") {
+                textoFila = $(this).children("td").eq(3).text().toLowerCase();
+            }
+
+            $(this).toggle(textoFila.includes(filtro));
+        });
+    });
+});
