@@ -1,3 +1,4 @@
+// JavaScript Document
 $(document).ready(function() {
   let originalValues = {};
 
@@ -86,7 +87,7 @@ if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripci
 });
 
 //ingreso de usuario
-var botonAgregar = document.getElementById("ingresos_dialog");
+var botonAgregar = document.getElementById("gastos_dialog");
 if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
     botonAgregar.addEventListener("click", function () {
         var modal = new bootstrap.Modal(document.getElementById("ventana_Reg_Ingreso"));
@@ -251,4 +252,4 @@ $(document).ready(function () {
         });
     });
 });
-// JavaScript Document
+// JavaScri

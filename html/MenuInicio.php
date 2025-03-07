@@ -67,7 +67,7 @@ if (!isset($_SESSION['usuario'])) {
                         <a class="nav-link" href="ingresos.php"><i class="bi bi-currency-dollar"></i> Ingresos</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="Usuarios.php"><i class="bi bi-bag"></i> Gastos</a>
+                        <a class="nav-link" href="Gastos.php"><i class="bi bi-bag"></i> Gastos</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="Usuarios.php"><i class="bi bi-people"></i> Usuarios</a>

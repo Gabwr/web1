@@ -2,10 +2,10 @@
 session_start();
 require '../server/conexion.php';
 
-$consulta = "SELECT i.idIngreso, i.idconcepto, i.idUsuario, i.fecha, i.valor, i.medio_de_pago, 
-i.fuente_beneficiario, i.descripcion, i.estado, c.nombre as concepto
-FROM ingreso i join concepto c on i.idconcepto=c.idconcepto where i.estado='Activo'";
-$busca_conceptos="SELECT nombre FROM concepto where tipo='Ingreso'";
+$consulta = "SELECT g.idGasto, g.idconcepto, g.idUsuario, g.fecha, g.valor, g.medio_de_pago, 
+g.acreedor_cobrador, g.descripcion, g.estado, c.nombre as concepto
+FROM gasto g join concepto c on g.idconcepto=c.idconcepto where g.estado='Activo'";
+$busca_conceptos="SELECT nombre FROM concepto where tipo='Gasto'";
 
 $resultado = mysqli_query($conn, $consulta);
 $conceptos = mysqli_query($conn,$busca_conceptos);
@@ -19,26 +19,26 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     $tabla .= '<tr>';
     $tabla .= '<td>' . htmlspecialchars($registro['fecha']) . '</td>';
 	$tabla .= '<td>' . htmlspecialchars($registro['concepto']) . '</td>';
-    $tabla .= '<td>' . htmlspecialchars($registro['fuente_beneficiario']) .'</td>';
+    $tabla .= '<td>' . htmlspecialchars($registro['acreedor_cobrador']) .'</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['medio_de_pago']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['valor']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['descripcion']) . '</td>';
 	$tabla .= '<td>
 	<button class="btn btn-sm btn-primary me-1 editar-ingreso"
-		data-id="'. htmlspecialchars($registro['idIngreso']) . '"
+		data-id="'. htmlspecialchars($registro['idGasto']) . '"
 		data-fecha="' . htmlspecialchars($registro['fecha']) . '"
 		data-concepto="' . htmlspecialchars($registro['concepto']) . '"
-		data-fuente_beneficiario="' . htmlspecialchars($registro['fuente_beneficiario']) . '"
+		data-acreedor_cobrador="' . htmlspecialchars($registro['acreedor_cobrador']) . '"
 		data-medio_de_pago="' . htmlspecialchars($registro['medio_de_pago']) . '"
 		data-valor="' . htmlspecialchars($registro['valor']) . '"
 		data-descripcion="' . htmlspecialchars($registro['descripcion']) . '">
 		<i class="bi bi-pencil"></i> Editar
 	</button>
 	<button class="btn btn-sm ' . ($registro['estado'] == 'Activo' ?  'btn-danger':'btn-success') . ' cambiar-estado"
-		data-id="' . htmlspecialchars($registro['idIngreso']) . '" 
+		data-id="' . htmlspecialchars($registro['idGasto']) . '" 
 		data-estado="' . htmlspecialchars($registro['estado']) . '">
 		<i class="bi ' . ($registro['estado'] == 'Activo' ?  'bi-x-circle':'bi-check-circle' ) . '"></i> 
-		' . ($registro['estado'] == 'Activo' ? 'Eliminar':'Activar') . '
+		' . ($registro['estado'] == 'Activo' ? 'Anular':'Activar') . '
 	</button>
   </td>';
 
@@ -49,8 +49,8 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <!doctype html>
 <html>
 <head>
-<title>Ingresos</title>
-<script src="../js/ingresos.js"></script>
+<title>Documento sin título</title>
+<script src="../js/gastos.js"></script>
 </head>
 
 <body>
@@ -58,8 +58,8 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 
 		<div class="container">
 		<div class="d-flex justify-content-between">
-        <h4>Ingresos</h4>
-		<button class="btn shadow-sm border-light" id="ingresos_dialog">Registrar Ingreso</button>
+        <h4>Gastos</h4>
+		<button class="btn shadow-sm border-light" id="gastos_dialog">Registrar Gasto</button>
     </div> 
 
     <div class="row py-2">
@@ -96,12 +96,12 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				</th>
 				<th>
 				Motivo
-				  <button class="btn btn-sm btn-light ms-2" id="filtroConcepto">
+				<button class="btn btn-sm btn-light ms-2" id="filtroConcepto">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>
 				<th>
-				Origen
+				Destinatario
 				  <button class="btn btn-sm btn-light ms-2" id="filtroFuente">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
@@ -138,12 +138,12 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<div class="modal-content">
 				<div class="container">
 					<div class="row">
-						<h1 class="text-center">Registrar Ingreso</h1>
+						<h1 class="text-center">Registrar Gasto</h1>
 					</div>
 					<div class="row border border-dark p-3 my-4 mx-4 position-relative form-group">
 							<h3 class="position-absolute top-0 start-0 ms-3 px-2" 
 							style="margin-top: -12px; background-color: white; display: inline;">
-							Detalles del ingreso
+							Detalles del gasto
 							</h3>
 						<div class="col-md-6">
 							<label for="concepto" class="form-label">Motivo:
@@ -152,7 +152,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 						<?php echo($opc_conceptos);
 						?>
 					</select></label>
-							<label for="fuente" class="form-label">Origen:
+							<label for="fuente" class="form-label">Destinatario:
 								<input type="text" id="fuente" name="fuente" class="form-control border-dark" required>
 							</label>
 						</div>
