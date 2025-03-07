@@ -2,7 +2,7 @@
 session_start();
 require '../server/conexion.php';
 
-$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Invitado';
+$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario']['usuario'] : 'Invitado';
 
 $sql = "SELECT idUsuario FROM usuario WHERE usuario = ?";
 $stmt = $conn->prepare($sql);

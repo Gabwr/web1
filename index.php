@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <script src="js/validacionLogin.js" defer></script>
+  <script src="js/clave.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -59,7 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group campo">
 			  <i class="bi bi-lock-fill"></i>
             <label for="clave">Contraseña:</label><br>
-			  <div><input type="password" name="clave" id="clave" class="form-control" required><i class="bi bi-eye"></i></div>
+			  <div class="input-group"><input type="password" name="clave" id="clave" class="form-control" required>
+			  <div class="input-group-append"><button id="btnOjo" class="input-group-text"><i class="bi bi-eye-fill" style="height: 100%;" id="ojo"></i></button></div>
+			  
+			  </div>
           </div>
           <span id="alertPassword" class="msjvalido"></span>
         </p>
