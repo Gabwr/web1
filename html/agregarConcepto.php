@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Conceptos</title>
+    <!-- Aseguramos que Bootstrap y jQuery se carguen correctamente -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
     <div class="container">
-        <h1 style="font-size: 24px; margin-bottom: 4rem;" >Gestión de Conceptos</h1>
+        <h1 style="font-size: 24px; margin-bottom: 4rem;">Gestión de Conceptos</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -43,10 +44,12 @@
             </tbody>
         </table>
 
+        <!-- Botón para abrir el modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addConceptModal">
             Agregar Concepto
         </button>
 
+        <!-- Modal -->
         <div class="modal fade" id="addConceptModal" tabindex="-1" role="dialog" aria-labelledby="addConceptModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -94,8 +97,9 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Carga de los scripts para Bootstrap, jQuery y Popper -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Versión completa de jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script> <!-- Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Bootstrap -->
 </body>
 </html>
