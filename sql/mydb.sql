@@ -33,7 +33,7 @@ CREATE TABLE `concepto` (
   `qr_id` int(11) NOT NULL,
   `nombre` varchar(128) NOT NULL,
   `tipo` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `concepto`
@@ -59,7 +59,7 @@ CREATE TABLE `gasto` (
   `acreedor_cobrador` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `estado` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `gasto`
@@ -84,7 +84,7 @@ CREATE TABLE `ingreso` (
   `fuente_beneficiario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `estado` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ingreso`
@@ -118,7 +118,7 @@ CREATE TABLE `perfiles` (
   `edicion_conceptos` tinyint(1) DEFAULT '0',
   `permiso_qr` tinyint(1) DEFAULT '0',
   `estado` varchar(32) DEFAULT 'Activo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `perfiles`
@@ -138,7 +138,7 @@ INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edi
 CREATE TABLE `qr` (
   `qr_id` int(11) NOT NULL,
   `qr_url` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE `usuario` (
   `estado` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `conexion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usuario`
