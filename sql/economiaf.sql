@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2025 at 10:03 PM
+-- Generation Time: Mar 07, 2025 at 03:30 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
 
@@ -33,7 +33,7 @@ CREATE TABLE `concepto` (
   `qr_id` int(11) NOT NULL,
   `nombre` varchar(128) NOT NULL,
   `tipo` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `concepto`
@@ -54,19 +54,19 @@ CREATE TABLE `gasto` (
   `idUsuario` int(11) NOT NULL,
   `idconcepto` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `valor` decimal(4,2) NOT NULL,
+  `valor` decimal(9,2) NOT NULL,
   `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `acreedor_cobrador` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `estado` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `gasto`
 --
 
 INSERT INTO `gasto` (`idGasto`, `idUsuario`, `idconcepto`, `fecha`, `valor`, `medio_de_pago`, `acreedor_cobrador`, `descripcion`, `estado`) VALUES
-(1, 1, 2, '2025-03-01', '99.99', 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina', '');
+(1, 1, 2, '2025-03-01', '99.99', 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina', 'Actiivo');
 
 -- --------------------------------------------------------
 
@@ -79,19 +79,20 @@ CREATE TABLE `ingreso` (
   `idconcepto` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `valor` decimal(4,2) NOT NULL,
+  `valor` decimal(9,2) NOT NULL,
   `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `fuente_beneficiario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `estado` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `ingreso`
 --
 
 INSERT INTO `ingreso` (`idIngreso`, `idconcepto`, `idUsuario`, `fecha`, `valor`, `medio_de_pago`, `fuente_beneficiario`, `descripcion`, `estado`) VALUES
-(1, 1, 1, '2025-03-01', '99.99', 'Transferencia', 'Empresa ABC', 'Pago mensual de salario', '');
+(1, 1, 1, '2025-03-01', '99.99', 'Transferencia Bancaria', 'Empresa ABC', 'Pago mensual de salario', 'Activo'),
+(2, 1, 1, '2025-03-07', '33.50', 'Efectivo', 'Empresa ABC', 'PAGO EXTRA', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE `perfiles` (
   `edicion_conceptos` tinyint(1) DEFAULT '0',
   `permiso_qr` tinyint(1) DEFAULT '0',
   `estado` varchar(32) DEFAULT 'Activo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `perfiles`
@@ -126,6 +127,7 @@ CREATE TABLE `perfiles` (
 
 INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edicion_ingresos`, `lectura_gastos`, `insercion_gastos`, `edicion_gastos`, `lectura_usuarios`, `insercion_usuarios`, `edicion_usuarios`, `lectura_perfiles`, `insercion_perfiles`, `edicion_perfiles`, `lectura_conceptos`, `insercion_conceptos`, `edicion_conceptos`, `permiso_qr`, `estado`) VALUES
 ('Administrador', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'Activo'),
+('Juan', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Activo'),
 ('Perfil pruebaDOS', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 'Activo'),
 ('Pruebas', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Activo');
 
@@ -138,7 +140,7 @@ INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edi
 CREATE TABLE `qr` (
   `qr_id` int(11) NOT NULL,
   `qr_url` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -148,6 +150,7 @@ CREATE TABLE `qr` (
 
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
+  `cedula` varchar(11) NOT NULL,
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `usuario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -155,15 +158,16 @@ CREATE TABLE `usuario` (
   `estado` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `conexion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `usuario`, `contrasenia`, `estado`, `conexion`, `perfil`) VALUES
-(1, 'Admines', 'Admin', 'admin', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-04 13:59:16', 'Administrador'),
-(2, 'Gabriel Matias', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS');
+INSERT INTO `usuario` (`idUsuario`, `cedula`, `nombre`, `apellido`, `usuario`, `contrasenia`, `estado`, `conexion`, `perfil`) VALUES
+(1, '0650160203', 'Administrador', 'Admin', '1234567890', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-04 13:59:16', 'Administrador'),
+(2, '0650160204', 'Gabriel', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS'),
+(6, '1700238471', 'Gabriel', 'Perez', 'Juanillo', '$2y$10$vckvzffFo0nhwC1kIwAvdeF7rBrW30BKX9jhWss5ooFy54h2myE1a', 'Activo', '2025-03-07 13:27:58', 'Perfil pruebaDOS');
 
 --
 -- Indexes for dumped tables
@@ -230,7 +234,7 @@ ALTER TABLE `gasto`
 -- AUTO_INCREMENT for table `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idIngreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idIngreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `qr`
@@ -242,7 +246,7 @@ ALTER TABLE `qr`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
