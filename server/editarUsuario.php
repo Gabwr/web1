@@ -7,10 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido = $_POST['apellido'];
     $usuario = $_POST['usuario'];
     $perfil = $_POST['perfil'];
+    $cedula = $_POST['cedula'];
 
-    $sql = "UPDATE usuario SET nombre=?, apellido=?, usuario=?, perfil=? WHERE idUsuario=?";
+    $sql = "UPDATE usuario SET cedula = ?,nombre=?, apellido=?, usuario=?, perfil=? WHERE idUsuario=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $nombre, $apellido, $usuario, $perfil, $id);
+    $stmt->bind_param("sssssi",$cedula , $nombre, $apellido, $usuario, $perfil, $id);
 
     if ($stmt->execute()) {
         echo "Usuario actualizado correctamente.";

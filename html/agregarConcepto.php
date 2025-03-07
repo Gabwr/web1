@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Conceptos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -32,7 +31,7 @@
                         echo "<td>" . $row['idconcepto'] . "</td>";
                         echo "<td>" . $row['nombre'] . "</td>";
                         echo "<td>" . $row['tipo'] . "</td>";
-                        echo "<td>" . $row['qr_url'] . "</td>";
+                        echo "<td>" . $row['qr_id'] . "</td>";
                         echo "<td>
                                 <button class='btn btn-primary btn-sm'>Editar</button>
                                 <button class='btn btn-danger btn-sm'>Eliminar</button>
@@ -94,8 +93,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

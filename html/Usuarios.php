@@ -11,6 +11,7 @@ $tabla = '';
 while ($registro = mysqli_fetch_assoc($resultado)) {
     $tabla .= '<tr>';
     $tabla .= '<td>' . htmlspecialchars($registro['idUsuario']) . '</td>';
+	$tabla .= '<td>' . htmlspecialchars($registro['cedula']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['nombre'] . ' ' . $registro['apellido']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['perfil']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['conexion']) . '</td>';
@@ -21,10 +22,11 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 		data-nombre="' . htmlspecialchars($registro['nombre']) . '"
 		data-apellido="' . htmlspecialchars($registro['apellido']) . '"
 		data-usuario="' . htmlspecialchars($registro['usuario']) . '"
+		data-cedula="' . htmlspecialchars($registro['cedula']) . '"
 		data-perfil="' . htmlspecialchars($registro['perfil']) . '">
 		<i class="bi bi-pencil"></i> Editar
 	</button>
-	<button class="btn btn-sm ' . ($registro['estado'] == 'Activo' ?  'btn-danger':'btn-success') . ' toggle-estado"
+	<button id="estate" class="btn btn-sm ' . ($registro['estado'] == 'Activo' ?  'btn-danger':'btn-success') . ' toggle-estado"
 		data-id="' . htmlspecialchars($registro['idUsuario']) . '" 
 		data-estado="' . htmlspecialchars($registro['estado']) . '">
 		<i class="bi ' . ($registro['estado'] == 'Activo' ?  'bi-x-circle':'bi-check-circle' ) . '"></i> 
@@ -41,6 +43,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <head>
 <title>Documento sin título</title>
 <script src="../js/Usuario.js"></script>
+<link rel="stylesheet" href="../css/user.css">
 </head>
 
 <body>
@@ -53,17 +56,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     </div> 
 
     <div class="row py-2">
-        <div class="col-md-2">
-            <p>Buscar por: </p>
-        </div>
 
-        <div class="col-md-2">
-            <select id="filtrosel" class="form-select-sm shadow-sm border-light mx-2 my-2">
-                <option value="perfil">Perfil</option>
-                <option value="nombre">Nombre</option>
-                <option value="tiempo">Tiempo de Conexión</option>
-            </select>
-        </div>
 
         <div class="col-md-2">
             <div class="input-group input-group-sm mx-5 my-2">
@@ -80,6 +73,12 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<thead class="table-secondary">
 			<tr>
 				<th>Id</th>
+				<th>
+				Cedula
+				<button class="btn btn-sm btn-light ms-2"  id="filtroced">
+					<i class="bi bi-arrow-down-circle"></i> 
+				</button>
+				</th>
 				<th>
 				Nombre y Apellido
 				<button class="btn btn-sm btn-light ms-2"  id="filtronom">
@@ -147,7 +146,12 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 						</h3>
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuario:
-							<input type="text" id="usuario" name="usuario" class="form-control border-dark" readonly>
+							<input type="text" id="usuario" name="usuario" class="form-control border-dark" required>
+						</label>
+					</div>
+					<div class="col-md-6">
+						<label for="cedula" class="form-label">Cedula:
+							<input type="text" id="cedula" name="cedula" class="form-control border-dark" required>
 						</label>
 					</div>
 					<div class="modal-footer">
@@ -212,6 +216,11 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
                             <input type="text" id="edit-usuario" name="usuario" class="form-control border-dark" required>
                         </label>
                     </div>
+					<div class="col-md-6">
+						<label for="cedula" class="form-label">Cedula:
+							<input type="text" id="edit-cedula" name="edit-cedula" class="form-control border-dark" required>
+						</label>
+					</div>
                     <div class="col-md-6">
                         <label for="edit-perfil" class="form-label">Perfil:</label>
                         <select class="form-control border-dark text-dark" id="edit-perfil" name="perfil" required>

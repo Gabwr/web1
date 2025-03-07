@@ -7,13 +7,15 @@ $(document).ready(function() {
       let apellido = $(this).data("apellido");
       let usuario = $(this).data("usuario");
       let perfil = $(this).data("perfil");
+      let ced = $(this).data("cedula");
 
       originalValues = {
         id: id,
         nombre: nombre,
         apellido: apellido,
         usuario: usuario,
-        perfil: perfil
+        perfil: perfil,
+        cedula: ced
       };
 
       $("#edit-idUsuario").val(id);
@@ -21,7 +23,7 @@ $(document).ready(function() {
       $("#edit-apellido").val(apellido);
       $("#edit-usuario").val(usuario);
       $("#edit-perfil").val(perfil);
-
+      $("#edit-cedula").val(ced);
       $("#editarmodal").modal("show");
   });
 
@@ -31,9 +33,10 @@ $(document).ready(function() {
     let nomb = $("#edit-nombre").val().trim();
     let apll = $("#edit-apellido").val().trim();
     let perfil = $("#edit-perfil").val();
+    let ced = $("#edit-cedula").val().trim();
 
     if (user === originalValues.usuario && nomb === originalValues.nombre && apll === 
-      originalValues.apellido && perfil === originalValues.perfil) {
+      originalValues.apellido && perfil === originalValues.perfil && ced === originalValues.cedula) {
         mensaje("No ha realizado cambios");
         setTimeout(function() {
             var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
@@ -41,7 +44,7 @@ $(document).ready(function() {
             }, 1000);
         return;  
     }
-    let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/;
     if (user === "" || nomb === "" || apll === "" || perfil === "seleccione") {
         mensaje("Todos los campos son obligatorios");
         setTimeout(function() {
@@ -66,6 +69,24 @@ $(document).ready(function() {
             }, 1000);
         return;
     }
+
+    if (ced.length != 10) {
+        mensaje("La cedula debe tener 10 digitos");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
+        return;
+    }
+    if (isNaN(ced)) {
+        mensaje("La cedula debe ser numerica");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
+        return;
+    }
+
     $.ajax({
         url: '../server/editarUsuario.php',
         method: 'POST',
@@ -74,7 +95,8 @@ $(document).ready(function() {
             usuario: user,
             nombre: nomb,
             apellido: apll,
-            perfil: perfil
+            perfil: perfil,
+            cedula:ced
         },
         success: function(response) {
             mensaje("Usuario Actualizado Correctamente!!!");
@@ -103,6 +125,7 @@ if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
          document.getElementById("usuario").value = "";
         document.getElementById("nombre").value = "";
         document.getElementById("apellido").value = "";
+        document.getElementById("cedula").value = "";
         document.getElementById("perfil").selectedIndex = 0;
     });
     botonAgregar.dataset.eventoAgregado = "true";
@@ -116,12 +139,13 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
     let user = document.getElementById("usuario").value.trim();
     let nomb = document.getElementById("nombre").value.trim();
     let apll = document.getElementById("apellido").value.trim();
+    let ced = document.getElementById("cedula").value.trim();
     let pass = user+nomb+apll;
     let perfil = document.getElementById("perfil").value;
 
-    let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/;
 
-    if (user === "" || pass === "" || nomb === "" || apll === "" || perfil === "seleccione") {
+    if (user === "" || pass === "" || nomb === "" || apll === "" || ced === "" ||perfil === "seleccione") {
         mensaje("Todos los campos son obligatorios");
         setTimeout(function() {
             var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
@@ -146,6 +170,23 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
         return;
     }
 
+    if (ced.length != 10) {
+        mensaje("La cedula debe tener 10 digitos");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
+        return;
+    }
+    if (isNaN(ced)) {
+        mensaje("La cedula debe ser numerica");
+        setTimeout(function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+            modal.hide();
+            }, 1000);
+        return;
+    }
+
     $.ajax({
         url: '../server/insercionuser.php',
         method: 'POST',
@@ -154,7 +195,8 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
             contrasenia: pass,
             nombre: nomb,
             apellido: apll,
-            perfil: perfil
+            perfil: perfil,
+            cedula:ced
         },
         success: function(response) {
             mensaje("Usuario ingresado correctamente!!!");
@@ -206,19 +248,6 @@ $(document).ready(function() {
 });
 
 
-//creador de usuario
-
-    $(document).on("keyup", "#apellido #nombre", function() {
-        let userio = "";
-        let nombro = document.getElementById("nombre").value.trim();
-        let apllio = document.getElementById("apellido").value.trim();
-        if(nombro !== "") {
-        userio = nombro[0] + apllio;
-        document.getElementById("usuario").value = userio;
-        }else{
-            document.getElementById("usuario").value = "";
-        }
-    });
 
     
 //ordenamiento
@@ -242,6 +271,7 @@ $(document).ready(function () {
         });
     }
     let estadosOrden = {
+        cedula: true,
         nombre: true,
         perfil: true,
         conexion: true,
@@ -249,40 +279,37 @@ $(document).ready(function () {
     };
 
     $("#filtronom").click(function () {
-        ordenarTabla(1, estadosOrden.nombre);
+        ordenarTabla(1, estadosOrden.cedula);
+        estadosOrden.cedula = !estadosOrden.cedula;
+    });
+
+    $("#filtronom").click(function () {
+        ordenarTabla(2, estadosOrden.nombre);
         estadosOrden.nombre = !estadosOrden.nombre;
     });
 
     $("#filtroperf").click(function () {
-        ordenarTabla(2, estadosOrden.perfil);
+        ordenarTabla(3, estadosOrden.perfil);
         estadosOrden.perfil = !estadosOrden.perfil;
     });
 
     $("#filtrocon").click(function () {
-        ordenarTabla(3, estadosOrden.conexion);
+        ordenarTabla(4, estadosOrden.conexion);
         estadosOrden.conexion = !estadosOrden.conexion;
     });
 
     $("#filtroest").click(function () {
-        ordenarTabla(4, estadosOrden.estado);
+        ordenarTabla(5, estadosOrden.estado);
         estadosOrden.estado = !estadosOrden.estado;
     });
 
     $("#filtroin").on("keyup", function () {
-        let criterio = $("#filtrosel").val();
         let filtro = $(this).val().toLowerCase();
 
         $("#tabla-body tr").filter(function () {
-            let textoFila = "";
-            if (criterio === "perfil") {
-                textoFila = $(this).children("td").eq(2).text().toLowerCase();
-            } else if (criterio === "nombre") {
-                textoFila = $(this).children("td").eq(1).text().toLowerCase();
-            } else if (criterio === "tiempo") {
-                textoFila = $(this).children("td").eq(3).text().toLowerCase();
-            }
-
-            $(this).toggle(textoFila.includes(filtro));
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(filtro));
         });
     });
 });
