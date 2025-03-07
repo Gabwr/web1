@@ -8,7 +8,7 @@
 
 <body>
     <div class="container">
-        <h1 style="font-size: 24px; margin-bottom: 4rem;" >Gestión de Conceptos</h1>
+        <h1 style="font-size: 24px; margin-bottom: 4rem;">Gestión de Conceptos</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
