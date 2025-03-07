@@ -271,16 +271,10 @@ $(document).ready(function () {
     });
 
     $("#filtroin").on("keyup", function () {
-        let criterio = $("#filtrosel").val();
-        let filtro = $(this).val().toLowerCase();
-        $("#tabla-body tr").filter(function () {
-            let textoFila = "";
-            if (criterio === "perfil") {
-                textoFila = $(this).children("td").eq(0).text().trim().toLowerCase();
-            } else if (criterio === "estado") {
-                textoFila = $(this).children("td").eq(1).text().trim().toLowerCase();
-            }
-            $(this).toggle(textoFila.includes(filtro));
+        let filtro = $(this).val().toLowerCase(); 
+        $("#tabla-body tr").each(function () {
+            let textoFila = $(this).text().toLowerCase(); 
+            $(this).toggle(textoFila.includes(filtro)); 
         });
     });
     

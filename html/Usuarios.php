@@ -28,7 +28,8 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 	</button>
 	<button id="estate" class="btn btn-sm ' . ($registro['estado'] == 'Activo' ?  'btn-danger':'btn-success') . ' toggle-estado"
 		data-id="' . htmlspecialchars($registro['idUsuario']) . '" 
-		data-estado="' . htmlspecialchars($registro['estado']) . '">
+		data-estado="' . htmlspecialchars($registro['estado']) . '"
+		style="width: 100px;">
 		<i class="bi ' . ($registro['estado'] == 'Activo' ?  'bi-x-circle':'bi-check-circle' ) . '"></i> 
 		' . ($registro['estado'] == 'Activo' ? 'Desactivar':'Activar') . '
 	</button>

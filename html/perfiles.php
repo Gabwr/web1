@@ -23,7 +23,8 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
         </button>
         <button class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
             data-perfil="' . htmlspecialchars($registro['perfil']) . '" 
-            data-estado="' . htmlspecialchars($registro['estado']) . '">
+            data-estado="' . htmlspecialchars($registro['estado']) . '"
+            style="width: 100px;">
             <i class="bi ' . ($registro['estado'] == 'Activo' ? 'bi-check-circle' : 'bi-x-circle') . '"></i> 
             ' . ($registro['estado'] == 'Activo' ? 'Desactivar' : 'Activar') . '
         </button>
@@ -48,17 +49,6 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
 		<button class="btn shadow-sm border-light" id="usuariodialog">Agregar Perfil</button>
     </div> 
 
-    <div class="row py-2">
-        <div class="col-md-2">
-            <p>Buscar por: </p>
-        </div>
-
-        <div class="col-md-2">
-            <select class="form-select-sm shadow-sm border-light mx-2 my-2" id="filtrosel">
-                <option value="perfil">Perfil</option>
-                <option value="estado">Estado</option>
-            </select>
-        </div>
 
         <div class="col-md-2">
             <div class="input-group input-group-sm mx-5 my-2">
