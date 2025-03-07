@@ -66,3 +66,4 @@ function obtenerRutaRelativa(url) {
   const urlObj = new URL(url, window.location.origin);
   return urlObj.pathname;
 }
+

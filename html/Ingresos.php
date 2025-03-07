@@ -2,9 +2,9 @@
 session_start();
 require '../server/conexion.php';
 
-$consulta = 'SELECT i.idIngreso, i.idconcepto, i.idUsuario, i.fecha, i.valor, i.medio_de_pago, 
+$consulta = "SELECT i.idIngreso, i.idconcepto, i.idUsuario, i.fecha, i.valor, i.medio_de_pago, 
 i.fuente_beneficiario, i.descripcion, c.nombre as concepto
-FROM ingreso i join concepto c on i.idconcepto=c.idconcepto';
+FROM ingreso i join concepto c on i.idconcepto=c.idconcepto where i.estado='Activo'";
 $busca_conceptos="SELECT nombre FROM concepto where tipo='Ingreso'";
 
 $resultado = mysqli_query($conn, $consulta);

@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			  <i class="bi bi-lock-fill"></i>
             <label for="clave">Contraseña:</label><br>
 			  <div class="input-group"><input type="password" name="clave" id="clave" class="form-control" required>
-			  <div class="input-group-append"><button id="btnOjo" class="input-group-text"><i class="bi bi-eye-fill" style="height: 100%;" id="ojo"></i></button></div>
+			  <div class="input-group-append" id="btnOjo"><i class=" input-group-text bi bi-eye-fill" style="height: 100%;" id="ojo"></i></div>
 			  
 			  </div>
           </div>

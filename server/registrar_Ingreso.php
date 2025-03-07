@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$r_concepto=mysqli_query($conn, $c_concepto);
 	$id_c=mysqli_fetch_assoc($r_concepto)['idconcepto'];
 	
-    $insercion = "INSERT INTO `ingreso`(`idconcepto`, `idUsuario`, `fecha`, `valor`, `medio_de_pago`, `fuente_beneficiario`, `descripcion`) VALUES ('$id_c', '$id_u','$fecha','$valor','$medio','$fuente','$descripcion')";
+    $insercion = "INSERT INTO `ingreso`(`idconcepto`, `idUsuario`, `fecha`, `valor`, `medio_de_pago`, `fuente_beneficiario`, `descripcion`,`estado`) VALUES ('$id_c', '$id_u','$fecha','$valor','$medio','$fuente','$descripcion','Activo')";
 
     if (mysqli_query($conn, $insercion)) {
         echo "Ingreso registrado exitosamente";  
