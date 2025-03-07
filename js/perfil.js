@@ -1,70 +1,68 @@
-$(document).ready(function() {
-    $(document).on("click", ".editar-perfil", function() {
+$(document).ready(function () {
+    $(document).on("click", ".editar-perfil", function () {
         let perfil = $(this).data("perfil");
-        
 
         $("#nombrepfedit").val(perfil);
+
         $.ajax({
-            url: '../server/getpermisos.php',
-            method: 'POST',
+            url: "../server/getpermisos.php",
+            method: "POST",
             data: { perfil: perfil },
-            success: function(response) {
+            success: function (response) {
                 try {
                     let permisos = JSON.parse(response);
                     $("#permisosContainer").html("");
-                    $.each(permisos, function(permiso, estado) {
+
+                    originalValues = { perfil: perfil, permisos: {} };
+
+                    $.each(permisos, function (permiso, estado) {
                         let checkboxHtml = `
                             <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="permisos[]" 
-                        value="${permiso}" id="permiso_${permiso}" ${estado ? 'checked' : ''}>
-                        <label class="form-check-label" for="permiso_${permiso}">${permiso}</label>
+                                <input class="form-check-input" type="checkbox" name="permisos[]" 
+                                value="${permiso}" id="permiso_${permiso}" ${estado ? "checked" : ""}>
+                                <label class="form-check-label" for="permiso_${permiso}">${permiso}</label>
                             </div>`;
                         $("#permisosContainer").append(checkboxHtml);
+
+                        originalValues.permisos[permiso] = estado;
                     });
+
                 } catch (e) {
-                 alert("Error al procesar los permisos");
+                    alert("Error al procesar los permisos");
                 }
             },
-            error: function(xhr, status, error) {
-            console.error("AJAX fallo");
-            alert("Error al obtener permisos desde el servidor");
-            }
+            error: function () {
+                alert("Error al obtener permisos desde el servidor");
+            },
         });
 
-        originalValues = { perfil: perfil ,permisos: [] };
-    document.querySelectorAll("input[name='permisos[]']").forEach((checkbox) => {
-            originalValues.permisos[checkbox.value] = checkbox.checked; 
-        });
-        
         $("#editarmodal").modal("show");
     });
 
-    $("#guardarCambios").click(function() {
+    $("#guardarCambios").click(function () {
         let nuevoNombre = $("#nombrepfedit").val().trim();
-        let permisosSeleccionados = [];
-        
-        document.querySelectorAll("input[name='permisos[]']:checked").forEach((checkbox) => {
-            permisosSeleccionados.push(checkbox.value);
+        let permisosSeleccionados = {};
+
+        document.querySelectorAll("input[name='permisos[]']").forEach((checkbox) => {
+            permisosSeleccionados[checkbox.value] = checkbox.checked;
         });
-        
-        if (permisosSeleccionados.length === 0) {
+
+        if (!Object.values(permisosSeleccionados).includes(true)) {
             mensaje("Debe seleccionar al menos un permiso para el perfil");
+            setTimeout(function()  {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+            }, 1000);
+            return;
+        }
+
+        if (nuevoNombre === originalValues.perfil && !permisosCambiaron(originalValues.permisos, permisosSeleccionados)) {
+            mensaje("No ha realizado cambios");
             setTimeout(function() {
                 var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
                 modal.hide();
-                }, 1000);
-            return;
-        }
-        permisosSeleccionados = [];
-        document.querySelectorAll("input[name='permisos[]']").forEach((checkbox) => {
-            originalValues.permisos[checkbox.value] = checkbox.checked; // Guardamos el estado de cada checkbox
-        });
-        if(nuevoNombre === originalValues.perfil &&  arraysIguales(originalValues.permisos,permisosSeleccionados,0)){
-        mensaje("No ha realizado cambios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
             }, 1000);
+            return;
         }
 
         if (nuevoNombre === "") {
@@ -72,48 +70,42 @@ $(document).ready(function() {
             setTimeout(function() {
                 var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
                 modal.hide();
-                }, 1000);
+            }, 1000);
             return;
         }
-    
-        
-    
+
         $.ajax({
-            url: '../server/actualizarperfil.php',
-            method: 'POST',
+            url: "../server/actualizarperfil.php",
+            method: "POST",
             data: {
-                perfil: originalValues.perfil, 
+                perfil: originalValues.perfil,
                 nuevoPerfil: nuevoNombre,
-                permisos: permisosSeleccionados
+                permisos: JSON.stringify(permisosSeleccionados),
             },
-            success: function(response) {
+            success: function () {
                 mensaje("Perfil Actualizado Correctamente!!!");
                 setTimeout(function() {
                     var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
                     modal.hide();
-                    location.reload();}, 1000);
-                
+                    location.reload();
+                }, 1000);
             },
-            error: function() {
-                mensaje("Error en el envio de datos!!!");
+            error: function () {
+                mensaje("Error en el envío de datos!!!");
                 setTimeout(function() {
                     var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                    modal.hide();}, 1000);
-            }
+                    modal.hide();
+                }, 1000);
+            },
         });
     });
-        
 });
 
-function arraysIguales(arr1, arr2, i=0) {
-    if (arr1.length === arr2.length){
-         return false;
-    }else if(arr1.length===i){
-        return true;
-    }if (arr1[i] !== arr2[i]){
-        return false;
+function permisosCambiaron(original, actual) {
+    for (let key in original) {
+        if (original[key] !== actual[key]) return true;
     }
-    return arraysIguales(arr1, arr2, i++);
+    return false;
 }
 
 

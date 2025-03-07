@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "lectura_usuarios", "insercion_usuarios", "edicion_usuarios",
         "lectura_perfiles", "insercion_perfiles", "edicion_perfiles",
         "lectura_conceptos", "insercion_conceptos", "edicion_conceptos",
-        "lectura_qr"
+        "permiso_qr"
     ];
     $valores = [];
     foreach ($permisosCampos as $permiso) {
