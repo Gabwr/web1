@@ -23,28 +23,14 @@ $(document).ready(function () {
         usuario: true,
     };
 
-    $("#filtroFecha").click(function () {
-        ordenarTabla(1, estadosOrden.fecha);
-        estadosOrden.fecha = !estadosOrden.fecha;
+    $("#filtroFH").click(function () {
+        ordenarTabla(1, estadosOrden.fecha_hora);
+        estadosOrden.fecha_hora = !estadosOrden.fecha_hora;
     });
 
-    $("#filtroConcepto").click(function () {
-        ordenarTabla(2, estadosOrden.concepto);
-        estadosOrden.concepto = !estadosOrden.concepto;
-    });
-
-    $("#filtroDestinatario").click(function () {
-        ordenarTabla(3, estadosOrden.destinatario);
-        estadosOrden.destinatario = !estadosOrden.destinatario;
-    });
-
-    $("#filtroMedio").click(function () {
-        ordenarTabla(4, estadosOrden.medio);
-        estadosOrden.medio = !estadosOrden.medio;
-    });
-	$("#filtroValor").click(function () {
-        ordenarTabla(4, estadosOrden.valor);
-        estadosOrden.valor = !estadosOrden.valor;
+    $("#filtroUsuario").click(function () {
+        ordenarTabla(2, estadosOrden.usuario);
+        estadosOrden.usuario = !estadosOrden.usuario;
     });
 
     $("#filtroin").on("keyup", function () {
