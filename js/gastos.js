@@ -2,11 +2,11 @@
 $(document).ready(function() {
   let originalValues = {};
 
-  $(document).on("click", ".editar-ingreso", function() {
+  $(document).on("click", ".editar-gasto", function() {
       let id = $(this).data("id");
       let fecha = $(this).data("fecha");
       let concepto = $(this).data("concepto");
-      let fuente = $(this).data("fuente_beneficiario");
+      let destinatario = $(this).data("acreedor_cobrador");
       let medio = $(this).data("medio_de_pago");
 	  let valor = $(this).data("valor");
 	  let descripcion = $(this).data("descripcion");
@@ -16,7 +16,7 @@ $(document).ready(function() {
           id: id,
           fecha: fecha,
 		  concepto: concepto,
-		  fuente: fuente,
+		  destinatario: destinatario,
 		  medio: medio,
 		  valor: valor,
 		  descripcion: descripcion
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
       // Asignamos los valores a los campos del formulario
       $("#edit-concepto").val(concepto);
-      $("#edit-fuente").val(fuente);
+      $("#edit-destinatario").val(destinatario);
       $("#edit-metodo").val(medio);
       $("#edit-valor").val(valor);
       $("#edit-descripcion").val(descripcion);
@@ -36,13 +36,12 @@ $(document).ready(function() {
   $("#guardarCambios").click(function() {
 	let id=originalValues.id;
     let concepto = $("#edit-concepto").val();
-    let fuente = $("#edit-fuente").val().trim();
+    let destinatario = $("#edit-destinatario").val().trim();
     let medio = $("#edit-metodo").val();
     let valor = $("#edit-valor").val();
 	let descripcion = $("#edit-descripcion").val();
 
-    if (concepto === originalValues.concepto && fuente === originalValues.fuente && medio === 
-      originalValues.medio && valor === originalValues.valor && descripcion === originalValues.descripcion) {
+    if (concepto === originalValues.concepto && destinatario === originalValues.destinatario && medio === originalValues.medio && valor === originalValues.valor && descripcion === originalValues.descripcion) {
         alert("No se han realizado cambios.");
         return;  
     }
@@ -51,11 +50,11 @@ $(document).ready(function() {
 	
 
     let formato = /^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ\s\.]+$/;
-if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripcion === "") {
+if (concepto === "" || destinatario === "" || medio === "" || valor === 0 || descripcion === "") {
         alert("Todos los campos son obligatorios");
         return;
     }
-    if (!formato.test(fuente)) {
+    if (!formato.test(destinatario)) {
         alert("Ingrese solo letras, números y espacios");
         return;
     }
@@ -65,22 +64,22 @@ if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripci
     }
 
     $.ajax({
-        url: '../server/actualizar_Ingreso.php',
+        url: '../server/actualizarGasto.php',
         method: 'POST',
         data: {
            id: id,
 		  concepto: concepto,
-		  fuente: fuente,
+		  destinatario: destinatario,
 		  medio: medio,
 		  valor: valor,
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Ingreso Actualizado Correctamente!!!");
+            alert("Gasto Actualizado Correctamente!!!");
             location.reload();
         },
         error: function() {
-            alert("Error al actualizar el ingreso.");
+            alert("Error al actualizar el Gasto.");
         }
     });
   });
@@ -90,10 +89,10 @@ if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripci
 var botonAgregar = document.getElementById("gastos_dialog");
 if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
     botonAgregar.addEventListener("click", function () {
-        var modal = new bootstrap.Modal(document.getElementById("ventana_Reg_Ingreso"));
+        var modal = new bootstrap.Modal(document.getElementById("ventana_Reg_Gasto"));
         modal.show();
         document.getElementById("concepto").selectedIndex=0;
-    	document.getElementById("fuente").value="";
+    	document.getElementById("destinatario").value="";
     	document.getElementById("metodo").value="";
     	document.getElementById("valor").value=0;
 		document.getElementById("descripcion").value="";
@@ -101,77 +100,76 @@ if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
     botonAgregar.dataset.eventoAgregado = "true";
 }
 
-var botonIngreso = document.getElementById("ingreso");
-if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
-  document.getElementById("ingreso").addEventListener("click", function(event) {
+var botonReg = document.getElementById("registrar");
+if (botonReg && !botonReg.dataset.eventoAgregado) {
+  botonReg.addEventListener("click", function(event) {
     event.preventDefault(); 
 
-    let fecha = new Date();
     let concepto = document.getElementById("concepto").value;
-    let fuente = document.getElementById("fuente").value;
+    let dest = document.getElementById("destinatario").value;
     let medio = document.getElementById("metodo").value;
     let valor =document.getElementById("valor").value;
 	let descripcion = document.getElementById("descripcion").value;
 
     let formato = /^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ\s\.]+$/;
 
-    if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripcion === "") {
+    if (concepto === "" || dest === "" || medio === "" || valor === 0 || descripcion === "") {
         alert("Todos los campos son obligatorios");
         return;
     }
-    if (!formato.test(fuente)) {
+    if (!formato.test(dest)) {
         alert("Ingrese solo letras, números y espacios");
         return;
     }
 	  if (valor<1) {
-        alert("El valor del ingreso debe ser mayor a $1.00");
+        alert("El valor del gasto debe ser mayor a $1.00");
         return;
     }
 
     $.ajax({
-        url: '../server/registrar_Ingreso.php',
+        url: '../server/registrar_Gasto.php',
         method: 'POST',
         data: {
-            fecha: fecha,
 		  concepto: concepto,
-		  fuente: fuente,
+		  destinatario: dest,
 		  medio: medio,
 		  valor: valor,
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Ingreso Registrado Correctamente!!"); 
+            alert("Gasto Registrado Correctamente!!"); 
             location.reload();
         },
         error: function() {
-
-            alert("Error al registrar el ingreso.");
+            alert("Error al registrar el Gasto.");
         }
     });
 });
 
-    botonIngreso.dataset.eventoAgregado = "true";
+    botonReg.dataset.eventoAgregado = "true";
 }
 
-//ativa y desactiva usuario
+//Anula(Elimina) yoReactiva un gasto
 $(document).ready(function() {
   $(document).on("click", ".cambiar-estado", function() {
-      let idIngreso = $(this).data("id");
+      let idGasto = $(this).data("id");
       let estadoActual = $(this).data("estado");
       let nuevoEstado = estadoActual === "Activo" ? "Inactivo" : "Activo";
+	  let accion= nuevoEstado === "Activo"? "reactivar":"eliminar";
+	  let res= nuevoEstado === "Activo"? "reactivado":"eliminado";
       $.ajax({
-          url: '../server/eliminarIngreso.php',
+          url: '../server/anularGasto.php',
           method: 'POST',
           data: {
-              id: idIngreso,
+              id: idGasto,
               estado: nuevoEstado
           },
           success: function(response) {
               if (response === "success") {
-                  alert("Ingreso eliminado exitosamente.");
+                  alert("Gasto"+res+"exitosamente.");
                   location.reload();
               } else {
-                  alert("Error al eliminar el estado.");
+                  alert("Error al"+accion+" el gasto.");
               }
           },
           error: function() {

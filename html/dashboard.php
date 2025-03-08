@@ -1,14 +1,5 @@
 <?php
-$host = 'localhost';
-$dbname = 'mydb';
-$username = 'admin';
-$password = 'admin';
-
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+include("../server/conexion.php");
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 

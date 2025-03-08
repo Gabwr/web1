@@ -24,7 +24,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     $tabla .= '<td>' . htmlspecialchars($registro['valor']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['descripcion']) . '</td>';
 	$tabla .= '<td>
-	<button class="btn btn-sm btn-primary me-1 editar-ingreso"
+	<button class="btn btn-sm btn-primary me-1 editar-gasto"
 		data-id="'. htmlspecialchars($registro['idGasto']) . '"
 		data-fecha="' . htmlspecialchars($registro['fecha']) . '"
 		data-concepto="' . htmlspecialchars($registro['concepto']) . '"
@@ -133,7 +133,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 	</div>
 </div>
 
-	<div class="modal fade" id="ventana_Reg_Ingreso" tabindex="-1" aria-labelledby="miDialogoLabel" aria-hidden="true">
+	<div class="modal fade" id="ventana_Reg_Gasto" tabindex="-1" aria-labelledby="miDialogoLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="container">
@@ -153,7 +153,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 						?>
 					</select></label>
 							<label for="fuente" class="form-label">Destinatario:
-								<input type="text" id="fuente" name="fuente" class="form-control border-dark" required>
+								<input type="text" id="destinatario" name="destinatario" class="form-control border-dark" required>
 							</label>
 						</div>
 						<div class="col-md-6">
@@ -187,7 +187,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				</div>
 					<div class="modal-footer d-flex justify-content-center align-items-center">
 						<button type="button" class="btn btn-white border border-dark" data-bs-dismiss="modal">Cancelar</button>
-						<button type="button" class="btn btn-white border border-dark" id="ingreso" >Registrar</button>
+						<button type="button" class="btn btn-white border border-dark" id="registrar" >Registrar</button>
 					</div>
 				</div>
 			</div>
@@ -203,22 +203,22 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<div class="modal-content">
 				<div class="container">
 					<div class="row">
-						<h1 class="text-center">Registrar Ingreso</h1>
+						<h1 class="text-center">Modificar Gasto</h1>
 					</div>
 					<div class="row border border-dark p-3 my-4 mx-4 position-relative form-group">
 							<h3 class="position-absolute top-0 start-0 ms-3 px-2" 
 							style="margin-top: -12px; background-color: white; display: inline;">
-							Detalles del ingreso
+							Detalles del gasto
 							</h3>
 						<div class="col-md-6">
-							<label for="concepto" class="form-label">Concepto:
+							<label for="concepto" class="form-label">Motivo:
 								<select class="form-control border-dark text-dark" id="edit-concepto" name="concepto" required>
 								'<option value="seleccione"> Seleccionar...           </option>';
 						<?php echo($opc_conceptos);
 						?>
 					</select></label>
-							<label for="fuente" class="form-label">Fuente:
-								<input type="text" id="edit-fuente" name="fuente" class="form-control border-dark" required>
+							<label for="fuente" class="form-label">Destinatario:
+								<input type="text" id="edit-destinatario" name="fuente" class="form-control border-dark" required>
 							</label>
 						</div>
 						<div class="col-md-6">
@@ -251,7 +251,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				</div>	
 				</div>
 					<div class="modal-footer d-flex justify-content-center align-items-center">
-						<button type="button" class="btn btn-white border border-dark" data-bs-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-white border border-dark" data-dismiss="modal">Cancelar</button>
 						<button type="button" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
 					</div>
 				</div>

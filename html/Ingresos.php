@@ -203,7 +203,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<div class="modal-content">
 				<div class="container">
 					<div class="row">
-						<h1 class="text-center">Registrar Ingreso</h1>
+						<h1 class="text-center">Modificar Ingreso</h1>
 					</div>
 					<div class="row border border-dark p-3 my-4 mx-4 position-relative form-group">
 							<h3 class="position-absolute top-0 start-0 ms-3 px-2" 
