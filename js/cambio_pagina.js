@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
   cargarPagina("inicio.php");
+  if(sessionStorage.getItem("usuario")==null){
+    var user = document.getElementById("usuario").innerHTML;
+    sessionStorage.setItem("usuario",user);
+  }else{
+    user = sessionStorage.getItem("usuario");
+  }
+  $.ajax({
+    url: "../server/getpermisosperfil.php",
+    method: "POST",
+    data: { usuario: user
+     },
+    success: function (response) {
+        try {
+            sessionStorage.setItem("perfil", response); 
+            restringir();
+        } catch (e) {
+            console.log("Error al procesar los permisos");
+        }
+    },
+    error: function () {
+        alert("Error al obtener permisos desde el servidor");
+    }
+});
 
   document.body.addEventListener("click", function (event) {
       const link = event.target.closest("a");
@@ -67,3 +90,42 @@ function obtenerRutaRelativa(url) {
   return urlObj.pathname;
 }
 
+
+function restringir() {
+  let perfil = sessionStorage.getItem("perfil"); 
+
+  if (!perfil) {
+      console.warn("No se encontró perfil en sessionStorage");
+      return;
+  }
+
+  perfil = JSON.parse(perfil);
+
+  if (perfil.lectura_ingresos != true && perfil.Insercion_ingresos_ != true && perfil.edicion_ingresos != true) {
+      document.getElementById("ingrperf").style.display = "none";
+
+  }
+  if (perfil.lectura_gastos != true && perfil.insercion_gastos != true && perfil.edicion_gastos != true) {
+      document.getElementById("gastperf").style.display = "none";
+  }
+
+  if (perfil.lectura_usuarios != true && perfil.insercion_usuarios != true && perfil.edicion_usuarios != true) {
+    document.getElementById("userperf").style.display = "none";
+  }
+
+  if (perfil.lectura_usuarios != true && perfil.insercion_usuarios != true && perfil.edicion_usuarios != true) {
+    document.getElementById("userperf").style.display = "none";
+  }
+
+  if (perfil.lectura_perfiles != true && perfil.insercion_perfiles != true && perfil.edicion_perfiles != true) {
+    document.getElementById("perfperf").style.display = "none";
+  }
+
+  if (perfil.lectura_conceptos != true && perfil.insercion_conceptos != true && perfil.edicion_conceptos != true) {
+    document.getElementById("cncpperf").style.display = "none";
+  }
+
+  if (perfil.permiso_qr != true ) {
+    document.getElementById("qrperf").style.display = "none";
+  }
+}

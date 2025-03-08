@@ -1,6 +1,6 @@
 $(document).ready(function() {
   let originalValues = {};
-
+  restringir();
   $(document).on("click", ".editar-usuario", function() {
       let id = $(this).data("id");
       let nombre = $(this).data("nombre");
@@ -122,7 +122,7 @@ if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
     botonAgregar.addEventListener("click", function () {
         var modal = new bootstrap.Modal(document.getElementById("miDialogo"));
         modal.show();
-         document.getElementById("usuario").value = "";
+        document.getElementById("userio").value = "";
         document.getElementById("nombre").value = "";
         document.getElementById("apellido").value = "";
         document.getElementById("cedula").value = "";
@@ -136,16 +136,16 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
   document.getElementById("ingreso").addEventListener("click", function(event) {
     event.preventDefault(); 
 
-    let user = document.getElementById("usuario").value.trim();
+    let userio = document.getElementById("userio").value.trim();
     let nomb = document.getElementById("nombre").value.trim();
     let apll = document.getElementById("apellido").value.trim();
     let ced = document.getElementById("cedula").value.trim();
-    let pass = user+nomb+apll;
+    let pass = userio+nomb+apll;
     let perfil = document.getElementById("perfil").value;
 
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/;
-
-    if (user === "" || pass === "" || nomb === "" || apll === "" || ced === "" ||perfil === "seleccione") {
+    console.log(userio,nomb,apll,ced,pass,perfil);
+    if (userio === "" || pass === "" || nomb === "" || apll === "" || ced === "" ||perfil === "seleccione") {
         mensaje("Todos los campos son obligatorios");
         setTimeout(function() {
             var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
@@ -191,7 +191,7 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
         url: '../server/insercionuser.php',
         method: 'POST',
         data: {
-            usuario: user,
+            usuario: userio,
             contrasenia: pass,
             nombre: nomb,
             apellido: apll,
@@ -320,3 +320,31 @@ function mensaje(msg) {
     var modal = new bootstrap.Modal(document.getElementById("infomodal"));
     modal.show();
 }
+
+
+function restringir() {
+    let perfil = sessionStorage.getItem("perfil"); 
+  
+    if (!perfil) {
+        console.warn("No se encontró perfil en sessionStorage");
+        return;
+    }
+  
+    perfil = JSON.parse(perfil);
+
+    if (perfil.insercion_usuarios != true) {
+        document.getElementById("usuariodialog").style.display = "none";
+    }
+      if (perfil.lectura_usuarios != true ) {
+        document.getElementById("tablausuarios").style.display = "none";
+        document.getElementById("lebusqueda").style.display = "none";
+        
+      }
+      
+      if(perfil.edicion_usuarios != true) {
+        document.getElementById("estate").style.display = "none";
+        document.getElementById("editusuario").style.display = "none";
+      }
+
+      
+}  

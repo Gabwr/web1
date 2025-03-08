@@ -17,7 +17,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     $tabla .= '<td>' . htmlspecialchars($registro['conexion']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['estado']) . '</td>';
 	$tabla .= '<td>
-	<button class="btn btn-sm btn-primary me-1 editar-usuario" 
+	<button id="editusuario" class="btn btn-sm btn-primary me-1 editar-usuario" 
 		data-id="' . htmlspecialchars($registro['idUsuario']) . '"
 		data-nombre="' . htmlspecialchars($registro['nombre']) . '"
 		data-apellido="' . htmlspecialchars($registro['apellido']) . '"
@@ -59,16 +59,16 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     <div class="row py-2">
 
 
-        <div class="col-md-2">
-            <div class="input-group input-group-sm mx-5 my-2">
-                <span class="input-group-text bg-white border-light">
-                    <i class="bi bi-search"></i> 
-                </span>
-                <input type="text" id="filtroin" class="form-control border-light rounded-end" placeholder="Buscar...">
-            </div>
-        </div>
+        	<div class="col-md-2" id="lebusqueda">
+				<div class="input-group input-group-sm mx-5 my-2">
+					<span class="input-group-text bg-white border-light">
+						<i class="bi bi-search"></i> 
+					</span>
+					<input type="text" id="filtroin" class="form-control border-light rounded-end" placeholder="Buscar...">
+				</div>
+        	</div>
     </div>
-		<div class="container">
+		<div class="container" id="tablausuarios">
 		<div class="table-responsive">
 		<table class="table table-striped">
 			<thead class="table-secondary">
@@ -147,7 +147,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 						</h3>
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuario:
-							<input type="text" id="usuario" name="usuario" class="form-control border-dark" required>
+							<input type="text" id="userio" name="userio" class="form-control border-dark" required>
 						</label>
 					</div>
 					<div class="col-md-6">
