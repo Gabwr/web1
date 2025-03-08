@@ -13,7 +13,7 @@ if (isset($_POST['perfil'])) {
         $queryPermisos = "SELECT COLUMN_NAME 
                           FROM INFORMATION_SCHEMA.COLUMNS 
                           WHERE TABLE_NAME = 'perfiles' 
-                          AND TABLE_SCHEMA = 'mydb'
+                          AND TABLE_SCHEMA = 'economiaf'
                           AND DATA_TYPE = 'tinyint'
                           AND COLUMN_NAME != 'estado'";
 
