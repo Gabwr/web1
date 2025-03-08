@@ -11,7 +11,7 @@ if (!isset($_SESSION['usuario'])) {
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Documento sin título</title>
+    <title>FIFA</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/menubootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
@@ -22,6 +22,9 @@ if (!isset($_SESSION['usuario'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sesion.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 </head>
 
 <body>
@@ -29,7 +32,7 @@ if (!isset($_SESSION['usuario'])) {
     <div id="menu" class="container-fluid py-2">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
-                <h1><i class="bi bi-boxes"></i> LaConti</h1>
+                <h1><i class="bi bi-boxes"></i> FIFA</h1>
             </div>
 
             <div class="col-auto d-flex align-items-center">
@@ -73,10 +76,14 @@ if (!isset($_SESSION['usuario'])) {
                         <a class="nav-link" href="perfiles.php"><i class="bi bi-person-badge"></i> Perfiles</a>
                     </li>
                     <li class="nav-item px-3" id="cncpperf">
-                        <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto Financiero</a>
+                        <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)</a>
                     </li>
                     <li class="nav-item px-3" id="qrperf">
                         <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR</a>
+                    </li>
+					<li class="nav-item px-3" id="qrperf">
+                        <a class="nav-link" href="auditoria.php"><i class="bi bi-journal-medical
+							"></i> Auditoría</a>
                     </li>
 
                 </ul>
