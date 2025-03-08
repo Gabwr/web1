@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 07, 2025 at 03:30 PM
--- Server version: 8.0.17
--- PHP Version: 7.3.10
+-- Servidor: localhost
+-- Tiempo de generación: 08-03-2025 a las 01:55:08
+-- Versión del servidor: 8.0.17
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydb`
+-- Base de datos: `economiaf`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concepto`
+-- Estructura de tabla para la tabla `auditoria`
+--
+
+CREATE TABLE `auditoria` (
+  `idAuditoria` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `detalle` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `auditoria`
+--
+
+INSERT INTO `auditoria` (`idAuditoria`, `idUsuario`, `detalle`, `fecha_hora`) VALUES
+(1, 1, 'Registro del gasto ', '2025-03-07 19:06:14'),
+(2, 1, 'Registro del gasto #8', '2025-03-07 19:37:13'),
+(3, 1, 'Registro del ingreso #3', '2025-03-08 00:46:42'),
+(4, 1, 'Anulación del ingreso N° 4', '2025-03-07 19:58:20'),
+(5, 1, 'Anulación del gasto N° 4', '2025-03-07 19:58:22'),
+(6, 1, 'Anulación del gasto N° 2', '2025-03-07 19:59:01'),
+(7, 1, 'Anulación del ingreso N° 2', '2025-03-07 19:59:03'),
+(8, 1, 'Anulación del gasto N° 2', '2025-03-07 19:59:05'),
+(9, 1, 'Anulación del ingreso N° 1', '2025-03-07 19:59:30'),
+(10, 1, 'Anulación del gasto N° 7', '2025-03-07 20:02:03'),
+(11, 1, 'Anulación del gasto N° 3', '2025-03-07 20:02:26'),
+(12, 1, 'Anulación del gasto N° 3', '2025-03-07 20:02:28'),
+(13, 1, 'Modificación del gasto N° 6', '2025-03-07 20:18:01'),
+(14, 1, 'Modificación del ingreso N° 3', '2025-03-07 20:44:28');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `concepto`
 --
 
 CREATE TABLE `concepto` (
@@ -36,7 +69,7 @@ CREATE TABLE `concepto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `concepto`
+-- Volcado de datos para la tabla `concepto`
 --
 
 INSERT INTO `concepto` (`idconcepto`, `qr_id`, `nombre`, `tipo`) VALUES
@@ -46,7 +79,7 @@ INSERT INTO `concepto` (`idconcepto`, `qr_id`, `nombre`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gasto`
+-- Estructura de tabla para la tabla `gasto`
 --
 
 CREATE TABLE `gasto` (
@@ -62,16 +95,23 @@ CREATE TABLE `gasto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `gasto`
+-- Volcado de datos para la tabla `gasto`
 --
 
 INSERT INTO `gasto` (`idGasto`, `idUsuario`, `idconcepto`, `fecha`, `valor`, `medio_de_pago`, `acreedor_cobrador`, `descripcion`, `estado`) VALUES
-(1, 1, 2, '2025-03-01', '99.99', 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina', 'Actiivo');
+(1, 1, 2, '2025-03-01', '99.99', 'Efectivo', 'Proveedor XYZ', 'Compra de materiales de oficina', 'Actiivo'),
+(2, 1, 2, '2025-03-07', '4.25', 'Efectivo', 'Papelería Josefina', 'Compra de un sketchbook y lapiceros de colores.', 'Inactivo'),
+(3, 1, 2, '2025-03-07', '10.00', 'Transferencia Bancaria', 'Jose', 'Compra de materiales de cocina', 'Inactivo'),
+(4, 1, 2, '2025-03-07', '12.00', 'Efectivo', 'Jose', 'Conioasnoifniaf', 'Inactivo'),
+(5, 1, 2, '2025-03-07', '6.00', 'Efectivo', 'Juan Felipe', 'Materiales de Construcción: Cemento y hormigón', 'Activo'),
+(6, 1, 2, '2025-03-07', '10.00', 'Efectivo', 'Jose', 'Materiales de Limpieza', 'Activo'),
+(7, 1, 2, '2025-03-07', '12.00', 'Efectivo', 'Jose', 'qwdqwdqw', 'Inactivo'),
+(8, 1, 2, '2025-03-07', '1.00', 'Efectivo', 'fwefewfwfe', 'fewfwewfw', 'Activo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ingreso`
+-- Estructura de tabla para la tabla `ingreso`
 --
 
 CREATE TABLE `ingreso` (
@@ -87,17 +127,18 @@ CREATE TABLE `ingreso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `ingreso`
+-- Volcado de datos para la tabla `ingreso`
 --
 
 INSERT INTO `ingreso` (`idIngreso`, `idconcepto`, `idUsuario`, `fecha`, `valor`, `medio_de_pago`, `fuente_beneficiario`, `descripcion`, `estado`) VALUES
-(1, 1, 1, '2025-03-01', '99.99', 'Transferencia Bancaria', 'Empresa ABC', 'Pago mensual de salario', 'Activo'),
-(2, 1, 1, '2025-03-07', '33.50', 'Efectivo', 'Empresa ABC', 'PAGO EXTRA', 'Activo');
+(1, 1, 1, '2025-03-01', '99.99', 'Transferencia Bancaria', 'Empresa ABC', 'Pago mensual de salario', 'Inactivo'),
+(2, 1, 1, '2025-03-07', '33.50', 'Efectivo', 'Empresa ABC', 'PAGO tiempo extra', 'Inactivo'),
+(3, 1, 1, '2025-03-08', '61.00', 'Transferencia Bancaria', 'Banco Pichincha', 'Pago a empleados por comisión', 'Activo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perfiles`
+-- Estructura de tabla para la tabla `perfiles`
 --
 
 CREATE TABLE `perfiles` (
@@ -122,7 +163,7 @@ CREATE TABLE `perfiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `perfiles`
+-- Volcado de datos para la tabla `perfiles`
 --
 
 INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edicion_ingresos`, `lectura_gastos`, `insercion_gastos`, `edicion_gastos`, `lectura_usuarios`, `insercion_usuarios`, `edicion_usuarios`, `lectura_perfiles`, `insercion_perfiles`, `edicion_perfiles`, `lectura_conceptos`, `insercion_conceptos`, `edicion_conceptos`, `permiso_qr`, `estado`) VALUES
@@ -134,7 +175,7 @@ INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `qr`
+-- Estructura de tabla para la tabla `qr`
 --
 
 CREATE TABLE `qr` (
@@ -145,7 +186,7 @@ CREATE TABLE `qr` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -161,26 +202,32 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `cedula`, `nombre`, `apellido`, `usuario`, `contrasenia`, `estado`, `conexion`, `perfil`) VALUES
-(1, '0650160203', 'Administrador', 'Admin', '1234567890', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-04 13:59:16', 'Administrador'),
+(1, '0650160203', 'Administrador', 'Admin', '1234567890', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-07 22:16:40', 'Administrador'),
 (2, '0650160204', 'Gabriel', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS'),
 (6, '1700238471', 'Gabriel', 'Perez', 'Juanillo', '$2y$10$vckvzffFo0nhwC1kIwAvdeF7rBrW30BKX9jhWss5ooFy54h2myE1a', 'Activo', '2025-03-07 13:27:58', 'Perfil pruebaDOS');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `concepto`
+-- Indices de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  ADD PRIMARY KEY (`idAuditoria`);
+
+--
+-- Indices de la tabla `concepto`
 --
 ALTER TABLE `concepto`
   ADD PRIMARY KEY (`idconcepto`);
 
 --
--- Indexes for table `gasto`
+-- Indices de la tabla `gasto`
 --
 ALTER TABLE `gasto`
   ADD PRIMARY KEY (`idGasto`),
@@ -188,7 +235,7 @@ ALTER TABLE `gasto`
   ADD KEY `FK_gasto_concepto` (`idconcepto`);
 
 --
--- Indexes for table `ingreso`
+-- Indices de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
   ADD PRIMARY KEY (`idIngreso`),
@@ -196,78 +243,84 @@ ALTER TABLE `ingreso`
   ADD KEY `FK_ingreso_concepto` (`idconcepto`);
 
 --
--- Indexes for table `perfiles`
+-- Indices de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
   ADD PRIMARY KEY (`perfil`);
 
 --
--- Indexes for table `qr`
+-- Indices de la tabla `qr`
 --
 ALTER TABLE `qr`
   ADD PRIMARY KEY (`qr_id`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`),
   ADD KEY `fk_usuario_perfil` (`perfil`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `concepto`
+-- AUTO_INCREMENT de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  MODIFY `idAuditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `concepto`
 --
 ALTER TABLE `concepto`
   MODIFY `idconcepto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `gasto`
+-- AUTO_INCREMENT de la tabla `gasto`
 --
 ALTER TABLE `gasto`
-  MODIFY `idGasto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idGasto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `ingreso`
+-- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idIngreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idIngreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `qr`
+-- AUTO_INCREMENT de la tabla `qr`
 --
 ALTER TABLE `qr`
   MODIFY `qr_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `gasto`
+-- Filtros para la tabla `gasto`
 --
 ALTER TABLE `gasto`
   ADD CONSTRAINT `FK_gasto_concepto` FOREIGN KEY (`idconcepto`) REFERENCES `concepto` (`idconcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `FK_gasto_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Constraints for table `ingreso`
+-- Filtros para la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
   ADD CONSTRAINT `FK_ingreso_concepto` FOREIGN KEY (`idconcepto`) REFERENCES `concepto` (`idconcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `FK_ingreso_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Constraints for table `usuario`
+-- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_usuario_perfil` FOREIGN KEY (`perfil`) REFERENCES `perfiles` (`perfil`) ON DELETE CASCADE ON UPDATE CASCADE;
