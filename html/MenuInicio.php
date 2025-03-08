@@ -24,7 +24,8 @@ if (!isset($_SESSION['usuario'])) {
 </head>
 
 <body>
-    <p type="hidden" id="usuario" style="display:none;"><?php echo $_SESSION['usuario']['usuario']; ?></p>
+    <p id="usuario" style="display:none;"><?php echo $_SESSION['usuario']['usuario']; ?></p>
+    <p id="lestate" style="display:none;"><?php echo $_SESSION['usuario']['estado']; ?></p>
     <div id="menu" class="container-fluid py-2">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
