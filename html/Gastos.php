@@ -4,7 +4,7 @@ require '../server/conexion.php';
 
 $consulta = "SELECT g.idGasto, g.idconcepto, g.idUsuario, g.fecha, g.valor, g.medio_de_pago, 
 g.acreedor_cobrador, g.descripcion, g.estado, c.nombre as concepto
-FROM gasto g join concepto c on g.idconcepto=c.idconcepto where g.estado='Activo'";
+FROM gasto g join concepto c on g.idconcepto=c.idconcepto";
 $busca_conceptos="SELECT nombre FROM concepto where tipo='Gasto'";
 
 $resultado = mysqli_query($conn, $consulta);
@@ -32,13 +32,12 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 		data-medio_de_pago="' . htmlspecialchars($registro['medio_de_pago']) . '"
 		data-valor="' . htmlspecialchars($registro['valor']) . '"
 		data-descripcion="' . htmlspecialchars($registro['descripcion']) . '">
-		<i class="bi bi-pencil"></i> Editar
+		<i class="bi bi-pencil"></i>
 	</button>
 	<button class="btn btn-sm ' . ($registro['estado'] == 'Activo' ?  'btn-danger':'btn-success') . ' cambiar-estado"
 		data-id="' . htmlspecialchars($registro['idGasto']) . '" 
 		data-estado="' . htmlspecialchars($registro['estado']) . '">
 		<i class="bi ' . ($registro['estado'] == 'Activo' ?  'bi-x-circle':'bi-check-circle' ) . '"></i> 
-		' . ($registro['estado'] == 'Activo' ? 'Anular':'Activar') . '
 	</button>
   </td>';
 
@@ -64,18 +63,6 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 
     <div class="row py-2">
         <div class="col-md-2">
-            <p>Buscar por: </p>
-        </div>
-
-        <div class="col-md-2">
-            <select class="form-select-sm shadow-sm border-light mx-2 my-2" id="filtrosel">
-                <option value="concepto">Concepto</option>
-                <option value="fuente">Fuente</option>
-                <option value="medio">Medio de Pago</option>
-            </select>
-        </div>
-
-        <div class="col-md-2">
             <div class="input-group input-group-sm mx-5 my-2">
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
@@ -83,6 +70,14 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
                 <input type="text" class="form-control border-light rounded-end" placeholder="Buscar..." id="filtroin">
             </div>
         </div>
+		
+		<div class="col-md-4">
+			<div class="input-group input-group-sm mx-5 my-2">
+				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
+                <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
+				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Gastos Anulados</label>
+            </div>
+		</div>
     </div>
 		<div class="container">
 		<div class="table-responsive">
@@ -102,7 +97,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				</th>
 				<th>
 				Destinatario
-				  <button class="btn btn-sm btn-light ms-2" id="filtroFuente">
+				  <button class="btn btn-sm btn-light ms-2" id="filtroDestinatario">
 					<i class="bi bi-arrow-down-circle"></i> 
 				</button>
 				</th>
@@ -194,7 +189,6 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</div>
 			
 		</div>
-	</div>
 
 
 
@@ -259,7 +253,18 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</div>
 </div>
 
+	<div class="modal fade" id="infomodal" tabindex="-1" aria-labelledby="infomodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg my-5">
+        <div class="modal-content my-5">
+			<div class="container my-5">
+				<div class="row">
+					<h1 class="text-center" id="mensaje"></h1>
 				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
 
 
 
