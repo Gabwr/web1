@@ -259,6 +259,5 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				</div>
 
 
-
 </body>
 </html>

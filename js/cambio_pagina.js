@@ -1,20 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
   cargarPagina("inicio.php");
+  let user="";
+  let estate="";
   if(sessionStorage.getItem("usuario")==null){
-    var user = document.getElementById("usuario").innerHTML;
+    user=document.getElementById("usuario").innerHTML;
     sessionStorage.setItem("usuario",user);
   }else{
     user = sessionStorage.getItem("usuario");
   }
+  if(sessionStorage.getItem("estado")==null){
+    estate = document.getElementById("lestate").innerHTML;
+    sessionStorage.setItem("estado",estate);
+  }
   $.ajax({
     url: "../server/getpermisosperfil.php",
     method: "POST",
-    data: { usuario: user
-     },
+    data: { usuario: user},
     success: function (response) {
         try {
             sessionStorage.setItem("perfil", response); 
-            restringir();
+            setTimeout(restringir, 50);
         } catch (e) {
             console.log("Error al procesar los permisos");
         }
@@ -24,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+
   document.body.addEventListener("click", function (event) {
       const link = event.target.closest("a");
       if (link && link.getAttribute("href") && !link.getAttribute("target")) {
@@ -31,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
           cargarPagina(link.getAttribute("href"));
       }
   });
+
 });
 
 function cargarPagina(url) {
@@ -47,6 +54,7 @@ function cargarPagina(url) {
 
           eliminarScriptsPrevios(); 
           ejecutarScripts(contenidoDiv);
+
       })
       .catch((error) => {
           console.error("Error al cargar el contenido:", error);
@@ -93,6 +101,18 @@ function obtenerRutaRelativa(url) {
 
 function restringir() {
   let perfil = sessionStorage.getItem("perfil"); 
+  let leestate = sessionStorage.getItem("estado")
+  
+  if (!leestate) {
+    console.warn("No se encontró usuario en sessionStorage");
+    return;
+  }
+
+  //usuario inactivo
+  if(leestate=="Inactivo"){
+    sessionStorage.clear();
+    window.location.href = "inactivo.php";
+  }
 
   if (!perfil) {
       console.warn("No se encontró perfil en sessionStorage");
@@ -107,10 +127,6 @@ function restringir() {
   }
   if (perfil.lectura_gastos != true && perfil.insercion_gastos != true && perfil.edicion_gastos != true) {
       document.getElementById("gastperf").style.display = "none";
-  }
-
-  if (perfil.lectura_usuarios != true && perfil.insercion_usuarios != true && perfil.edicion_usuarios != true) {
-    document.getElementById("userperf").style.display = "none";
   }
 
   if (perfil.lectura_usuarios != true && perfil.insercion_usuarios != true && perfil.edicion_usuarios != true) {
