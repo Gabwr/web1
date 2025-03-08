@@ -83,7 +83,7 @@ if (!isset($_SESSION['usuario'])) {
                     <li class="nav-item px-3" id="qrperf">
                         <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR</a>
                     </li>
-					<li class="nav-item px-3" id="qrperf">
+					<li class="nav-item px-3" id="auditoria">
                         <a class="nav-link" href="auditoria.php"><i class="bi bi-journal-medical
 							"></i> Auditoría</a>
                     </li>
