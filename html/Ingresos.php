@@ -51,6 +51,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <head>
 <title>Ingresos</title>
 <script src="../js/ingresos.js"></script>
+<script src="../js/exportarIngresos.js"></script>
 </head>
 
 <body>
@@ -76,13 +77,13 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			<div class="input-group input-group-sm mx-5 my-2">
 				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
                 <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
-				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Gastos Anulados</label>
+				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Ingresos Anulados</label>
             </div>
 		</div>
     </div>
 		<div class="container">
 		<div class="table-responsive">
-		<table class="table table-striped">
+		<table class="table table-striped" id="tabla">
 			<thead class="table-secondary">
 			<tr>
 				<th>Fecha
@@ -122,7 +123,18 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</tbody>
 		</table>
 		</div>
-
+		<div class="row justify-content-evenly">
+    	<div class="col-4">
+      		<button class="btn btn-danger shadow-md" id="exportarPDF">Exportar como PDF
+			<i class="bi bi-file-earmark-pdf"></i>
+			</button>
+    	</div>
+    	<div class="col-4">
+      		<button class="btn btn-success shadow-md" id="exportarExcel">Exportar a Excel
+			<i class="bi bi-file-earmark-spreadsheet"></i>
+			</button>
+    	</div>
+  		</div>
 
 		
 		</div>
@@ -207,13 +219,13 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 							Detalles del ingreso
 							</h3>
 						<div class="col-md-6">
-							<label for="concepto" class="form-label">Concepto:
+							<label for="concepto" class="form-label">Motivo:
 								<select class="form-control border-dark text-dark" id="edit-concepto" name="concepto" required>
 								'<option value="seleccione"> Seleccionar...           </option>';
 						<?php echo($opc_conceptos);
 						?>
 					</select></label>
-							<label for="fuente" class="form-label">Fuente:
+							<label for="fuente" class="form-label">Origen:
 								<input type="text" id="edit-fuente" name="fuente" class="form-control border-dark" required>
 							</label>
 						</div>
