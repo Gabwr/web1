@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $id_u=$_SESSION['usuario']['idUsuario'];
+date_default_timezone_set('America/Guayaquil');//Zona horaria de ecuador
 include 'conexion.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $concepto = trim($_POST['concepto']);

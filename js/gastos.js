@@ -75,11 +75,17 @@ if (concepto === "" || destinatario === "" || medio === "" || valor === 0 || des
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Gasto Actualizado Correctamente!!!");
-            location.reload();
+            mensaje("Gasto Actualizado Correctamente!!!");
+			setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
         },
         error: function() {
-            alert("Error al actualizar el Gasto.");
+            mensaje("Error al actualizar el Gasto.");
+			setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
   });
@@ -137,11 +143,17 @@ if (botonReg && !botonReg.dataset.eventoAgregado) {
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Gasto Registrado Correctamente!!"); 
-            location.reload();
+			mensaje("Gasto Registrado Correctamente!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
         },
         error: function() {
-            alert("Error al registrar el Gasto.");
+            mensaje("Error al registrar el Gasto.");
+			setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
 });
@@ -166,10 +178,16 @@ $(document).ready(function() {
           },
           success: function(response) {
               if (response === "success") {
-                  alert("Gasto"+res+"exitosamente.");
-                  location.reload();
+                  mensaje("Gasto "+res+" exitosamente.");
+				  setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
               } else {
-                  alert("Error al"+accion+" el gasto.");
+                  mensaje("Error al "+accion+" el gasto");
+				  setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
               }
           },
           error: function() {
@@ -203,7 +221,7 @@ $(document).ready(function () {
     let estadosOrden = {
 		fecha: true,
         concepto: true,
-        fuente: true,
+        destinatario: true,
         medio: true,
         valor: true
     };
@@ -218,9 +236,9 @@ $(document).ready(function () {
         estadosOrden.concepto = !estadosOrden.concepto;
     });
 
-    $("#filtroFuente").click(function () {
-        ordenarTabla(3, estadosOrden.fuente);
-        estadosOrden.fuente = !estadosOrden.fuente;
+    $("#filtroDestinatario").click(function () {
+        ordenarTabla(3, estadosOrden.destinatario);
+        estadosOrden.destinatario = !estadosOrden.destinatario;
     });
 
     $("#filtroMedio").click(function () {
@@ -233,21 +251,45 @@ $(document).ready(function () {
     });
 
     $("#filtroin").on("keyup", function () {
-        let criterio = $("#filtrosel").val();
         let filtro = $(this).val().toLowerCase();
-
+		
         $("#tabla-body tr").filter(function () {
-            let textoFila = "";
-            if (criterio === "concepto") {
-                textoFila = $(this).children("td").eq(1).text().toLowerCase();
-            } else if (criterio === "fuente") {
-                textoFila = $(this).children("td").eq(2).text().toLowerCase();
-            } else if (criterio === "medio") {
-                textoFila = $(this).children("td").eq(3).text().toLowerCase();
-            }
-
-            $(this).toggle(textoFila.includes(filtro));
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(filtro));
         });
     });
 });
-// JavaScri
+//Funcion para mostrar u ocultar los gastos anulados
+$(document).ready(function(){
+	$("#tabla-body tr").each(function () {
+		let estado=$(this).find("td:last").find("button:last").data("estado");
+        if (estado === "Inactivo") {
+            $(this).hide();
+        }
+    });
+	
+	$("#mostrarOcultar").change(function(){
+		if(this.checked)
+			{
+				$("#msj_mO").text("Ocultar gastos anulados");
+			}
+		else
+			{
+				$("#msj_mO").text("Mostrar gastos anulados");
+			}
+		$("table tr").each(function () {
+		let estado=$(this).find("td:last").find("button:last").data("estado");
+        if (estado === "Inactivo") {
+            $(this).toggle();
+        }
+		});
+	});
+});
+
+//Control de la alerta
+function mensaje(msg) {
+    document.getElementById("mensaje").innerHTML = msg;
+    var modal = new bootstrap.Modal(document.getElementById("infomodal"));
+    modal.show();
+}
