@@ -55,7 +55,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 		<button class="btn shadow-sm border-light" id="usuariodialog">Agregar Usuario</button>
     </div> 
 
-    <div class="row py-2">
+    <div class="container">
 
 
         	<div class="col-md-2" id="lebusqueda">

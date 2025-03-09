@@ -50,7 +50,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
     </div> 
 
 
-        <div class="container d-flex justify-content-start" id="filtro">
+        <div class="container d-flex justify-content-start px-0" id="filtro">
             <div class="input-group input-group-sm my-2">
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
