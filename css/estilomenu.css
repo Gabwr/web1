@@ -50,7 +50,7 @@ footer {
 	padding: 1rem;
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
-img{
-	height: 50px;
-	width: 50px;
+
+#ingperf, #gastperf, #userperf, #perfperf, #cncpperf, #qrperf,#audiwtoria {
+    display: none;
 }

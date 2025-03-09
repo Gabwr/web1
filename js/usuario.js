@@ -27,63 +27,49 @@ $(document).ready(function() {
       $("#editarmodal").modal("show");
   });
 
-  $("#guardarCambios").click(function() {
+  $("#guardarCambios").click(function () {
     let id = $("#edit-idUsuario").val();
     let user = $("#edit-usuario").val();
     let nomb = $("#edit-nombre").val().trim();
     let apll = $("#edit-apellido").val().trim();
     let perfil = $("#edit-perfil").val();
     let ced = $("#edit-cedula").val().trim();
-
     if (user === originalValues.usuario && nomb === originalValues.nombre && apll === 
       originalValues.apellido && perfil === originalValues.perfil && ced === originalValues.cedula) {
         mensaje("No ha realizado cambios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;  
     }
+    norep(user, ced,id,"edit", function(repetido) {
+        if (repetido) {
+            return; 
+        }
+    
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/;
     if (user === "" || nomb === "" || apll === "" || perfil === "seleccione") {
         mensaje("Todos los campos son obligatorios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
     if (!soloLetras.test(nomb)) {
         mensaje("El Nombre solo debe contener letras y espacios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
     if (!soloLetras.test(apll)) {
         mensaje("El Apellido solo debe contener letras y espacios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
 
     if (ced.length != 10) {
         mensaje("La cedula debe tener 10 digitos");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
     if (isNaN(ced)) {
         mensaje("La cedula debe ser numerica");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
 
@@ -100,21 +86,18 @@ $(document).ready(function() {
         },
         success: function(response) {
             mensaje("Usuario Actualizado Correctamente!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();
-                location.reload();}, 1000);
+            timeoutres();
             
         },
         error: function() {
             mensaje("Error en el envio de datos!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();}, 1000);
+            timeout();
         }
     });
-  });
+    });
+    });
 });
+
 
 //ingreso de usuario
 var botonAgregar = document.getElementById("usuariodialog");
@@ -133,8 +116,7 @@ if (botonAgregar && !botonAgregar.dataset.eventoAgregado) {
 
 var botonIngreso = document.getElementById("ingreso");
 if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
-  document.getElementById("ingreso").addEventListener("click", function(event) {
-    event.preventDefault(); 
+  $("#ingreso").click(function () {
 
     let userio = document.getElementById("userio").value.trim();
     let nomb = document.getElementById("nombre").value.trim();
@@ -142,48 +124,38 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
     let ced = document.getElementById("cedula").value.trim();
     let pass = userio+nomb+apll;
     let perfil = document.getElementById("perfil").value;
-
     let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/;
-    console.log(userio,nomb,apll,ced,pass,perfil);
+
     if (userio === "" || pass === "" || nomb === "" || apll === "" || ced === "" ||perfil === "seleccione") {
         mensaje("Todos los campos son obligatorios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
+    norep(userio, ced,id,"new", function(repetido) {
+        if (repetido) {
+            return; 
+        }
+    
+    
     if (!soloLetras.test(nomb)) {
         mensaje("El Nombre solo debe contener letras y espacios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
     if (!soloLetras.test(apll)) {
         mensaje("El Apellido solo debe contener letras y espacios");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
 
     if (ced.length != 10) {
         mensaje("La cedula debe tener 10 digitos");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
     if (isNaN(ced)) {
         mensaje("La cedula debe ser numerica");
-        setTimeout(function() {
-            var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-            modal.hide();
-            }, 1000);
+        timeout();
         return;
     }
 
@@ -200,17 +172,13 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
         },
         success: function(response) {
             mensaje("Usuario ingresado correctamente!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();
-                location.reload();}, 1000);
+            timeout();
         },
         error: function() {
             mensaje("Error en el envio de datos!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();}, 1000);
+            timeout();
         }
+    });
     });
 });
 
@@ -232,16 +200,11 @@ $(document).ready(function() {
           },
           success: function(response) {
             mensaje("El cambio de estado ha sido realizado!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();
-                location.reload();}, 1000);
+            timeoutres();
         },
         error: function() {
             mensaje("Error en el envio de datos!!!");
-            setTimeout(function() {
-                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
-                modal.hide();}, 1000);
+            timeout();
         }
       });
   });
@@ -348,3 +311,65 @@ function restringir() {
 
       
 }  
+
+
+function timeout(){
+    setTimeout(function() {
+        var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+        modal.hide();
+        }, 1000);
+}
+
+function timeoutres(){
+    setTimeout(function() {
+        var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+        modal.hide();
+        location.reload();
+        }, 1000);
+}
+
+
+function norep(user,ced,id ,es, callback) {
+
+    let usuario =user;
+    let cedula = ced;
+    let idu =id;
+    console.log(usuario,cedula,es);
+    $.ajax({
+        url: "../server/norepuser_cedula.php", 
+        method: "POST",
+        data: { user: usuario, 
+                cedula: cedula,
+                es: es,
+                id:idu},
+        success: function(response) {
+            response = response.trim();
+            let repetido = false;
+            console.log(response)
+            if (response == "Usuario repetido") {
+                mensaje("El usuario ya está registrado.");
+                timeout();
+                console.log("1");
+                repetido = true;
+            } else if (response == "Cedula repetida") {
+                mensaje("La cédula ya está registrada.");
+                timeout();
+                repetido = true;
+                console.log("2");
+            } else if (response == "No hay repeticion") {
+                console.log("3");
+                repetido = false;
+            } else {
+                console.log("4");
+                repetido = false;
+            }
+            callback(repetido); 
+        },
+        error: function() {
+            console.log("5");
+            mensaje("Error al realizar la solicitud");
+            timeout();
+            callback(false); 
+        }
+    });
+}

@@ -18,6 +18,3 @@
 	z-index: 1; 
   }
 
-  #ingperf, #gastperf, #userperf, #perfperf, #cncpperf, #qrperf {
-    display: none;
-}
