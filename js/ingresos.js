@@ -299,17 +299,6 @@ function mensaje(msg) {
 
 function restringir() {
     let perfil = sessionStorage.getItem("perfil"); 
-    let leestate = sessionStorage.getItem("estado")
-    
-    if (!leestate) {
-      console.warn("No se encontró usuario en sessionStorage");
-      return;
-    }
-      //usuario inactivo
-    if(leestate=="Inactivo"){
-      sessionStorage.clear();
-      window.location.href = "inactivo.php";
-    }
   
     if (!perfil) {
         console.warn("No se encontró perfil en sessionStorage");
@@ -317,9 +306,6 @@ function restringir() {
     }
   
     perfil = JSON.parse(perfil);
-    let comp =0;
-    let compu =0;
-    let compsis =0;gi
     if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos == true && perfil.edicion_ingresos == true) {
         document.getElementById("ingperf").style.display = "block";
         comp++;
