@@ -57,19 +57,19 @@ function restringir() {
         document.getElementById("ingperf").style.display = "block";
         comp++;
     }
-
-    if (perfil.lectura_gastos  || perfil.insercion_gastos  || perfil.edicion_gastos ) {
+    
+    if (perfil.lectura_gastos == true  || perfil.insercion_gastos == true  || perfil.edicion_gastos== true ) {
         document.getElementById("gastperf").style.display = "block";
         comp++;
     }
   
-    if (perfil.lectura_usuarios || perfil.insercion_usuarios || perfil.edicion_usuarios) {
+    if (perfil.lectura_usuarios== true || perfil.insercion_usuarios == true|| perfil.edicion_usuarios == true) {
       document.getElementById("userperf").style.display = "block";
       comp++;
       compu++;
     }
 
-    if (perfil.lectura_perfiles || perfil.insercion_perfiles ||perfil.edicion_perfiles) {
+    if (perfil.lectura_perfiles== true || perfil.insercion_perfiles== true ||perfil.edicion_perfiles== true) {
       document.getElementById("perfperf").style.display = "block";
       comp++;
       compu++;
@@ -79,21 +79,22 @@ function restringir() {
       document.getElementById("desplegableus").style.display= "block";
     }
 
-    if (perfil.lectura_conceptos || perfil.insercion_conceptos || perfil.edicion_conceptos) {
+    if (perfil.lectura_conceptos == true|| perfil.insercion_conceptos== true || perfil.edicion_conceptos== true) {
       document.getElementById("cncpperf").style.display = "block";
       comp++;
       compsis++;
     }
   
-    if (perfil.permiso_qr) {
+    if (perfil.permiso_qr== true) {
       document.getElementById("qrperf").style.display = "block";
       comp++;
       compsis++;
     }
-    if(compu===2 ){
+    if(compsis==2 ){
       document.getElementById("desplegablesis").style.display= "block";
     }
-    if(comp===6 ){
+
+    if(comp==6 ){
       document.getElementById("auditoria").style.display= "block";
     }
   }

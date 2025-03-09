@@ -295,19 +295,27 @@ function restringir() {
   
     perfil = JSON.parse(perfil);
 
-    if (perfil.insercion_usuarios != true) {
-        document.getElementById("usuariodialog").style.display = "none";
+    if (perfil.insercion_usuarios == 1) {
+        document.getElementById("usuariodialog").style.display = "block";
     }
-      if (perfil.lectura_usuarios != true ) {
-        document.getElementById("tablausuarios").style.display = "none";
-        document.getElementById("lebusqueda").style.display = "none";
+      if (perfil.lectura_usuarios == 1 ) {
+        document.getElementById("tablausuarios").style.display = "block";
+        document.getElementById("lebusqueda").style.display ="block";
+        if(perfil.edicion_usuarios == 1 ) {
+            let estados = document.getElementsByClassName("estate");
+            let edicion = document.getElementsByClassName("editar-usuario");
+            for (let i = 0; i < edicion.length; i++) {
+                edicion[i].style.display = "inline-block";
+            }
+    
+            for (let i = 0; i < estados.length; i++) {
+                estados[i].style.display = "inline-block";
+                }
+          }
         
       }
       
-      if(perfil.edicion_usuarios != true) {
-        document.getElementById("estate").style.display = "none";
-        document.getElementById("editusuario").style.display = "none";
-      }
+      
 
       
 }  

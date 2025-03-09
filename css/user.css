@@ -1,8 +1,11 @@
-.estate{
-    width: 50px;
-
+.estate,.editar-usuario{
+    width: 100px;
+    
 }
 
+.estate,.editar-usuario,#lebusqueda,#tablausuarios,#usuariodialog{
+    display: none;
+}
 #contenido{
     width: 90vw
 }
