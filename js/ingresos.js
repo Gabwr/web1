@@ -75,11 +75,17 @@ if (concepto === "" || fuente === "" || medio === "" || valor === 0 || descripci
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Ingreso Actualizado Correctamente!!!");
-            location.reload();
+            mensaje("Ingreso Actualizado Correctamente!!!");
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
         },
         error: function() {
-            alert("Error al actualizar el ingreso.");
+            mensaje("Error al actualizar el ingreso.");
+			setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
   });
@@ -139,12 +145,17 @@ if (botonIngreso && !botonIngreso.dataset.eventoAgregado) {
 		  descripcion: descripcion
         },
         success: function(response) {
-            alert("Ingreso Registrado Correctamente!!"); 
-            location.reload();
+            mensaje("Ingreso Registrado Correctamente!!"); 
+            setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
         },
         error: function() {
-
-            alert("Error al registrar el ingreso.");
+            mensaje("Error al registrar el ingreso.");
+			setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
         }
     });
 });
@@ -158,6 +169,8 @@ $(document).ready(function() {
       let idIngreso = $(this).data("id");
       let estadoActual = $(this).data("estado");
       let nuevoEstado = estadoActual === "Activo" ? "Inactivo" : "Activo";
+	  let accion= nuevoEstado === "Activo"? "reactivar":"eliminar";
+	  let res= nuevoEstado === "Activo"? "reactivado":"eliminado";
       $.ajax({
           url: '../server/eliminarIngreso.php',
           method: 'POST',
@@ -167,10 +180,16 @@ $(document).ready(function() {
           },
           success: function(response) {
               if (response === "success") {
-                  alert("Ingreso eliminado exitosamente.");
-                  location.reload();
+                  mensaje("Ingreso "+res+" exitosamente.");
+				  setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                location.reload();}, 1000);
               } else {
-                  alert("Error al eliminar el estado.");
+                  mensaje("Error al "+accion+" el ingreso");
+				  setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();}, 1000);
               }
           },
           error: function() {
@@ -234,21 +253,45 @@ $(document).ready(function () {
     });
 
     $("#filtroin").on("keyup", function () {
-        let criterio = $("#filtrosel").val();
         let filtro = $(this).val().toLowerCase();
 
         $("#tabla-body tr").filter(function () {
-            let textoFila = "";
-            if (criterio === "concepto") {
-                textoFila = $(this).children("td").eq(1).text().toLowerCase();
-            } else if (criterio === "fuente") {
-                textoFila = $(this).children("td").eq(2).text().toLowerCase();
-            } else if (criterio === "medio") {
-                textoFila = $(this).children("td").eq(3).text().toLowerCase();
-            }
-
-            $(this).toggle(textoFila.includes(filtro));
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(filtro));
         });
     });
 });
-// JavaScript Document
+//Mostrar u ocultar ingresos anulados
+$(document).ready(function(){
+	$("#tabla-body tr").each(function () {
+		let estado=$(this).find("td:last").find("button:last").data("estado");
+        if (estado === "Inactivo") {
+            $(this).hide();
+        }
+    });
+	
+	$("#mostrarOcultar").change(function(){
+		if(this.checked)
+			{
+				$("#msj_mO").text("Ocultar Ingresos anulados");
+			}
+		else
+			{
+				$("#msj_mO").text("Mostrar Ingresos anulados");
+			}
+		$("table tr").each(function () {
+		let estado=$(this).find("td:last").find("button:last").data("estado");
+        if (estado === "Inactivo") {
+            $(this).toggle();
+        }
+		});
+	});
+});
+
+//Control de la alerta
+function mensaje(msg) {
+    document.getElementById("mensaje").innerHTML = msg;
+    var modal = new bootstrap.Modal(document.getElementById("infomodal"));
+    modal.show();
+}

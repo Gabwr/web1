@@ -1,4 +1,5 @@
 <?php
+session_destroy();
 session_start();
 require 'server/conexion.php';
 $error = "";
@@ -9,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $usuario = $conn->real_escape_string($usuario);
 
-  $sql = "SELECT * FROM usuario WHERE usuario = ? AND estado='Activo'";
+  $sql = "SELECT * FROM usuario WHERE usuario = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $usuario);
   $stmt->execute();
@@ -75,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>
           <button type="submit" id="btnSubmit" class="btn btn-success botonLogin">Ingresar</button>
         </p>
-		<p><a href="">Recuperar contraseña</a></p>
+		<p><a href="html/cambiocontra.php">Recuperar contraseña</a></p>
       </form>
     </div>  
   </div>

@@ -4,7 +4,7 @@ require '../server/conexion.php';
 
 $consulta = "SELECT i.idIngreso, i.idconcepto, i.idUsuario, i.fecha, i.valor, i.medio_de_pago, 
 i.fuente_beneficiario, i.descripcion, i.estado, c.nombre as concepto
-FROM ingreso i join concepto c on i.idconcepto=c.idconcepto where i.estado='Activo'";
+FROM ingreso i join concepto c on i.idconcepto=c.idconcepto";
 $busca_conceptos="SELECT nombre FROM concepto where tipo='Ingreso'";
 
 $resultado = mysqli_query($conn, $consulta);
@@ -51,6 +51,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <head>
 <title>Ingresos</title>
 <script src="../js/ingresos.js"></script>
+<script src="../js/exportarIngresos.js"></script>
 </head>
 
 <body>
@@ -63,17 +64,6 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
     </div> 
 
     <div class="row py-2">
-        <div class="col-md-2">
-            <p>Buscar por: </p>
-        </div>
-
-        <div class="col-md-2">
-            <select class="form-select-sm shadow-sm border-light mx-2 my-2" id="filtrosel">
-                <option value="concepto">Concepto</option>
-                <option value="fuente">Fuente</option>
-                <option value="medio">Medio de Pago</option>
-            </select>
-        </div>
 
         <div class="col-md-2">
             <div class="input-group input-group-sm mx-5 my-2">
@@ -83,10 +73,17 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
                 <input type="text" class="form-control border-light rounded-end" placeholder="Buscar..." id="filtroin">
             </div>
         </div>
+		<div class="col-md-4">
+			<div class="input-group input-group-sm mx-5 my-2">
+				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
+                <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
+				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Ingresos Anulados</label>
+            </div>
+		</div>
     </div>
 		<div class="container">
 		<div class="table-responsive">
-		<table class="table table-striped">
+		<table class="table table-striped" id="tabla">
 			<thead class="table-secondary">
 			<tr>
 				<th>Fecha
@@ -126,7 +123,10 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</tbody>
 		</table>
 		</div>
-
+		<div class="row justify-content-center my-10" id="opc_reporte">
+  </div>
+			<div class="row justify-content-left" id="paginas">
+  </div>
 
 		
 		</div>
@@ -194,7 +194,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</div>
 			
 		</div>
-	</div>
+
 
 
 
@@ -211,13 +211,13 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 							Detalles del ingreso
 							</h3>
 						<div class="col-md-6">
-							<label for="concepto" class="form-label">Concepto:
+							<label for="concepto" class="form-label">Motivo:
 								<select class="form-control border-dark text-dark" id="edit-concepto" name="concepto" required>
 								'<option value="seleccione"> Seleccionar...           </option>';
 						<?php echo($opc_conceptos);
 						?>
 					</select></label>
-							<label for="fuente" class="form-label">Fuente:
+							<label for="fuente" class="form-label">Origen:
 								<input type="text" id="edit-fuente" name="fuente" class="form-control border-dark" required>
 							</label>
 						</div>
@@ -259,7 +259,17 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</div>
 </div>
 
+<div class="modal fade" id="infomodal" tabindex="-1" aria-labelledby="infomodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg my-5">
+        <div class="modal-content my-5">
+			<div class="container my-5">
+				<div class="row">
+					<h1 class="text-center" id="mensaje"></h1>
 				</div>
+			</div>
+        </div>
+    </div>
+</div>
 
 
 

@@ -6,7 +6,7 @@ $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 $queryIngresos = $conn->query("
     SELECT fecha, SUM(valor) as total 
     FROM ingreso 
-    WHERE DATE_FORMAT(fecha, '%Y-%m') = '$selectedMonth'
+    WHERE DATE_FORMAT(fecha, '%Y-%m') = '$selectedMonth' and estado='Activo'
     GROUP BY fecha
 ");
 $ingresos = [];
@@ -17,7 +17,7 @@ while ($row = $queryIngresos->fetch_assoc()) {
 $queryGastos = $conn->query("
     SELECT fecha, SUM(valor) as total 
     FROM gasto 
-    WHERE DATE_FORMAT(fecha, '%Y-%m') = '$selectedMonth'
+    WHERE DATE_FORMAT(fecha, '%Y-%m') = '$selectedMonth' and estado='Activo'
     GROUP BY fecha
 ");
 $gastos = [];

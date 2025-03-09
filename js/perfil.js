@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    restringir();
     $(document).on("click", ".editar-perfil", function () {
         let perfil = $(this).data("perfil");
 
@@ -285,3 +286,30 @@ function mensaje(msg) {
     var modal = new bootstrap.Modal(document.getElementById("infomodal"));
     modal.show();
 }
+
+function restringir() {
+    let perfil = sessionStorage.getItem("perfil"); 
+  
+    if (!perfil) {
+        console.warn("No se encontró perfil en sessionStorage");
+        return;
+    }
+  
+    perfil = JSON.parse(perfil);
+
+    if (perfil.insercion_perfiles != true) {
+        document.getElementById("usuariodialog").style.display = "none";
+    }
+      if (perfil.lectura_perfiles  != true ) {
+        document.getElementById("tablaperfil").style.display = "none";
+        document.getElementById("filtro").style.display = "none";
+        
+      }
+      
+      if(perfil.edicion_perfiles  != true) {
+        document.getElementById("estate").style.display = "none";
+        document.getElementById("editperfil").style.display = "none";
+      }
+
+      
+}  

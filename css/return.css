@@ -1,0 +1,18 @@
+body {
+    background-color: #c8e6c9;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.btn-green {
+    background-color: #28a745;
+    color: white;
+}
