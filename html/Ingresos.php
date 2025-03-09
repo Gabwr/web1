@@ -123,18 +123,10 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</tbody>
 		</table>
 		</div>
-		<div class="row justify-content-evenly">
-    	<div class="col-4">
-      		<button class="btn btn-danger shadow-md" id="exportarPDF">Exportar como PDF
-			<i class="bi bi-file-earmark-pdf"></i>
-			</button>
-    	</div>
-    	<div class="col-4">
-      		<button class="btn btn-success shadow-md" id="exportarExcel">Exportar a Excel
-			<i class="bi bi-file-earmark-spreadsheet"></i>
-			</button>
-    	</div>
-  		</div>
+		<div class="row justify-content-center my-10" id="opc_reporte">
+  </div>
+			<div class="row justify-content-left" id="paginas">
+  </div>
 
 		
 		</div>

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $todosLosPermisos = [
-        "lectura_ingresos", "insercion_ingresos", "edicion_ingresos", "lectura_gastos",
+        "lectura_ingresos", "Insercion_ingresos", "edicion_ingresos", "lectura_gastos",
         "insercion_gastos", "edicion_gastos", "lectura_usuarios", "insercion_usuarios",
         "edicion_usuarios", "lectura_perfiles", "insercion_perfiles", "edicion_perfiles",
         "lectura_conceptos", "insercion_conceptos", "edicion_conceptos", "permiso_qr"

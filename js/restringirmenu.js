@@ -51,7 +51,7 @@ function restringir() {
   
     perfil = JSON.parse(perfil);
   
-    if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos_ == true && perfil.edicion_ingresos == true) {
+    if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos == true && perfil.edicion_ingresos == true) {
         document.getElementById("ingperf").style.display = "block";
   
     }
