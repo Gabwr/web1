@@ -52,7 +52,7 @@ function restringir() {
     let comp =0;
     let compu =0;
     let compsis =0;
-console.log(perfil.lectura_ingresos,perfil.edicion_ingresos,perfil.Insercion_ingresos)
+
     if (perfil.lectura_ingresos == true || perfil.Insercion_ingresos == true || perfil.edicion_ingresos == true) {
         document.getElementById("ingperf").style.display = "block";
         comp++;
@@ -68,12 +68,13 @@ console.log(perfil.lectura_ingresos,perfil.edicion_ingresos,perfil.Insercion_ing
       comp++;
       compu++;
     }
-  
+
     if (perfil.lectura_perfiles || perfil.insercion_perfiles ||perfil.edicion_perfiles) {
       document.getElementById("perfperf").style.display = "block";
       comp++;
       compu++;
     }
+
     if(compu===2 ){
       document.getElementById("desplegableus").style.display= "block";
     }

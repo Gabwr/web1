@@ -297,18 +297,27 @@ function restringir() {
   
     perfil = JSON.parse(perfil);
 
-    if (perfil.insercion_perfiles != true) {
-        document.getElementById("usuariodialog").style.display = "none";
+    if (perfil.insercion_perfiles==1) {
+        document.getElementById("usuariodialog").style.display = "block";
     }
-      if (perfil.lectura_perfiles  != true ) {
-        document.getElementById("tablaperfil").style.display = "none";
-        document.getElementById("filtro").style.display = "none";
+
+      if (perfil.lectura_perfiles ==1) {
+        document.getElementById("tablaperfil").style.display = "block";
+        document.getElementById("filtro").style.display = "block";
         
       }
       
-      if(perfil.edicion_perfiles  != true) {
-        document.getElementById("estate").style.display = "none";
-        document.getElementById("editperfil").style.display = "none";
+      if(perfil.edicion_perfiles ==1) {
+        let estados = document.getElementsByClassName("toggle-estado");
+        let edicion = document.getElementsByClassName("editar-perfil");
+        for (let i = 0; i < edicion.length; i++) {
+            edicion[i].style.display = "block";
+        }
+
+        for (let i = 0; i < estados.length; i++) {
+            estados[i].style.display = "block";
+            }
+
       }
 
       

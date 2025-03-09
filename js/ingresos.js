@@ -310,6 +310,8 @@ function restringir() {
         document.getElementById("tabla").style.display = "none";
         document.getElementById("cambtabla").style.display = "none";
         document.getElementById("busq").style.display = "none";
+        document.getElementById("ventana_Reg_Ingreso").style.display = "none";
+       
     }
 
     if( perfil.Insercion_ingresos == true ){

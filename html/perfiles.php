@@ -17,11 +17,11 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
     $tabla .= '<td>' . htmlspecialchars($registro['perfil']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['estado']) . '</td>';
     $tabla .= '<td>
-        <button id="editperfil" class="btn btn-sm btn-primary me-1 editar-perfil" 
+        <button  class="btn btn-sm btn-primary me-1 editar-perfil" 
             data-perfil="' . htmlspecialchars($registro['perfil']) . '">
             <i class="bi bi-pencil"></i> Editar
         </button>
-        <button id="estate" class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
+        <button  class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
             data-perfil="' . htmlspecialchars($registro['perfil']) . '" 
             data-estado="' . htmlspecialchars($registro['estado']) . '"
             style="width: 100px;">
@@ -38,6 +38,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
 <head>
 <title>Documento sin título</title>
 <script src="../js/perfil.js"></script>
+<link rel="stylesheet" href="../css/perfil.css" >
 </head>
 
 <body>
