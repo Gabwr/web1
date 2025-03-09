@@ -75,7 +75,7 @@ function restringir() {
       compu++;
     }
 
-    if(compu===2 ){
+    if(compu>0 ){
       document.getElementById("desplegableus").style.display= "block";
     }
 
@@ -90,10 +90,11 @@ function restringir() {
       comp++;
       compsis++;
     }
-    if(compsis==2 ){
+
+    if(compsis>0 ){
       document.getElementById("desplegablesis").style.display= "block";
     }
-
+    console.log(comp)
     if(comp==6 ){
       document.getElementById("auditoria").style.display= "block";
     }

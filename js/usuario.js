@@ -302,22 +302,18 @@ function restringir() {
         document.getElementById("tablausuarios").style.display = "block";
         document.getElementById("lebusqueda").style.display ="block";
         if(perfil.edicion_usuarios == 1 ) {
-            let estados = document.getElementsByClassName("estate");
-            let edicion = document.getElementsByClassName("editar-usuario");
-            for (let i = 0; i < edicion.length; i++) {
-                edicion[i].style.display = "inline-block";
+        let estados = document.getElementsByClassName("estate");
+        let edicion = document.getElementsByClassName("editar-usuario");
+        for (let i = 0; i < edicion.length; i++) {
+            edicion[i].style.display = "inline-block";
+        }
+
+        for (let i = 0; i < estados.length; i++) {
+            estados[i].style.display = "inline-block";
             }
-    
-            for (let i = 0; i < estados.length; i++) {
-                estados[i].style.display = "inline-block";
-                }
-          }
+      }
         
       }
-      
-      
-
-      
 }  
 
 

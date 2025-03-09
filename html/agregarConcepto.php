@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="../css/concepto.css">
     <title>Gestión de Conceptos</title>
 </head>
 
 <body>
     <div id="contenido">
-        <div class="container">
+        <div class="container" id="agconcepto">
                 <div class="d-flex justify-content-between">
                     <h4>Conceptos</h4>
                     <button class="btn shadow-sm border-light" data-bs-toggle="modal"
@@ -14,7 +15,7 @@
                 </div>
         </div>
         
-        <div class="container">
+        <div class="container" id="tabla">
             <div class="table-responsive" style="margin-top: 2rem;max-height: 47vh; overflow-y: auto; scrollbar-width:thin">
                 <table class="table table-striped">
                     <thead>

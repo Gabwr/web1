@@ -1,4 +1,5 @@
 $(document).on("click", ".btnEditar", function () {
+    
     let id = $(this).data("id");
     let nombre = $(this).data("nombre");
     let tipo = $(this).data("tipo");
@@ -11,7 +12,7 @@ $(document).on("click", ".btnEditar", function () {
 
     $("#modalEditarConcepto").modal("show");
 });
-
+restringir();
 $("#formAgregarConcepto").submit(function (e) {
     e.preventDefault();
     $.ajax({
@@ -43,3 +44,32 @@ $("#formEditarConcepto").submit(function (e) {
         }
     });
 });
+
+
+function restringir() {
+    let perfil = sessionStorage.getItem("perfil"); 
+  
+    if (!perfil) {
+        console.warn("No se encontró perfil en sessionStorage");
+        return;
+    }
+  
+    perfil = JSON.parse(perfil);
+
+    if (perfil.insercion_conceptos == 1) {
+        document.getElementById("agconcepto").style.display = "block";
+    }
+      if (perfil.lectura_conceptos == 1 ) {
+        document.getElementById("tabla").style.display = "block";
+        if(perfil.edicion_conceptos == 1 ) {
+            let edicion = document.getElementsByClassName("btnEditar");
+            for (let i = 0; i < edicion.length; i++) {
+                edicion[i].style.display = "inline-block";
+            }
+          }
+      }
+      
+      
+
+      
+}  

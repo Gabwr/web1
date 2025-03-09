@@ -106,7 +106,7 @@ if (!isset($_SESSION['usuario'])) {
                                 </a>
                                 </li>
                                 <li id="qrperf">
-                                    <a class="nav-link" href=".php"><i class="bi bi-upc-scan"></i> Código QR
+                                    <a class="nav-link" href="qr.php"><i class="bi bi-upc-scan"></i> Código QR
                                 </a>
                                 </li>
                                 <li  id="auditoria">
