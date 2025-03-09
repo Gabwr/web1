@@ -79,6 +79,13 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Gastos Anulados</label>
             </div>
 		</div>
+		<div class="col-md-2">
+			<div class="input-group input-group-sm mx-5 my-2">
+				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
+                <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
+				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Gastos Anulados</label>
+            </div>
+		</div>
     </div>
 		<div class="container">
 		<div class="table-responsive">
@@ -122,17 +129,9 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 			</tbody>
 		</table>
 		</div>
-		<div class="row justify-content-evenly">
-    	<div class="col-4">
-      		<button class="btn btn-danger shadow-md" id="exportarPDF">Exportar como PDF
-			<i class="bi bi-file-earmark-pdf"></i>
-			</button>
-    	</div>
-    	<div class="col-4">
-      		<button class="btn btn-success shadow-md" id="exportarExcel">Exportar a Excel
-			<i class="bi bi-file-earmark-spreadsheet"></i>
-			</button>
-    	</div>
+		<div class="row justify-content-center my-10" id="opc_reporte">
+  </div>
+			<div class="row justify-content-left" id="paginas">
   </div>
 
 		

@@ -25,8 +25,19 @@ if (!isset($_SESSION['usuario'])) {
     <script src="../js/sesion.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+	<script type="module"  src="https://cdn.jsdelivr.net/npm/jspdf-autotable@5.0.2/dist/jspdf.plugin.autotable.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script src="../js/restringirmenu.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.js" integrity="sha384-w52cgKJL63XVo8/Wwyl+z8ly0lI51gzCtqADl8pHQTXUXkF08iRa7D+sjSmCyHp+" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.js" integrity="sha384-P2rohseTZr3+/y/u+6xaOAE3CIkcmmC0e7ZjhdkTilUMHfNHCerfVR9KICPeFMOP" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" integrity="sha384-/RlQG9uf0M2vcTw3CX7fbqgbj/h8wKxw7C3zu9/GxcBPRKOEcESxaxufwRXqzq6n" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" integrity="sha384-gGekiWQ/bm8p71RTsvhPShoIBxcf8BsVjRTi0WY8FvxuQa2nKS0PKHiSXV9nfW/A" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js" integrity="sha384-wCLG3FbyFPnMZM65D+pam9KW+2joK88dh4jfSMK0OuMQ2cBQHV0t55OqmQduaQ1S" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.js" integrity="sha384-r5RumiuQhALaYWd8i8v0DxCjEXRayyj6nl1wP379+GexLAvE4yuLNoyPEvE6hzDu" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.js" integrity="sha384-EFgXDkkRvdjFZC4gKym8BJ0H81TlX+XVAfK0HuggI8Pvtd6UNdQiyFXFD3Ohu+uz" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+	
 </head>
 
 <body>
@@ -36,7 +47,9 @@ if (!isset($_SESSION['usuario'])) {
     <div id="menu" class="container-fluid py-2">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
-                <h1><i class="bi bi-boxes"></i> FIFA</h1>
+                <h1 class="navbar-brand">
+      			<i class="bi bi-bar-chart-line-fill"></i>FIFA
+   				</h1>
             </div>
 
             <div class="col-auto d-flex align-items-center">
