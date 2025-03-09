@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded" , function () {
 function restringir() {
     let perfil = sessionStorage.getItem("perfil"); 
     let leestate = sessionStorage.getItem("estado")
-    
+  
     if (!leestate) {
       console.warn("No se encontró usuario en sessionStorage");
       return;
@@ -52,23 +52,24 @@ function restringir() {
     let comp =0;
     let compu =0;
     let compsis =0;
-    if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos == true && perfil.edicion_ingresos == true) {
+console.log(perfil.lectura_ingresos,perfil.edicion_ingresos,perfil.Insercion_ingresos)
+    if (perfil.lectura_ingresos == true || perfil.Insercion_ingresos == true || perfil.edicion_ingresos == true) {
         document.getElementById("ingperf").style.display = "block";
         comp++;
     }
 
-    if (perfil.lectura_gastos == true && perfil.insercion_gastos == true && perfil.edicion_gastos == true) {
+    if (perfil.lectura_gastos  || perfil.insercion_gastos  || perfil.edicion_gastos ) {
         document.getElementById("gastperf").style.display = "block";
         comp++;
     }
   
-    if (perfil.lectura_usuarios == true && perfil.insercion_usuarios == true && perfil.edicion_usuarios == true) {
+    if (perfil.lectura_usuarios || perfil.insercion_usuarios || perfil.edicion_usuarios) {
       document.getElementById("userperf").style.display = "block";
       comp++;
       compu++;
     }
   
-    if (perfil.lectura_perfiles == true && perfil.insercion_perfiles == true && perfil.edicion_perfiles == true) {
+    if (perfil.lectura_perfiles || perfil.insercion_perfiles ||perfil.edicion_perfiles) {
       document.getElementById("perfperf").style.display = "block";
       comp++;
       compu++;
@@ -77,13 +78,13 @@ function restringir() {
       document.getElementById("desplegableus").style.display= "block";
     }
 
-    if (perfil.lectura_conceptos == true && perfil.insercion_conceptos == true && perfil.edicion_conceptos == true) {
+    if (perfil.lectura_conceptos || perfil.insercion_conceptos || perfil.edicion_conceptos) {
       document.getElementById("cncpperf").style.display = "block";
       comp++;
       compsis++;
     }
   
-    if (perfil.permiso_qr == true ) {
+    if (perfil.permiso_qr) {
       document.getElementById("qrperf").style.display = "block";
       comp++;
       compsis++;

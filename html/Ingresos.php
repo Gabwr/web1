@@ -65,7 +65,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 
     <div class="row py-2">
 
-        <div class="col-md-2">
+        <div class="col-md-2" id="busq">
             <div class="input-group input-group-sm mx-5 my-2">
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
@@ -74,14 +74,14 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
             </div>
         </div>
 		<div class="col-md-4">
-			<div class="input-group input-group-sm mx-5 my-2">
+			<div class="input-group input-group-sm mx-5 my-2" id="cambtabla">
 				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
                 <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
 				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Ingresos Anulados</label>
             </div>
 		</div>
     </div>
-		<div class="container">
+		<div class="container" id="tabla">
 		<div class="table-responsive">
 		<table class="table table-striped" id="tabla">
 			<thead class="table-secondary">
