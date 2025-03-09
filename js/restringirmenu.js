@@ -51,28 +51,37 @@ function restringir() {
   
     perfil = JSON.parse(perfil);
   
-    if (perfil.lectura_ingresos != true && perfil.Insercion_ingresos_ != true && perfil.edicion_ingresos != true) {
-        document.getElementById("ingperf").style.display = "none";
+    if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos_ == true && perfil.edicion_ingresos == true) {
+        document.getElementById("ingperf").style.display = "block";
   
     }
-    if (perfil.lectura_gastos != true && perfil.insercion_gastos != true && perfil.edicion_gastos != true) {
-        document.getElementById("gastperf").style.display = "none";
+    if (perfil.lectura_gastos == true && perfil.insercion_gastos == true && perfil.edicion_gastos == true) {
+        document.getElementById("gastperf").style.display = "block";
     }
   
-    if (perfil.lectura_usuarios != true && perfil.insercion_usuarios != true && perfil.edicion_usuarios != true) {
-      document.getElementById("userperf").style.display = "none";
+    if (perfil.lectura_usuarios == true && perfil.insercion_usuarios == true && perfil.edicion_usuarios == true) {
+      document.getElementById("userperf").style.display = "block";
     }
   
-    if (perfil.lectura_perfiles != true && perfil.insercion_perfiles != true && perfil.edicion_perfiles != true) {
-      document.getElementById("perfperf").style.display = "none";
+    if (perfil.lectura_perfiles == true && perfil.insercion_perfiles == true && perfil.edicion_perfiles == true) {
+      document.getElementById("perfperf").style.display = "block";
     }
   
-    if (perfil.lectura_conceptos != true && perfil.insercion_conceptos != true && perfil.edicion_conceptos != true) {
-      document.getElementById("cncpperf").style.display = "none";
+    if (perfil.lectura_conceptos == true && perfil.insercion_conceptos == true && perfil.edicion_conceptos == true) {
+      document.getElementById("cncpperf").style.display = "block";
     }
   
-    if (perfil.permiso_qr != true ) {
-      document.getElementById("qrperf").style.display = "none";
+    if (perfil.permiso_qr == true ) {
+      document.getElementById("qrperf").style.display = "block";
+    }
+    if(perfil.permiso_qr == true &&perfil.lectura_ingresos == true && perfil.Insercion_ingresos_ == true && perfil.edicion_ingresos == true &&
+      perfil.lectura_gastos == true && perfil.insercion_gastos == true && perfil.edicion_gastos == true&&
+      perfil.lectura_usuarios == true && perfil.insercion_usuarios == true && perfil.edicion_usuarios == true&&
+      perfil.lectura_perfiles == true && perfil.insercion_perfiles == true && perfil.edicion_perfiles == true&&
+      perfil.lectura_conceptos == true && perfil.insercion_conceptos == true && perfil.edicion_conceptos == true&&
+      perfil.permiso_qr == true
+    ){
+      document.getElementById("auditoria").style.display= "block";
     }
   }
 });

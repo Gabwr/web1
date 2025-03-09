@@ -17,11 +17,11 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
     $tabla .= '<td>' . htmlspecialchars($registro['perfil']) . '</td>';
     $tabla .= '<td>' . htmlspecialchars($registro['estado']) . '</td>';
     $tabla .= '<td>
-        <button class="btn btn-sm btn-primary me-1 editar-perfil" 
+        <button id="editperfil" class="btn btn-sm btn-primary me-1 editar-perfil" 
             data-perfil="' . htmlspecialchars($registro['perfil']) . '">
             <i class="bi bi-pencil"></i> Editar
         </button>
-        <button class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
+        <button id="estate" class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
             data-perfil="' . htmlspecialchars($registro['perfil']) . '" 
             data-estado="' . htmlspecialchars($registro['estado']) . '"
             style="width: 100px;">
@@ -50,7 +50,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
     </div> 
 
 
-        <div class="col-md-2">
+        <div class="col-md-2" id="filtro">
             <div class="input-group input-group-sm mx-5 my-2">
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
@@ -59,7 +59,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
             </div>
         </div>
     </div>
-		<div class="container">
+		<div class="container" id="tablaperfil">
 		<div class="table-responsive">
 		<table class="table table-striped">
 			<thead class="table-secondary">
