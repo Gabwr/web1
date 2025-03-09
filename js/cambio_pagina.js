@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
   cargarPagina("inicio.php");
   document.body.addEventListener("click", function (event) {
       const link = event.target.closest("a");
@@ -19,7 +20,7 @@ function cargarPagina(url) {
           return response.text();
       })
       .then((php) => {
-          const contenidoDiv = document.getElementById("contenido");
+          const contenidoDiv = document.getElementById("contenidomenu");
           contenidoDiv.innerHTML = php;
 
           eliminarScriptsPrevios(); 

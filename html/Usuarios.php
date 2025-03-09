@@ -64,7 +64,8 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 					<span class="input-group-text bg-white border-light">
 						<i class="bi bi-search"></i> 
 					</span>
-					<input type="text" id="filtroin" class="form-control border-light rounded-end" placeholder="Buscar...">
+					<input type="text" id="filtroin" class="form-control border-light rounded-end"
+					style="max-width:200px;" placeholder="Buscar...">
 				</div>
         	</div>
     </div>

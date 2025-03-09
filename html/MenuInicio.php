@@ -44,85 +44,85 @@ if (!isset($_SESSION['usuario'])) {
     <p id="usuario" style="display:none;"><?php echo $_SESSION['usuario']['usuario']; ?></p>
     <p id="lestate" style="display:none;"><?php echo $_SESSION['usuario']['estado']; ?></p>
     <div id="estatico">
-    <div id="menu" class="container-fluid py-2">
-        <div class="row d-flex justify-content-between align-items-center">
-            <div class="col-auto">
-                <h1 class="navbar-brand">
-      			<i class="bi bi-bar-chart-line-fill"></i>FIFA
-   				</h1>
-            </div>
+            <div id="menu" class="container-fluid py-2">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-auto">
+                        <h1 class="navbar-brand">
+                        <i class="bi bi-bar-chart-line-fill"></i>FIFA
+                        </h1>
+                    </div>
 
-            <div class="col-auto d-flex align-items-center">
-                <p id="usuario_nombre" class="me-3">
-                    <?php echo $_SESSION['usuario']['nombre'] . " " . $_SESSION['usuario']['apellido']; ?>
-                </p>
-                <button class="btn btn-profile">
-                    <i class="bi bi-person-circle"></i>
+                    <div class="col-auto d-flex align-items-center">
+                        <p id="usuario_nombre" class="me-3">
+                            <?php echo $_SESSION['usuario']['nombre'] . "<br>" . $_SESSION['usuario']['apellido']; ?>
+                        </p>
+                        <button class="btn btn-profile">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+                        <button class="btn btn-profile" id="btn_salida" onClick="salir()"><i
+                                class="bi bi-door-open-fill"></i></button>
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg" style="height: 3rem">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="btn btn-profile" id="btn_salida" onClick="salir()"><i
-                        class="bi bi-door-open-fill"></i></button>
-            </div>
-        </div>
-    </div>
+                <div class="collapse navbar-collapse justify-content-center" id="menuNav">
+                    <ul class="navbar-nav" style="background-color: #f8f9fa;">
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="inicio.php"><i class="bi bi-house-door"></i> Inicio</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="dashboard.php"> <i class="bi bi-graph-up"></i> Dashboard</a>
+                        </li>
 
-
-    <nav class="navbar navbar-expand-lg" style="height: 3rem">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="menuNav">
-                <ul class="navbar-nav" style="background-color: #f8f9fa;">
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="inicio.php"><i class="bi bi-house-door"></i> Inicio</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="dashboard.php"> <i class="bi bi-graph-up"></i> Dashboard</a>
-                    </li>
-
-                    <li class="nav-item px-3" id="ingperf">
-                        <a class="nav-link" href="ingresos.php"><i class="bi bi-currency-dollar"></i> Ingresos</a>
-                    </li>
-                    
-                    <li class="nav-item px-3" id="gastperf">
-                        <a class="nav-link" href="Gastos.php"><i class="bi bi-bag"></i> Gastos</a>
-                    </li>
-                    <li class="nav-item dropdown px-3"  id="desplegableus">
-                        <a class="nav-link dropdown-toggle" id="dropdownuser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Gestión de Usuarios
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownuser">
-                            <li><a class="dropdown-item" href="Usuarios.php" id="userperf"><i class="bi bi-people"></i> Usuarios</a></li>
-                            <li><a class="dropdown-item" href="perfiles.php" id="perfperf"><i class="bi bi-person-badge"></i> Perfiles</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown px-3" id="desplegablesis">
-                        <a class="nav-link dropdown-toggle" id="dropdownsis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Gestión del Sistema
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownsis">
-                            <li  id="cncpperf">
-                                <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)
+                        <li class="nav-item px-3" id="ingperf">
+                            <a class="nav-link" href="ingresos.php"><i class="bi bi-currency-dollar"></i> Ingresos</a>
+                        </li>
+                        
+                        <li class="nav-item px-3" id="gastperf">
+                            <a class="nav-link" href="Gastos.php"><i class="bi bi-bag"></i> Gastos</a>
+                        </li>
+                        <li class="nav-item dropdown px-3"  id="desplegableus">
+                            <a class="nav-link dropdown-toggle" id="dropdownuser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-people"></i> Gestión de Usuarios
                             </a>
-                            </li>
-                            <li id="qrperf">
-                                <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR
+                            <ul class="dropdown-menu" aria-labelledby="dropdownuser">
+                                <li><a class="dropdown-item" href="Usuarios.php" id="userperf"><i class="bi bi-people"></i> Usuarios</a></li>
+                                <li><a class="dropdown-item" href="perfiles.php" id="perfperf"><i class="bi bi-person-badge"></i> Perfiles</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown px-3" id="desplegablesis">
+                            <a class="nav-link dropdown-toggle" id="dropdownsis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-people"></i> Gestión del Sistema
                             </a>
-                            </li>
-                            <li  id="auditoria">
-                                <a class="nav-link" href="auditoria.php">
-                                    <i class="bi bi-journal-medical"></i> Auditoría
+                            <ul class="dropdown-menu" aria-labelledby="dropdownsis">
+                                <li  id="cncpperf">
+                                    <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)
                                 </a>
-                            </li>
-                    </ul>
-                    </li>
+                                </li>
+                                <li id="qrperf">
+                                    <a class="nav-link" href=".php"><i class="bi bi-upc-scan"></i> Código QR
+                                </a>
+                                </li>
+                                <li  id="auditoria">
+                                    <a class="nav-link" href="auditoria.php">
+                                        <i class="bi bi-journal-medical"></i> Auditoría
+                                    </a>
+                                </li>
+                        </ul>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </div>
-    <div id="contenido">
+    <div id="contenidomenu">
 
     </div>
 
