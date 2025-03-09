@@ -2,3 +2,6 @@
     display: none;
 }
 
+.toggle-estado ,.editar-perfil{
+    width: 100px;
+}

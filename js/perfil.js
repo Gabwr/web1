@@ -311,11 +311,11 @@ function restringir() {
         let estados = document.getElementsByClassName("toggle-estado");
         let edicion = document.getElementsByClassName("editar-perfil");
         for (let i = 0; i < edicion.length; i++) {
-            edicion[i].style.display = "block";
+            edicion[i].style.display = "inline-block";
         }
 
         for (let i = 0; i < estados.length; i++) {
-            estados[i].style.display = "block";
+            estados[i].style.display = "inline-block";
             }
 
       }

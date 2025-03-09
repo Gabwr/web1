@@ -23,8 +23,7 @@ while ($registro = mysqli_fetch_assoc($listperfiles)) {
         </button>
         <button  class="btn btn-sm ' . ($registro['estado'] == 'Activo' ? 'btn-danger' : 'btn-success') . ' toggle-estado"
             data-perfil="' . htmlspecialchars($registro['perfil']) . '" 
-            data-estado="' . htmlspecialchars($registro['estado']) . '"
-            style="width: 100px;">
+            data-estado="' . htmlspecialchars($registro['estado']) . '">
             <i class="bi ' . ($registro['estado'] == 'Activo' ? 'bi-check-circle' : 'bi-x-circle') . '"></i> 
             ' . ($registro['estado'] == 'Activo' ? 'Desactivar' : 'Activar') . '
         </button>
