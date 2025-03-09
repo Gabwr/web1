@@ -50,6 +50,8 @@ function restringir() {
   
     perfil = JSON.parse(perfil);
     let comp =0;
+    let compu =0;
+    let compsis =0;
     if (perfil.lectura_ingresos == true && perfil.Insercion_ingresos_ == true && perfil.edicion_ingresos == true) {
         document.getElementById("ingperf").style.display = "block";
       comp++;
@@ -62,21 +64,30 @@ function restringir() {
     if (perfil.lectura_usuarios == true && perfil.insercion_usuarios == true && perfil.edicion_usuarios == true) {
       document.getElementById("userperf").style.display = "block";
       comp++;
+      compu++;
     }
   
     if (perfil.lectura_perfiles == true && perfil.insercion_perfiles == true && perfil.edicion_perfiles == true) {
       document.getElementById("perfperf").style.display = "block";
       comp++;
+      compu++;
     }
-  
+    if(compu===2 ){
+      document.getElementById("desplegableus").style.display= "block";
+    }
     if (perfil.lectura_conceptos == true && perfil.insercion_conceptos == true && perfil.edicion_conceptos == true) {
       document.getElementById("cncpperf").style.display = "block";
       comp++;
+      compsis++;
     }
   
     if (perfil.permiso_qr == true ) {
       document.getElementById("qrperf").style.display = "block";
       comp++;
+      compsis++;
+    }
+    if(compu===2 ){
+      document.getElementById("desplegablesis").style.display= "block";
     }
     if(comp===6 ){
       document.getElementById("auditoria").style.display= "block";

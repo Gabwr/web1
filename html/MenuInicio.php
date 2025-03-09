@@ -17,6 +17,7 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/dialogo.css">
     <link rel="stylesheet" href="../css/estilomenu.css">
+    <link rel="stylesheet" href="../css/maxsize.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="../js/cambio_pagina.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -31,6 +32,7 @@ if (!isset($_SESSION['usuario'])) {
 <body>
     <p id="usuario" style="display:none;"><?php echo $_SESSION['usuario']['usuario']; ?></p>
     <p id="lestate" style="display:none;"><?php echo $_SESSION['usuario']['estado']; ?></p>
+    <div id="estatico">
     <div id="menu" class="container-fluid py-2">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
@@ -71,27 +73,41 @@ if (!isset($_SESSION['usuario'])) {
                     <li class="nav-item px-3" id="gastperf">
                         <a class="nav-link" href="Gastos.php"><i class="bi bi-bag"></i> Gastos</a>
                     </li>
-                    <li class="nav-item px-3" id="userperf">
-                        <a class="nav-link" href="Usuarios.php"><i class="bi bi-people"></i> Usuarios</a>
+                    <li class="nav-item dropdown px-3"  id="desplegableus">
+                        <a class="nav-link dropdown-toggle" id="dropdownuser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-people"></i> Gestión de Usuarios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownuser">
+                            <li><a class="dropdown-item" href="Usuarios.php" id="userperf"><i class="bi bi-people"></i> Usuarios</a></li>
+                            <li><a class="dropdown-item" href="perfiles.php" id="perfperf"><i class="bi bi-person-badge"></i> Perfiles</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item px-3" id="perfperf">
-                        <a class="nav-link" href="perfiles.php"><i class="bi bi-person-badge"></i> Perfiles</a>
-                    </li>
-                    <li class="nav-item px-3" id="cncpperf">
-                        <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)</a>
-                    </li>
-                    <li class="nav-item px-3" id="qrperf">
-                        <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR</a>
-                    </li>
-					<li class="nav-item px-3" id="auditoria">
-                        <a class="nav-link" href="auditoria.php"><i class="bi bi-journal-medical
-							"></i> Auditoría</a>
+                    <li class="nav-item dropdown px-3" id="desplegablesis">
+                        <a class="nav-link dropdown-toggle" id="dropdownsis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-people"></i> Gestión del Sistema
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownsis">
+                            <li  id="cncpperf">
+                                <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)
+                            </a>
+                            </li>
+                            <li id="qrperf">
+                                <a class="nav-link" href="Usuarios.php"><i class="bi bi-upc-scan"></i> Código QR
+                            </a>
+                            </li>
+                            <li  id="auditoria">
+                                <a class="nav-link" href="auditoria.php">
+                                    <i class="bi bi-journal-medical"></i> Auditoría
+                                </a>
+                            </li>
+                    </ul>
                     </li>
 
                 </ul>
             </div>
         </div>
     </nav>
+    </div>
     <div id="contenido">
 
     </div>

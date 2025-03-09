@@ -1,13 +1,25 @@
 @charset "utf-8";
 /* CSS Document */
 body {
-	background-color: #f4f6f9;
+	background-color: #f4f6f9;	
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
-*{
+#contenido{
+	margin-top: 30px;
+	padding-top: 2vw;
 	max-width: 100vw;
 }
+#estatico{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
 #menu {
+
 	background: linear-gradient(135deg, rgb(95,179,78), rgb(158, 226, 103));
 	color: white;
 	padding: 1rem 0;
@@ -51,6 +63,6 @@ footer {
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#ingperf, #gastperf, #userperf, #perfperf, #cncpperf, #qrperf,#audiwtoria {
+#ingperf, #gastperf, #userperf, #perfperf, #cncpperf, #qrperf,#audiwtoria, #desplegableus, #desplegablesis {
     display: none;
 }
