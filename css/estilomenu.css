@@ -19,7 +19,6 @@ body {
     z-index: 1000;
 }
 #menu {
-
 	background: linear-gradient(135deg, rgb(95,179,78), rgb(158, 226, 103));
 	color: white;
 	padding: 1rem 0;
