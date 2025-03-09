@@ -1,3 +1,8 @@
+#filtro{
+    width: 300px;
+    margin-left: 0 !important;
+}
+
 .toggle-estado ,.editar-perfil,#usuariodialog,#tablaperfil,#filtro{
     display: none;
 }
@@ -5,3 +10,4 @@
 .toggle-estado ,.editar-perfil{
     width: 100px;
 }
+

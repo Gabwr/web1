@@ -6,6 +6,11 @@
 .estate,.editar-usuario,#lebusqueda,#tablausuarios,#usuariodialog{
     display: none;
 }
+#lebusqueda{
+    width: 300px;
+    margin-left: 0 !important;
+
+}
 #contenido{
     width: 90vw
 }

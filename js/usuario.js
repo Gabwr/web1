@@ -300,7 +300,7 @@ function restringir() {
     }
       if (perfil.lectura_usuarios == 1 ) {
         document.getElementById("tablausuarios").style.display = "block";
-        document.getElementById("lebusqueda").style.display ="block";
+        document.getElementById("lebusqueda").style.display ="flex";
         if(perfil.edicion_usuarios == 1 ) {
         let estados = document.getElementsByClassName("estate");
         let edicion = document.getElementsByClassName("editar-usuario");

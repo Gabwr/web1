@@ -303,7 +303,7 @@ function restringir() {
 
       if (perfil.lectura_perfiles ==1) {
         document.getElementById("tablaperfil").style.display = "block";
-        document.getElementById("filtro").style.display = "block";
+        document.getElementById("filtro").style.display = "flex";
 
         if(perfil.edicion_perfiles ==1) {
             let estados = document.getElementsByClassName("toggle-estado");
