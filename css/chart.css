@@ -1,0 +1,23 @@
+.chart-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.month-selector {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.month-selector label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.month-selector input {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
