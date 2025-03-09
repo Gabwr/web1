@@ -1,9 +1,21 @@
 
 .nav-item:hover {
 	background-color: rgb(135, 248, 179); 
-	color: white; 
+	color: #2575fc; 
 	cursor: pointer; 
 	transition: all 0.3s ease; 
+}
+
+.hov:hover, .hov a:hover {
+    background-color: rgb(135, 248, 179);
+    color: #2575fc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newhov.active, .newhov a.active, .navbar-nav.active{
+	color: #f8f9fa;
+    background-color: rgb(139, 207, 111);   
 }
 
 .table-responsive {

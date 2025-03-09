@@ -13,9 +13,9 @@ if (!isset($_SESSION['usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>FIFA</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/menubootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/dialogo.css">
+    <link href="../css/menubootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/estilomenu.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="../js/cambio_pagina.js"></script>
@@ -66,25 +66,25 @@ if (!isset($_SESSION['usuario'])) {
         </div>
 
 
-        <nav class="navbar navbar-expand-lg" style="height: 3rem">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg my-0" style="height: 3rem">
+            <div class="container my-0" style="height: 2rem">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="menuNav">
                     <ul class="navbar-nav" style="background-color: #f8f9fa;">
-                        <li class="nav-item px-3">
+                        <li class="nav-item px-3 newhov">
                             <a class="nav-link" href="inicio.php"><i class="bi bi-house-door"></i> Inicio</a>
                         </li>
-                        <li class="nav-item px-3">
+                        <li class="nav-item px-3 newhov">
                             <a class="nav-link" href="dashboard.php"> <i class="bi bi-graph-up"></i> Dashboard</a>
                         </li>
 
-                        <li class="nav-item px-3" id="ingperf">
+                        <li class="nav-item px-3 newhov" id="ingperf">
                             <a class="nav-link" href="ingresos.php"><i class="bi bi-currency-dollar"></i> Ingresos</a>
                         </li>
                         
-                        <li class="nav-item px-3" id="gastperf">
+                        <li class="nav-item px-3 newhov" id="gastperf">
                             <a class="nav-link" href="Gastos.php"><i class="bi bi-bag"></i> Gastos</a>
                         </li>
                         <li class="nav-item dropdown px-3"  id="desplegableus">
@@ -92,8 +92,8 @@ if (!isset($_SESSION['usuario'])) {
                                 <i class="bi bi-people"></i> Gestión de Usuarios
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownuser">
-                                <li><a class="dropdown-item" href="Usuarios.php" id="userperf"><i class="bi bi-people"></i> Usuarios</a></li>
-                                <li><a class="dropdown-item" href="perfiles.php" id="perfperf"><i class="bi bi-person-badge"></i> Perfiles</a></li>
+                                <li class="hov newhov"  id="userperf"><a class="dropdown-item" href="Usuarios.php"><i class="bi bi-people"></i> Usuarios</a></li>
+                                <li class="hov newhov" id="perfperf"><a class="dropdown-item" href="perfiles.php" ><i class="bi bi-person-badge"></i> Perfiles</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown px-3" id="desplegablesis">
@@ -101,15 +101,15 @@ if (!isset($_SESSION['usuario'])) {
                                 <i class="bi bi-people"></i> Gestión del Sistema
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownsis">
-                                <li  id="cncpperf">
+                                <li  id="cncpperf" class="hov newhov">
                                     <a class="nav-link" href="agregarConcepto.php"><i class="bi bi-bank"></i> Concepto<br> (Ingresos-Gastos)
                                 </a>
                                 </li>
-                                <li id="qrperf">
+                                <li id="qrperf" class="hov newhov">
                                     <a class="nav-link" href="qr.php"><i class="bi bi-upc-scan"></i> Código QR
                                 </a>
                                 </li>
-                                <li  id="auditoria">
+                                <li  id="auditoria" class="hov newhov">
                                     <a class="nav-link" href="auditoria.php">
                                         <i class="bi bi-journal-medical"></i> Auditoría
                                     </a>

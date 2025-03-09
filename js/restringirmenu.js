@@ -1,28 +1,5 @@
 document.addEventListener("DOMContentLoaded" , function () {
 
-    let bsCollapse = document.querySelector(".navbar-collapse");
-
-    document.querySelectorAll(".navbar-nav .nav-link:not(.dropdown-toggle)").forEach(function (link) {
-        link.addEventListener("click", function () {
-            if (window.innerWidth < 1000) { 
-                let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
-                    toggle: false
-                });
-                bsCollapseInstance.hide();
-            }
-        });
-    });
-    
-    document.querySelectorAll(".dropdown-menu .dropdown-item").forEach(function (item) {
-      item.addEventListener("click", function () {
-          if (window.innerWidth < 1000) { 
-              let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
-                  toggle: false
-              });
-              bsCollapseInstance.hide();
-          }
-      });
-  });
     cargarPagina("inicio.php");
     let user="";
     let estate="";
@@ -51,8 +28,51 @@ document.addEventListener("DOMContentLoaded" , function () {
       error: function () {
           alert("Error al obtener permisos desde el servidor");
       }
+      
   });
   
+  let bsCollapse = document.querySelector(".navbar-collapse");
+
+  document.querySelectorAll(".navbar-nav .nav-link:not(.dropdown-toggle)").forEach(function (link) {
+      link.addEventListener("click", function () {
+          if (window.innerWidth < 1000) { 
+              let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
+                  toggle: false
+              });
+              bsCollapseInstance.hide();
+          }
+      });
+  });
+  
+  document.querySelectorAll(".dropdown-menu .dropdown-item").forEach(function (item) {
+    item.addEventListener("click", function () {
+        if (window.innerWidth < 1000) { 
+            let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
+                toggle: false
+            });
+            bsCollapseInstance.hide();
+        }
+    });
+});
+
+const menuItems = document.querySelectorAll('.newhov');
+
+menuItems.forEach(item => {
+    item.addEventListener('click', function () {
+        menuItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+const menuItems1 = document.querySelectorAll('.navbar-nav');
+
+menuItems1.forEach(item => {
+    item.addEventListener('click', function () {
+        menuItems1.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
 function restringir() {
     let perfil = sessionStorage.getItem("perfil"); 
     let leestate = sessionStorage.getItem("estado")
