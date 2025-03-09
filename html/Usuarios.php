@@ -3,7 +3,7 @@ session_start();
 require '../server/conexion.php';
 
 $consulta = 'SELECT * FROM usuario';
-$perfiles = 'SELECT DISTINCT perfil,estado FROM perfiles';
+$perfiles = 'SELECT DISTINCT perfil,estado FROM perfiles WHERE estado ="Activo"';
 $listperfiles = mysqli_query($conn, $perfiles);
 $resultado = mysqli_query($conn, $consulta);
 $tabla = '';
