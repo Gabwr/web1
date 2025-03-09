@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded" , function () {
+
+    let bsCollapse = document.querySelector(".navbar-collapse");
+
+    document.querySelectorAll(".navbar-nav .nav-link:not(.dropdown-toggle)").forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (window.innerWidth < 1000) { 
+                let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
+                    toggle: false
+                });
+                bsCollapseInstance.hide();
+            }
+        });
+    });
+    
+    document.querySelectorAll(".dropdown-menu .dropdown-item").forEach(function (item) {
+      item.addEventListener("click", function () {
+          if (window.innerWidth < 1000) { 
+              let bsCollapseInstance = new bootstrap.Collapse(bsCollapse, {
+                  toggle: false
+              });
+              bsCollapseInstance.hide();
+          }
+      });
+  });
     cargarPagina("inicio.php");
     let user="";
     let estate="";
