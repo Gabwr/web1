@@ -15,7 +15,7 @@ $idUsuario = $userData['idUsuario'];
 $sqlIngresos = "SELECT SUM(valor) AS totalIngresos 
                 FROM INGRESO 
                 WHERE MONTH(fecha) = MONTH(CURRENT_DATE) 
-                AND YEAR(fecha) = YEAR(CURRENT_DATE)";
+                AND YEAR(fecha) = YEAR(CURRENT_DATE) and estado='Activo'";
 $stmtIngresos = $conn->prepare($sqlIngresos);
 $stmtIngresos->execute();
 $resultIngresos = $stmtIngresos->get_result();
@@ -24,7 +24,7 @@ $ingresos = $resultIngresos->fetch_assoc()['totalIngresos'];
 $sqlEgresos = "SELECT SUM(valor) AS totalEgresos 
                FROM GASTO 
                WHERE MONTH(fecha) = MONTH(CURRENT_DATE) 
-               AND YEAR(fecha) = YEAR(CURRENT_DATE)";
+               AND YEAR(fecha) = YEAR(CURRENT_DATE) and estado='Activo'";
 $stmtEgresos = $conn->prepare($sqlEgresos);
 $stmtEgresos->execute();
 $resultEgresos = $stmtEgresos->get_result();

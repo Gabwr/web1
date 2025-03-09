@@ -24,7 +24,8 @@ if (!isset($_SESSION['usuario'])) {
     <script src="../js/sesion.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+	<script type="module"  src="https://cdn.jsdelivr.net/npm/jspdf-autotable@5.0.2/dist/jspdf.plugin.autotable.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script src="../js/restringirmenu.js"></script>
 </head>
 
@@ -34,7 +35,9 @@ if (!isset($_SESSION['usuario'])) {
     <div id="menu" class="container-fluid py-2">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
-                <h1><i class="bi bi-boxes"></i> FIFA</h1>
+                <h1 class="navbar-brand">
+      			<i class="bi bi-bar-chart-line-fill"></i>FIFA
+   				</h1>
             </div>
 
             <div class="col-auto d-flex align-items-center">
