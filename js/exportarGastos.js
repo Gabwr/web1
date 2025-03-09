@@ -6,6 +6,7 @@ $(document).ready(function(){
 	let mi_tabla= $("#tabla").DataTable({
 			ordering: false,
             dom: "Blp",
+			paging: false,
             buttons: [
                 {
                     extend: "pdfHtml5",

@@ -1,4 +1,6 @@
 // JavaScript Document
+
+
 $(document).ready(function() {
   let originalValues = {};
 
@@ -284,7 +286,123 @@ $(document).ready(function(){
             $(this).toggle();
         }
 		});
+		let filtro=$("#filtrosel").val();
+		if(filtro!="")
+			{
+				validarFtiempo();
+			}
 	});
+	
+	
+	function validarfiltroM()
+	{
+		let mes=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            if(!textoFila.includes(mes))
+				{
+					$(this).hide();
+				}
+        });
+	}
+	function validarfiltroA()
+	{
+		let anio=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            if(!textoFila.includes(anio))
+				{
+					$(this).hide();
+				}
+        });
+	}
+	
+});
+//Control de los filtros
+$(document).ready(function(){
+	$("#filtroT").hide();
+	
+	function cambiarFiltro()
+	{
+		let opcion=$("#filtrosel").val();
+		if(opcion=="")
+			{
+				$("#filtroT").hide();
+			}
+		else
+			{
+				//Elige el tipo de filtro
+				if(opcion=="anio")
+					{
+						document.getElementById("filtroT").setAttribute("type","text");
+					}
+				else if(opcion=="mes")
+					{
+						document.getElementById("filtroT").setAttribute("type","month");
+					}
+				$("#filtroT").show();
+			}
+	}
+	
+	$("#filtrosel").change(cambiarFiltro);
+	
+	function validarOcultamiento()
+	{
+		let mostrarOcultos=$("#mostrarOcultar").prop("checked");
+		if(mostrarOcultos==false)
+			{
+				$("#tabla-body tr").each(function () {
+				let estado=$(this).find("td:last").find("button:last").data("estado");
+        		if (estado === "Inactivo"){
+            		$(this).hide();
+        		}
+    		});
+			}
+	}
+	
+	function filtrarporM()
+	{
+		let mes=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(mes));
+        });
+	}
+	function filtrarporA()
+	{
+		let anio=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(anio));
+        });
+	}
+	
+	$("#filtroT").change(function(){
+		let opc=$("#filtrosel").val();
+		if(opc!="")
+			{
+				if(opc=="mes")
+				{
+				filtrarporM();
+				validarOcultamiento();
+				}
+				else if(opc=="anio")
+				{
+					filtrarporA();
+					validarOcultamiento();
+				}
+			}
+		else
+			{
+				this.val("");
+			}
+	});
+	
+	
 });
 
 //Control de la alerta

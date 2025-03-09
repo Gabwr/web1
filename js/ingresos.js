@@ -295,6 +295,90 @@ function mensaje(msg) {
     var modal = new bootstrap.Modal(document.getElementById("infomodal"));
     modal.show();
 }
+//Control de los filtros
+$(document).ready(function(){
+	$("#filtroT").hide();
+	
+	function cambiarFiltro()
+	{
+		let opcion=$("#filtrosel").val();
+		if(opcion=="")
+			{
+				$("#filtroT").hide();
+			}
+		else
+			{
+				//Elige el tipo de filtro
+				if(opcion=="anio")
+					{
+						document.getElementById("filtroT").setAttribute("type","text");
+					}
+				else if(opcion=="mes")
+					{
+						document.getElementById("filtroT").setAttribute("type","month");
+					}
+				$("#filtroT").show();
+			}
+	}
+	
+	$("#filtrosel").change(cambiarFiltro);
+	
+	function validarOcultamiento()
+	{
+		let mostrarOcultos=$("#mostrarOcultar").prop("checked");
+		if(mostrarOcultos==false)
+			{
+				$("#tabla-body tr").each(function () {
+				let estado=$(this).find("td:last").find("button:last").data("estado");
+        		if (estado === "Inactivo"){
+            		$(this).hide();
+        		}
+    		});
+			}
+	}
+	
+	function filtrarporM()
+	{
+		let mes=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(mes));
+        });
+	}
+	function filtrarporA()
+	{
+		let anio=$("#filtroT").val();
+		$("#tabla-body tr").filter(function () {
+            let fila = $(this);
+            textoFila = fila.text().toLowerCase();
+            fila.toggle(textoFila.includes(anio));
+        });
+	}
+	
+	$("#filtroT").change(function(){
+		let opc=$("#filtrosel").val();
+		if(opc!="")
+			{
+				if(opc=="mes")
+				{
+				filtrarporM();
+				validarOcultamiento();
+				}
+				else if(opc=="anio")
+				{
+					filtrarporA();
+					validarOcultamiento();
+				}
+			}
+		else
+			{
+				this.val("");
+			}
+	});
+	
+	
+});
 
 
 function restringir() {

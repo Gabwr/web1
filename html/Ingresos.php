@@ -73,11 +73,26 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
                 <input type="text" class="form-control border-light rounded-end" placeholder="Buscar..." id="filtroin">
             </div>
         </div>
+		<div class="col-sm-1 ms-5 me-1 my-2 pe-2" >
+			<p>Filtrar por:</p>
+		</div>
+		<div class="col-sm-1">
+            <select class="form-select-sm shadow-sm border-light ms-1 me-3 my-2" id="filtrosel">
+                <option value=""></option>
+                <option value="anio">Año</option>
+                <option value="mes">Mes</option>
+            </select>
+        </div>
+		<div class="col-md-2" id="contFilto">
+			<div class="input-group input-group-sm mx-3 my-2">
+            <input type="month" id="filtroT" class="form-control form-control-sm">
+			</div>
+        </div>
 		<div class="col-md-4">
-			<div class="input-group input-group-sm mx-5 my-2" id="cambtabla">
+			<div class="input-group input-group-sm mx-3 my-2">
 				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
                 <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
-				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Ingresos Anulados</label>
+				<label class="btn btn-sm btn-warning" id="msj_mO" for="mostrarOcultar">Mostrar Gastos Anulados</label>
             </div>
 		</div>
     </div>
