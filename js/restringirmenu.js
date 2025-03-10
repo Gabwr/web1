@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded" , function () {
-
+  
     cargarPagina("inicio.php");
     let user="";
     let estate="";
@@ -30,6 +30,11 @@ document.addEventListener("DOMContentLoaded" , function () {
       }
       
   });
+
+  let menu = window.getComputedStyle(document.getElementById("estatico")).height;
+  let menuHeight = parseFloat(menu)+10; 
+  document.getElementById("contenidomenu").style.marginTop = menuHeight + "px"; 
+
   
   let bsCollapse = document.querySelector(".navbar-collapse");
 

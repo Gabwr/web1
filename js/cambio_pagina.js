@@ -19,7 +19,7 @@ function cargarPagina(url) {
           return response.text();
       })
       .then((php) => {
-          const contenidoDiv = document.getElementById("contenido");
+          const contenidoDiv = document.getElementById("contenidomenu");
           contenidoDiv.innerHTML = php;
 
           eliminarScriptsPrevios(); 
