@@ -45,11 +45,11 @@ if (!window.chartsInicializados) {
         ingresosVsGastosChart.setOption({
             title: { text: 'Ingresos vs Gastos', top: '5px' },
             tooltip: {},
-            legend: { data: ['Ingresos', 'Gastos'], top:'40px'},
+            legend: { data: ['Ingresos', 'Gastos'], top: '40px' },
             grid: { top: '110px' },
             xAxis: { type: 'category', data: fechas, name: 'Fechas' },
             yAxis: { type: 'value', name: 'Total' },
-            series: [ 
+            series: [
                 { name: 'Ingresos', type: 'line', data: ingresosData, smooth: true, itemStyle: { color: '#4CAF50' } },
                 { name: 'Gastos', type: 'line', data: gastosData, smooth: true, itemStyle: { color: '#F44336' } }
             ]
@@ -58,7 +58,7 @@ if (!window.chartsInicializados) {
         gastosPorConceptoChart.setOption({
             title: { text: 'Gastos por Concepto' },
             tooltip: {},
-            legend: { data: conceptos , top: '10%',},
+            legend: { data: conceptos, top: '10%', },
             series: [{
                 name: 'Gastos',
                 type: 'pie',
@@ -114,7 +114,7 @@ if (!window.chartsInicializados) {
         distribucionGastosChart.setOption({
             title: { text: 'Distribución de Gastos' },
             tooltip: {},
-            legend: { data: conceptos ,top: '10%',},
+            legend: { data: conceptos, top: '10%', },
             series: [{
                 name: 'Gastos',
                 type: 'pie',
@@ -130,6 +130,8 @@ if (!window.chartsInicializados) {
             }]
         });
 
+        const balance = totalIngresos - totalGastos;
+
         balanceMensualChart.setOption({
             title: { text: 'Balance Mensual' },
             tooltip: {},
@@ -137,9 +139,11 @@ if (!window.chartsInicializados) {
             yAxis: { type: 'value', name: 'Total' },
             series: [
                 { name: 'Ingresos', type: 'bar', data: [totalIngresos], itemStyle: { color: '#4CAF50' } },
-                { name: 'Gastos', type: 'bar', data: [totalGastos], itemStyle: { color: '#F44336' } }
+                { name: 'Gastos', type: 'bar', data: [totalGastos], itemStyle: { color: '#F44336' } },
+                { name: 'Diferencia', type: 'bar', data: [balance], itemStyle: { color: '#2196F3' } } // Nueva barra para el balance
             ]
         });
+
     }
 
     document.addEventListener('visibilitychange', function () {
