@@ -57,7 +57,7 @@ if (!window.chartsInicializados) {
         gastosPorConceptoChart.setOption({
             title: { text: 'Gastos por Concepto' },
             tooltip: {},
-            legend: { data: conceptos },
+            legend: { data: conceptos , top: '10%',},
             series: [{
                 name: 'Gastos',
                 type: 'pie',
@@ -113,7 +113,7 @@ if (!window.chartsInicializados) {
         distribucionGastosChart.setOption({
             title: { text: 'Distribución de Gastos' },
             tooltip: {},
-            legend: { data: conceptos },
+            legend: { data: conceptos ,top: '10%',},
             series: [{
                 name: 'Gastos',
                 type: 'pie',
