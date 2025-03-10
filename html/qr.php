@@ -15,15 +15,19 @@
                     QR</button>
             </div>
         </div>
-        <div class="container" >
-            <div class="table-responsive" style="margin-top: 2rem;  max-height: 47vh; overflow-y: auto; scrollbar-width:thin">
-                <table class="table table-striped" >
+        <div class="container">
+            <div class="table-responsive"
+                style="margin-top: 2rem;  max-height: 47vh; overflow-y: auto; scrollbar-width:thin">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID <button class="btn btn-sm btn-light ms-2" id="filtroFecha">
                                     <i class="bi bi-arrow-down-circle"></i>
                                 </button></th>
                             <th>QR <button class="btn btn-sm btn-light ms-2" id="filtroFecha">
+                                    <i class="bi bi-arrow-down-circle"></i>
+                                </button></th>
+                            <th>Descripcion<button class="btn btn-sm btn-light ms-2" id="filtroFecha">
                                     <i class="bi bi-arrow-down-circle"></i>
                                 </button></th>
                             <th>Acciones <button class="btn btn-sm btn-light ms-2" id="filtroFecha">
@@ -42,12 +46,12 @@
                                 echo "<tr>
                                 <td>{$row['qr_id']}</td>         
                                 <td><img src='{$row['qr_url']}' alt='Código QR' style='width: 40px; height: auto;'></td>
+                                <td>{$row['qr_descripcion']}</td> 
                                 <td>
-                                    <button class='btn btn-warning btnEditar' 
-                                            data-id='{$row['qr_id']}' 
-                                            data-url='{$row['qr_url']}'>
-                                        Editar
-                                    </button>
+                                 <button class='btn btn-warning btnEditar' 
+                        data-id='{$row['qr_id']}' 
+                        data-url='{$row['qr_url']}' 
+                        data-descripcion='{$row['qr_descripcion']}'>Editar</button>
                                 </td>
                               </tr>";
                             }
@@ -77,6 +81,10 @@
                             <label for="qr_url" class="form-label">URL de la Imagen QR</label>
                             <input type="text" class="form-control" id="qr_url" name="qr_url" required>
                         </div>
+                        <div class="mb-3">
+                        <label for="qr_descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="qr_descripcion" name="qr_descripcion" required>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -101,6 +109,10 @@
                             <label for="edit_qr_url" class="form-label">URL de la Imagen QR</label>
                             <input type="text" class="form-control" id="edit_qr_url" name="qr_url" required>
                         </div>
+                        <div class="mb-3">
+                        <label for="edit_descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="edit_descripcion" name="qr_descripcion" required>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -112,7 +124,7 @@
     </div>
 
     <script src="../js/qr.js">
-       
+
     </script>
 </body>
 

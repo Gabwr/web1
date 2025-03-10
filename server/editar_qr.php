@@ -4,22 +4,25 @@ include 'conexion.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $qr_id = $_POST['qr_id'];
     $qr_url = $_POST['qr_url'];
+    $qr_descripcion = $_POST['qr_descripcion'];
 
-    if (!empty($qr_id) && !empty($qr_url)) {
-        $sql = "UPDATE qr SET qr_url = ? WHERE qr_id = ?";
+    if (!empty($qr_id) ){
+        $sql = "UPDATE qr SET qr_url = ?, qr_descripcion = ? WHERE qr_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $qr_url, $qr_id);
 
-        if ($stmt->execute()) {
-            echo "QR actualizado correctamente.";
-            exit();
+        if ($stmt) {
+            $stmt->bind_param("ssi", $qr_url, $qr_descripcion, $qr_id);
+            if ($stmt->execute()) {
+                exit();
+            } else {
+                echo "Error al actualizar el QR: " . $stmt->error;
+            }
+            $stmt->close();
         } else {
-            echo "Error al actualizar el QR: " . $conn->error;
+            echo "Error al preparar la consulta: " . $conn->error;
         }
-
-        $stmt->close();
     } else {
-        echo "ID o URL del QR no pueden estar vacíos.";
+        echo "El ID del QR no puede estar vacío.";
     }
 }
 

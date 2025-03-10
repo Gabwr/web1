@@ -1,9 +1,11 @@
 $(document).on("click", ".btnEditar", function () {
     let id = $(this).data("id");
     let url = $(this).data("url");
+    let descripcion = $(this).data("descripcion");
 
     $("#edit_qr_id").val(id);
     $("#edit_qr_url").val(url);
+    $("#edit_descripcion").val(descripcion); 
 
     $("#modalEditarQR").modal("show");
 });
