@@ -29,10 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `auditoria` (
-  `idAuditoria` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
+  `idAuditoria` int(11) auto_increment NOT NULL ,
+  `idUsuario` int(11) NOT NULL ,
   `detalle` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `fecha_hora` datetime NOT NULL,
+  primary key (idAuditoria)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -62,10 +63,11 @@ INSERT INTO `auditoria` (`idAuditoria`, `idUsuario`, `detalle`, `fecha_hora`) VA
 --
 
 CREATE TABLE `concepto` (
-  `idconcepto` int(11) NOT NULL,
+  `idconcepto` int(11) NOT NULL auto_increment,
   `qr_id` int(11) NOT NULL,
   `nombre` varchar(128) NOT NULL,
-  `tipo` varchar(128) NOT NULL
+  `tipo` varchar(128) NOT NULL,
+  primary key (idconcepto)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -83,7 +85,7 @@ INSERT INTO `concepto` (`idconcepto`, `qr_id`, `nombre`, `tipo`) VALUES
 --
 
 CREATE TABLE `gasto` (
-  `idGasto` int(11) NOT NULL,
+  `idGasto` int(11) NOT NULL auto_increment,
   `idUsuario` int(11) NOT NULL,
   `idconcepto` int(11) NOT NULL,
   `fecha` date NOT NULL,
@@ -91,7 +93,8 @@ CREATE TABLE `gasto` (
   `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `acreedor_cobrador` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `estado` varchar(32) NOT NULL
+  `estado` varchar(32) NOT NULL,
+ primary key (idGasto)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -115,7 +118,7 @@ INSERT INTO `gasto` (`idGasto`, `idUsuario`, `idconcepto`, `fecha`, `valor`, `me
 --
 
 CREATE TABLE `ingreso` (
-  `idIngreso` int(11) NOT NULL,
+  `idIngreso` int(11) NOT NULL auto_increment,
   `idconcepto` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `fecha` date NOT NULL,
@@ -123,7 +126,8 @@ CREATE TABLE `ingreso` (
   `medio_de_pago` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `fuente_beneficiario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `estado` varchar(32) NOT NULL
+  `estado` varchar(32) NOT NULL,
+   primary key (idIngreso)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -159,7 +163,8 @@ CREATE TABLE `perfiles` (
   `insercion_conceptos` tinyint(1) DEFAULT '0',
   `edicion_conceptos` tinyint(1) DEFAULT '0',
   `permiso_qr` tinyint(1) DEFAULT '0',
-  `estado` varchar(32) DEFAULT 'Activo'
+  `estado` varchar(32) DEFAULT 'Activo',
+  primary key (perfil)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -179,9 +184,10 @@ INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edi
 --
 
 CREATE TABLE `qr` (
-  `qr_id` int(11) NOT NULL,
+  `qr_id` int(11) NOT NULL auto_increment,
   `qr_url` varchar(250) NOT NULL,
-  `qr_descripcion` varchar(100) NOT NULL
+  `qr_descripcion` varchar(100) NOT NULL,
+   primary key (qr_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -191,7 +197,7 @@ CREATE TABLE `qr` (
 --
 
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL auto_increment,
   `cedula` varchar(11) NOT NULL,
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -199,7 +205,8 @@ CREATE TABLE `usuario` (
   `contrasenia` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `estado` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `conexion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+	primary key (idUsuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `qr` (`qr_url`, `qr_descripcion`) 
@@ -217,63 +224,6 @@ INSERT INTO `usuario` (`idUsuario`, `cedula`, `nombre`, `apellido`, `usuario`, `
 (2, '0650160204', 'Gabriel', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS'),
 (6, '1700238471', 'Gabriel', 'Perez', 'Juanillo', '$2y$10$vckvzffFo0nhwC1kIwAvdeF7rBrW30BKX9jhWss5ooFy54h2myE1a', 'Activo', '2025-03-07 13:27:58', 'Perfil pruebaDOS');
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  ADD PRIMARY KEY (`idAuditoria`);
-
---
--- Indices de la tabla `concepto`
---
-ALTER TABLE `concepto`
-  ADD PRIMARY KEY (`idconcepto`);
-
---
--- Indices de la tabla `gasto`
---
-ALTER TABLE `gasto`
-  ADD PRIMARY KEY (`idGasto`),
-  ADD KEY `FK_gasto_usuario` (`idUsuario`),
-  ADD KEY `FK_gasto_concepto` (`idconcepto`);
-
---
--- Indices de la tabla `ingreso`
---
-ALTER TABLE `ingreso`
-  ADD PRIMARY KEY (`idIngreso`),
-  ADD KEY `FK_ingreso_usuario` (`idUsuario`),
-  ADD KEY `FK_ingreso_concepto` (`idconcepto`);
-
---
--- Indices de la tabla `perfiles`
---
-ALTER TABLE `perfiles`
-  ADD PRIMARY KEY (`perfil`);
-
---
--- Indices de la tabla `qr`
---
-ALTER TABLE `qr`
-  ADD PRIMARY KEY (`qr_id`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `fk_usuario_perfil` (`perfil`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
   MODIFY `idAuditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
