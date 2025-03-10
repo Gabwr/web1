@@ -58,11 +58,9 @@ $conn->close();
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/chart.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 </head>
 
 <body>
@@ -121,7 +119,27 @@ $conn->close();
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const monthInput = document.getElementById("month");
+
+            // Recuperar el mes del localStorage si existe
+            const savedMonth = localStorage.getItem("selectedMonth");
+            if (savedMonth) {
+                monthInput.value = savedMonth;
+            }
+
+            monthInput.addEventListener("change", function () {
+                // Guardar el mes seleccionado en localStorage
+                localStorage.setItem("selectedMonth", monthInput.value);
+
+                // Redirigir para actualizar datos con el mes seleccionado
+                window.location.href = "dashboard.php?month=" + monthInput.value;
+            });
+        });
+    </script>
+
     <script src="../js/graficos.js"></script>
 </body>
 
-</html>
+</html>  
