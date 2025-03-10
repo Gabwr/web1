@@ -59,7 +59,7 @@ if (!isset($_SESSION['usuario'])) {
                         <button class="btn btn-profile">
                             <i class="bi bi-person-circle"></i>
                         </button>
-                        <button class="btn btn-profile" id="btn_salida" onClick="salir()"><i
+                        <button class="btn btn-profile" id="btn_salida" onClick="cerrarSesion()"><i
                                 class="bi bi-door-open-fill"></i></button>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 <?php
 session_destroy();
+session_unset();
 session_start();
 require 'server/conexion.php';
 $error = "";

@@ -220,7 +220,7 @@ VALUES
 --
 
 INSERT INTO `usuario` (`idUsuario`, `cedula`, `nombre`, `apellido`, `usuario`, `contrasenia`, `estado`, `conexion`, `perfil`) VALUES
-(1, '0650160203', 'Administrador', 'Admin', '1234567890', '$2y$10$kgtbciRTM4q5kJb5.oxmSOajk64unWfM/fOmqA/IRvXxBbTfspGaa', 'Activo', '2025-03-07 22:16:40', 'Administrador'),
+(1, '0650160203', 'Administrador', 'Admin', '1234567890', '$2y$10$P8iXRlJW/uFGTcelK8eITe8vwNbeftoVI2Lc9vm9mAa.1eWlwzoOO', 'Activo', '2025-03-07 22:16:40', 'Administrador'),
 (2, '0650160204', 'Gabriel', 'Admin', 'admin2', '$2y$10$6HFeNixa8fAwsttnLwtYGebQmd9MXfufOBqoe0HCTNvYr75t3u6wu', 'Activo', '2025-03-06 14:45:04', 'Perfil pruebaDOS'),
 (6, '1700238471', 'Gabriel', 'Perez', 'Juanillo', '$2y$10$vckvzffFo0nhwC1kIwAvdeF7rBrW30BKX9jhWss5ooFy54h2myE1a', 'Activo', '2025-03-07 13:27:58', 'Perfil pruebaDOS');
 
