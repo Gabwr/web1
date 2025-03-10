@@ -218,11 +218,20 @@ $(document).ready(function() {
               estado: nuevoEstado
           },
           success: function(response) {
+            console.log(response)
+            if(response=="success"){
             mensaje("El cambio de estado ha sido realizado!!!");
             setTimeout(function() {
                 var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
                 modal.hide();
                 location.reload();}, 1000);
+            }else{
+                mensaje("El perfil esta asignado a un usuario, es imposible desactivar");
+                setTimeout(function() {
+                var modal = bootstrap.Modal.getInstance(document.getElementById("infomodal"));
+                modal.hide();
+                }, 1500);
+            }
         },
         error: function() {
             mensaje("Error en el envio de datos!!!");
