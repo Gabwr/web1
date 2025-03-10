@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-  
   cargarPagina("inicio.php");
   document.body.addEventListener("click", function (event) {
       const link = event.target.closest("a");
@@ -21,7 +19,7 @@ function cargarPagina(url) {
           return response.text();
       })
       .then((php) => {
-          const contenidoDiv = document.getElementById("contenidomenu");
+          const contenidoDiv = document.getElementById("contenido");
           contenidoDiv.innerHTML = php;
 
           eliminarScriptsPrevios(); 
@@ -33,9 +31,6 @@ function cargarPagina(url) {
           document.getElementById("contenido").innerHTML =
               "<p>Error al cargar el contenido.</p>";
       });
-      let menu = document.getElementById("estatico");
-      let alturaMenu = parseFloat(window.getComputedStyle(menu).height)+10; 
-      document.getElementById("contenidomenu").style.marginTop = alturaMenu+"px";
 }
 
 function eliminarScriptsPrevios() {

@@ -36,6 +36,7 @@ if (!isset($_SESSION['usuario'])) {
 	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.js" integrity="sha384-EFgXDkkRvdjFZC4gKym8BJ0H81TlX+XVAfK0HuggI8Pvtd6UNdQiyFXFD3Ohu+uz" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 	
 </head>
 
