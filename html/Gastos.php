@@ -49,6 +49,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <html>
 <head>
 <title>Documento sin título</title>
+<link rel="stylesheet" href="../css/gastos.css">
 <script src="../js/gastos.js"></script>
 <script src="../js/exportarGastos.js"></script>
 </head>
@@ -56,14 +57,14 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
 <body>
 <div id="contenido">
 
-		<div class="container">
+		<div class="container" >
 		<div class="d-flex justify-content-between">
         <h4>Gastos</h4>
 		<button class="btn shadow-sm border-light" id="gastos_dialog">Registrar Gasto</button>
     </div> 
 
     <div class="row py-2">
-        <div class="col-md-2">
+        <div class="col-md-2 filtrobusq">
             <div class="input-group input-group-sm mx-5 my-2">
                 <span class="input-group-text bg-white border-light">
                     <i class="bi bi-search"></i> 
@@ -72,22 +73,22 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
             </div>
         </div>
 		
-		<div class="col-sm-1 ms-5 me-1 my-2 pe-2" >
+		<div class="col-sm-1 ms-5 me-1 my-2 pe-2 filtrobusq" >
 			<p>Filtrar por:</p>
 		</div>
 		<div class="col-sm-1">
-            <select class="form-select-sm shadow-sm border-light ms-1 me-3 my-2" id="filtrosel">
+            <select class="form-select-sm shadow-sm border-light ms-1 me-3 my-2 filtrobusq">
                 <option value=""></option>
                 <option value="anio">Año</option>
                 <option value="mes">Mes</option>
             </select>
         </div>
-		<div class="col-md-2" id="contFilto">
+		<div class="col-md-2 filtrobusq">
 			<div class="input-group input-group-sm mx-3 my-2">
             <input type="month" id="filtroT" class="form-control form-control-sm">
 			</div>
         </div>
-		<div class="col-md-4">
+		<div class="col-md-4 filtrobusq">
 			<div class="input-group input-group-sm mx-3 my-2">
 				<span class="input-group-text btn btn-sm btn-warning"><i class="bi bi-file-earmark-medical"></i></span>
                 <input type="checkbox" class="btn-check" id="mostrarOcultar" autocomplete="off">
@@ -95,7 +96,7 @@ while ($registro = mysqli_fetch_assoc($resultado)) {
             </div>
 		</div>
     </div>
-		<div class="container">
+		<div class="container filtrobusq">
 		<div class="table-responsive">
 		<table class="table table-striped" id="tabla">
 			<thead class="table-secondary">

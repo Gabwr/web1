@@ -60,7 +60,6 @@ $conn->close();
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/chart.css">
-    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 </head>
 
 <body>
