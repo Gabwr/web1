@@ -74,7 +74,7 @@ CREATE TABLE `concepto` (
 
 INSERT INTO `concepto` (`idconcepto`, `qr_id`, `nombre`, `tipo`) VALUES
 (1, 1, 'Salario', 'Ingreso'),
-(2, 2, 'Compra de materiales', 'Gasto');
+(2, 2, 'Compra de viveres', 'Gasto');
 
 -- --------------------------------------------------------
 
@@ -180,7 +180,8 @@ INSERT INTO `perfiles` (`perfil`, `lectura_ingresos`, `Insercion_ingresos`, `edi
 
 CREATE TABLE `qr` (
   `qr_id` int(11) NOT NULL,
-  `qr_url` varchar(250) NOT NULL
+  `qr_url` varchar(250) NOT NULL,
+  `qr_descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -201,7 +202,13 @@ CREATE TABLE `usuario` (
   `perfil` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `qr` (`qr_url`, `qr_descripcion`) 
+VALUES 
+('https://i.imgur.com/lar8TPu.png', 'Persona con dinero'), 
+('https://i.imgur.com/PFqEeee.png', 'Canasta de Viveres');
+
 --
+
 -- Volcado de datos para la tabla `usuario`
 --
 
