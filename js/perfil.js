@@ -218,7 +218,6 @@ $(document).ready(function() {
               estado: nuevoEstado
           },
           success: function(response) {
-            console.log(response)
             if(response=="success"){
             mensaje("El cambio de estado ha sido realizado!!!");
             setTimeout(function() {

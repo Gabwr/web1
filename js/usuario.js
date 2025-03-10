@@ -338,7 +338,6 @@ function norep(user,ced,id ,es, callback) {
     let usuario =user;
     let cedula = ced;
     let idu =id;
-    console.log(usuario,cedula,es);
     $.ajax({
         url: "../server/norepuser_cedula.php", 
         method: "POST",
@@ -349,28 +348,22 @@ function norep(user,ced,id ,es, callback) {
         success: function(response) {
             response = response.trim();
             let repetido = false;
-            console.log(response)
             if (response == "Usuario repetido") {
                 mensaje("El usuario ya está registrado.");
                 timeout();
-                console.log("1");
                 repetido = true;
             } else if (response == "Cedula repetida") {
                 mensaje("La cédula ya está registrada.");
                 timeout();
                 repetido = true;
-                console.log("2");
             } else if (response == "No hay repeticion") {
-                console.log("3");
                 repetido = false;
             } else {
-                console.log("4");
                 repetido = false;
             }
             callback(repetido); 
         },
         error: function() {
-            console.log("5");
             mensaje("Error al realizar la solicitud");
             timeout();
             callback(false); 

@@ -18,4 +18,4 @@ function cambiarVisibilidad()
 			claveVisible=true;
 		}
 }
-botonOjo.addEventListener("click",cambiarVisibilidad)
+botonOjo.addEventListener("click",cambiarVisibilidad);

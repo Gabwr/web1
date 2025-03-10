@@ -48,12 +48,11 @@ function ejecutarScripts(elemento) {
       if (oldScript.src) {
           const relativeSrc = obtenerRutaRelativa(oldScript.src);
           newScript.src = relativeSrc;
-          newScript.onload = () => console.log("Script cargado correctamente:", newScript.src);
           if (!document.querySelector(`script[src="${relativeSrc}"]`)) {
               document.body.appendChild(newScript);
           }
       } else {
-        newScript.onload = () => console.log("Script cargado correctamente:", newScript.src);
+        
           newScript.textContent = oldScript.textContent;
           document.body.appendChild(newScript);
       }

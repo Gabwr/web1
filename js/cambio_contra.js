@@ -148,6 +148,6 @@ function cambiarVisibilidad2()
 		}
 }
 
-botonOjo1.addEventListener("click",cambiarVisibilidad1)
-botonOjo2.addEventListener("click",cambiarVisibilidad2)
+botonOjo1.addEventListener("click",cambiarVisibilidad1);
+botonOjo2.addEventListener("click",cambiarVisibilidad2);
 

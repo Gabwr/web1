@@ -143,7 +143,6 @@ function restringir() {
     if(compsis>0 ){
       document.getElementById("desplegablesis").style.display= "block";
     }
-    console.log(comp)
     if(comp==6 ){
       document.getElementById("auditoria").style.display= "block";
     }
