@@ -43,12 +43,13 @@ if (!window.chartsInicializados) {
         const totalGastos = data.totalGastos || 0;
 
         ingresosVsGastosChart.setOption({
-            title: { text: 'Ingresos vs Gastos' },
+            title: { text: 'Ingresos vs Gastos', top: '5px' },
             tooltip: {},
-            legend: { data: ['Ingresos', 'Gastos'] },
+            legend: { data: ['Ingresos', 'Gastos'], top:'40px'},
+            grid: { top: '110px' },
             xAxis: { type: 'category', data: fechas, name: 'Fechas' },
             yAxis: { type: 'value', name: 'Total' },
-            series: [
+            series: [ 
                 { name: 'Ingresos', type: 'line', data: ingresosData, smooth: true, itemStyle: { color: '#4CAF50' } },
                 { name: 'Gastos', type: 'line', data: gastosData, smooth: true, itemStyle: { color: '#F44336' } }
             ]

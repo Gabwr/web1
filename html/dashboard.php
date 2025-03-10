@@ -73,7 +73,7 @@ $conn->close();
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-container">
-                    <div id="ingresosVsGastosChart" style="height: 400px;"></div>
+                    <div id="ingresosVsGastosChart" style="height: 400px; "></div>
                 </div>
             </div>
         </div>
@@ -122,17 +122,13 @@ $conn->close();
         document.addEventListener("DOMContentLoaded", function () {
             const monthInput = document.getElementById("month");
 
-            // Recuperar el mes del localStorage si existe
             const savedMonth = localStorage.getItem("selectedMonth");
             if (savedMonth) {
                 monthInput.value = savedMonth;
             }
 
             monthInput.addEventListener("change", function () {
-                // Guardar el mes seleccionado en localStorage
                 localStorage.setItem("selectedMonth", monthInput.value);
-
-                // Redirigir para actualizar datos con el mes seleccionado
                 window.location.href = "dashboard.php?month=" + monthInput.value;
             });
         });
