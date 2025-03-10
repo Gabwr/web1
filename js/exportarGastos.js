@@ -82,4 +82,39 @@ $(document).ready(function(){
         });
 		mi_tabla.buttons().container().appendTo("#opc_reporte");
 		$("#tabla_paginate").appendTo("#paginas")
+        restringir();
 });
+
+function restringir() {
+    let perfil = sessionStorage.getItem("perfil"); 
+  
+    if (!perfil) {
+        console.warn("No se encontró perfil en sessionStorage");
+        return;
+    }
+  
+    perfil = JSON.parse(perfil);
+
+    if (perfil.insercion_gastos  == true){
+        document.getElementById("gastos_dialog").style.display = "block";
+    }
+
+    if( perfil.lectura_gastos == true ){
+        let busq = document.getElementsByClassName("filtrobusq");
+        for (let i = 0; i < busq.length; i++) {
+           busq[i].style.display = "inline-block";
+        }
+        if(perfil.edicion_gastos == true) {
+            let estados = document.getElementsByClassName("cambiar-estado");
+        let edicion = document.getElementsByClassName("editar-gasto");
+        for (let i = 0; i < edicion.length; i++) {
+            edicion[i].style.display = "inline-block";
+        }
+
+        for (let i = 0; i < estados.length; i++) {
+            estados[i].style.display = "inline-block";
+            }
+        }
+     }
+
+  }

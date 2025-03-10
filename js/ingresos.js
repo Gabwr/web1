@@ -381,30 +381,4 @@ $(document).ready(function(){
 });
 
 
-function restringir() {
-    let perfil = sessionStorage.getItem("perfil"); 
-  
-    if (!perfil) {
-        console.warn("No se encontró perfil en sessionStorage");
-        return;
-    }
-  
-    perfil = JSON.parse(perfil);
-    if (perfil.lectura_ingresos == true){
-        document.getElementById("tabla").style.display = "none";
-        document.getElementById("cambtabla").style.display = "none";
-        document.getElementById("busq").style.display = "none";
-        document.getElementById("ventana_Reg_Ingreso").style.display = "none";
-       
-    }
-
-    if( perfil.Insercion_ingresos == true ){
-
-     }
-        
-    if(perfil.edicion_ingresos == true) {
-       
-    }
-
-  }
 

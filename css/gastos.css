@@ -1,0 +1,4 @@
+.cambiar-estado,.editar-gasto,
+#gastos_dialog,.filtrobusq{
+    display: none;
+}
